@@ -1,11 +1,12 @@
 <template>
   <!-- <cardSocial id="card-social"></cardSocial> -->
 
-  <q-form @submit="onSubmit">
+  <q-form @submit="onSubmit" >
     <div class="q-pa-md q-gutter-md row dashboard-select">
       <q-select
         class="col"
         filled
+        dense 
         v-model="choseUnit"
         :options="units"
         :option-value="(item) => item.id"
@@ -15,6 +16,7 @@
       <q-select
         class="col"
         filled
+        dense 
         v-model="choseMonth"
         :options="months"
         label="Tháng"
@@ -22,15 +24,20 @@
       <q-select
         class="col"
         filled
+        dense 
         v-model="choseYear"
         :options="years"
         label="Năm"
       />
       <q-btn
+        dense 
+        push 
+        glossy 
+          
         type="submit"
         @click="getSetIndicator()"
         color="primary"
-        label="Xác nhận"
+        label="Tìm kiếm"
         to="/dashboard"
       />
     </div>
@@ -49,7 +56,7 @@
 import units from "src/boot/callApi/units";
 import setindicators from "src/boot/callApi/setindicators";
 import { defineComponent, defineAsyncComponent } from "vue";
-import { ref } from "vue";
+
 
 const chartColumn = defineAsyncComponent(() =>
   import("components/charts/columnchart.vue")
@@ -126,6 +133,5 @@ export default defineComponent({
   margin-left: auto
   margin-right: auto
 
-.q-btn
-  height: 55px
+
 </style>

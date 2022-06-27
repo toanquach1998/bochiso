@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-card">
+  <div class="q-pa-md ">
     <p class="text-left text-h6">Tạo Bộ Chỉ Số</p>
     <q-form @reset="onReset" class="q-gutter-md">
       <div class="row q-gutter-sm">
@@ -8,7 +8,8 @@
         filled
         v-model="choseUnit"
         :options="units"
-        :option-value="id"
+        :option="(item) => item.id"
+        option-label="name"
         label="Khu vực"
        />
        <q-select
@@ -41,9 +42,10 @@
         <q-select
           class="col"
           name="accepted_genres"
-          v-model="accepted"
+          v-model="choseDicator"
           multiple
-          :options="tieudecha"
+          :options="topics"
+          option-label= "name"
           color="primary"
           filled
           clearable
@@ -52,25 +54,22 @@
       </div>
       <div>
         <q-btn
-          @click="isActive = !isActive"
+          @click="choseTopic()"
           label="Xác nhân đề mục"
           type="submit"
           color="primary"
         />
-        <q-btn
-          label="Reset"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-        />
+      
       </div>
       <div class="q-col-gutter-sm" v-if="!isActive">
         <q-tree
           class="col-12 col-sm-6"
           :nodes="simple"
-          node-key="label"
-          tick-strategy="leaf"
+          node-key="label"  
+          tick-strategy="leaf-filtered"
+          ticked = "flase"
+          default-expand-all
+          accordion 
           selected-color="primary"
           v-model:selected="selected"
           v-model:ticked="ticked"
@@ -83,13 +82,7 @@
             color="primary"
             @click="triggerNoGrouping"
           />
-          <q-btn
-            label="Reset"
-            type="reset"
-            color="primary"
-            flat
-            class="q-ml-sm"
-          />
+       
         </div>
       </div>
     </q-form>
@@ -100,13 +93,15 @@
 import { useQuasar } from "quasar";
 import setindicators from "src/boot/callApi/setindicators";
 import { ref } from "vue";
+import units from "src/boot/callApi/units";
+import topics from "src/boot/callApi/topics";
+import targets from "src/boot/callApi/targets";
 
 export default {
   name: "createbcs",
 
   async created(){
-    const data = await setindicators.index();
-    this.tables = data.topics;
+
     for(let i = 1; i < 13; i++){
       this.months.push({
         label: "Tháng" + i,
@@ -119,10 +114,17 @@ export default {
         value: i,
       });
     }
-    const data1 = await units.units();
+    // const data1 = await units.units();
+    // this.units = data1.units;
+    // console.log(this.units);
+    // const data2 = await topics.topics();
+    // this.topics = data2.topics;
+    
+    const [data1, data2] =await Promise.all([units.units() , topics.topics()]); 
     this.units = data1.units;
-    console.log(this.units);
+    this.topics = data2.topics;
   },
+
   data() {
     const $q = useQuasar();
     const name = ref(null);
@@ -135,9 +137,11 @@ export default {
       months: [],
       tables: [],
       units: [],
+      topics: [],
       choseYear: null,
       choseMonth: null,
       choseUnit: null,
+      choseDicator: null,
       
       isActive: true,
       showTest: false,
@@ -208,14 +212,16 @@ export default {
       ],
     };
   },
-  method:{
-    async getSetIndicator(){
-      const data = await setindicators.index(
-        this.choseUnit.id,
-        this.choseYear,
-        this.choseMonth,
-      );
-      this.tables = data.topics;
+  methods:{
+    async choseTopic(){
+      let arrTopics = '' ; 
+      for(let i= 0 ; i< this.choseDicator.length  ; i++) {
+        arrTopics += this.choseDicator[i].id  + ',';
+      }
+      const resTopics = await targets.getwitharraytopic(arrTopics);
+      console.log(resTopics);
+      
+      this.isActive = false ;
     }
     
   }

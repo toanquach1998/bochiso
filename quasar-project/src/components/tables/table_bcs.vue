@@ -57,20 +57,20 @@
     </div> -->
     <!--  TẠO BẢNG BẰNG QTABLE -->
 
-    <q-markup-table dark class="bg-indigo-8">
+    <q-markup-table wrap-cells bordered>
       <thead>
         <tr>
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
           <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
-          <th class="text-center"><span class="text-tieude">ĐVT</span></th>
-          <th class="text-center"><span class="text-tieude">Kế hoạch</span></th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">ĐVT</span></th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">Kế hoạch</span></th>
           <th class="text-center">
             <span class="text-tieude">Thực hiện</span>
           </th>
-          <th class="text-center"><span class="text-tieude">% so KH</span></th>
-          <th class="text-center">
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">% so KH</span></th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`">
             <span class="text-tieude">Ngưỡng cảnh báo</span>
           </th>
         </tr>
@@ -78,37 +78,37 @@
 
       <tbody>
         <template v-for="(topic, index) in tables" :key="topic.id">
-          <tr class="text-center">
+          <tr class="text-left">
             <td><span class ="topic-id">{{ ++index }}</span></td>
-            <td>
+            <td class="topic-size"  >
               {{ topic.name }}
             </td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td class="topic-size">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
           </tr>
 
           <template v-for="(target1, index1) in topic.targets" :key="target1.id">
-            <tr class="text-center">
-              <td>
+            <tr class="text-left">
+              <td class="target1-index target1-size">
                  {{++index-index+1}}.{{ ++index1 }}
               </td>
-              <td>
+              <td class="target1-size">
                 {{ target1.name }}
               </td>
-              <td>
+              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                 {{ target1.comment }}
               </td>
-              <td>
+              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                 {{ target1.setindicators[0].plan }}
               </td>
-              <td>
+              <td class="target1-size">
                 {{ target1.setindicators[0].total_plan }}
               </td>
 
-              <td>
+              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                 {{
                   tinhphantram(
                     target1.setindicators[0].total_plan,
@@ -116,8 +116,7 @@
                   )
                 }}
               </td>
-
-              <td
+              <td 
                 :class="
                   tinhphantram(
                     target1.setindicators[0].total_plan,
@@ -128,26 +127,26 @@
               ></td>
             </tr>
             <template v-for="(target2, index2) in target1.targets" :key="target2.id">
-              <tr class="text-center">
-                <td>
+              <tr class="text-left">
+                <td class="target2-index target1-size">
                   {{ index-index1+index2}}.{{ ++index1-index2-1 }}.{{ ++index2 }}
                  
                 </td>
-                <td>
+                <td class="target1-size">
                   {{ target2.name }}
                 </td>
 
-                <td>
+                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                   {{ target2.comment }}
                 </td>
 
-                <td>
+                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                   {{ target2.setindicators[0].plan }}
                 </td>
 
-                <td>{{ target2.setindicators[0].total_plan }}</td>
+                <td class="target1-size">{{ target2.setindicators[0].total_plan }}</td>
 
-                <td>
+                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                   {{
                     tinhphantram(
                       target2.setindicators[0].total_plan,
@@ -172,13 +171,16 @@
           </template>
         </template>
       </tbody>
+     
     </q-markup-table>
+    
   </div>
 </template>
 
 <script>
 
 import setindicator from "../../boot/callApi/setindicators";
+import { ref } from 'vue'
 export default {
   name: "table_bcs",
   props:{
@@ -193,9 +195,6 @@ export default {
   },
   methods: {
     tinhphantram(totalPlan, plan) {
-      /* console.log(plan)
-       console.log(totalPlan)
-      console.log((plan/totalPlan)*100) */
       return (totalPlan / plan) * 100;
         
     },
@@ -206,7 +205,7 @@ export default {
   },
   data() {
     return {
-    
+      filter: ref(''),
       // tables: {},
       /* tables-detail: {}, */
     };
@@ -230,7 +229,6 @@ export default {
   background-color: green
 
 
-
 .header-bcs
   margin-bottom: 10px
 
@@ -244,11 +242,31 @@ export default {
   font-size: 16px
   font-weight: bold
 
+  // sass cho DE MUC
 .topic-id
-  font-weight: 700
+  font-weight: 750
+  font-size: 16px
+.topic-size
+  font-size: 16px
+ 
+
+  //sass cho tieu chi cha
+.target1-index
+  display: block
+  margin-left: 3px
+  font-weight: 550
+
+.target1-size
+  font-size: 16px
+ 
   
 
+//sass cho tieu chi con
+.target2-index
+  display: block
+  margin-left: 6px  
 
-.topic-name
-  margin-left: 20px
+.topic123
+  max-width: 10%
+
 </style>

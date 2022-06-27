@@ -1,14 +1,14 @@
 <template>
   <div class="q-pa-md">
-    <q-markup-table dark class="bg-indigo-8">
+    <q-markup-table  wrap-cells bordered>
       <thead>
         <tr>
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
-          <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
-          <th class="text-center"><span class="text-tieude">ĐVT</span></th>
-          <th class="text-center"><span class="text-tieude">Kế hoạch</span></th>
+          <th class="text-center" ><span class="text-tieude">CHỈ SỐ</span></th>
+          <th class="text-center" :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">ĐVT</span></th>
+          <th class="text-center" :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">Kế hoạch</span></th>
           <th class="text-center">
             <span class="text-tieude">Thực hiện</span>
           </th>
@@ -21,11 +21,11 @@
             <td>
               <span class="topic-id">{{ ++index }}</span>
             </td>
-            <td>
+            <td class="topic-size">
               {{ topic.name }}
             </td>
-            <td>-</td>
-            <td>-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`">-</td>
             <td>-</td>
           </tr>
           <template
@@ -33,14 +33,14 @@
             :key="target1.id"
           >
             <tr class="text-left">
-              <td>{{ ++index - index + 1 }}.{{ ++index1 }}</td>
-              <td>
+              <td class="target1-index target1-size">{{ ++index - index + 1 }}.{{ ++index1 }}</td>
+              <td class="target1-size">
                 {{ target1.name }}
               </td>
-              <td>
+              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                 {{ target1.comment }}
               </td>
-              <td>
+              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                 {{ target1.setindicators[0].plan }}
               </td>
               <td :props="props" class="text-black">
@@ -54,11 +54,12 @@
                <q-btn color="purple" @click="update(target1.setindicators[0].detail_set_indicators[0].id,target1.setindicators[0].detail_set_indicators[0])" label="Cập nhật" />
             </q-popup-edit> -->
                 <q-input
+                class="target1-size"
                   dense
                   rounded
                   standout
-                  text-color="black"
-                  bg-color="white"
+                  text-color=""
+                  bg-color="#e2e2e2"
                   @change="
                     update(
                       target1.setindicators[0].detail_set_indicators[0].id,
@@ -80,30 +81,32 @@
               :key="target2.id"
             >
               <tr class="text-left">
-                <td>
+                <td class="target2-index target1-size">
                   {{ index - index1 + index2 }}.{{ ++index1 - index2 - 1 }}.{{
                     ++index2
                   }}
                 </td>
-                <td>
+                <td  class="target1-size">
                   {{ target2.name }}
                 </td>
 
-                <td>
+                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                   {{ target2.comment }}
                 </td>
 
-                <td>
+                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
                   {{ target2.setindicators[0].plan }}
                 </td>
 
                 <td>
+                 
                   <q-input
+                   class="target1-size"
                     dense
                     rounded
                     standout
-                    color="black"
-                    bg-color="white"
+                    
+                    bg-color="#e2e2e2"
                     @change="
                       update(
                         target2.setindicators[0].detail_set_indicators[0].id,
@@ -213,12 +216,22 @@ export default {
 .text-tieude
   font-size: 16px
   font-weight: bold
-
 .topic-id
-  font-weight: 700
+  font-weight: 750
+  font-size: 16px
+.topic-size
+  font-size: 16px
+.target1-index
+  
+  margin-left: 3px
+  font-weight: 650
+
+.target1-size
+  font-size: 16px
+.target2-index
+  margin-left: 6px 
+    
 
 
 
-.topic-name
-  margin-left: 20px
 </style>
