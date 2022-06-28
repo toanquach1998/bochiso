@@ -2,8 +2,8 @@ import { api } from "../axios";
 
 const cator = 'detailsetindicators/';
 
-async function detail(){
-    const res = await api.post(cator, {} );
+async function detail(unit_id=-1){
+    const res = await api.post(cator, {unit_id:unit_id} );
     console.log(res.data);
 
     return res.data;

@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="q-pa-md">
     <!--     <div class="tbheader">
       <div class="header row justify-center full-width text-bold header-bcs">
@@ -58,6 +58,19 @@
     <!--  TẠO BẢNG BẰNG QTABLE -->
 
     <q-markup-table wrap-cells bordered>
+   <thead class="name-bcs">
+    <tr>
+      <th></th>
+      <th class="text-left">BỘ CHỈ SỐ THÁNG 5</th>
+      <th></th>
+      <th></th>
+      <th>màu vàng quan tâm</th>
+      <th>màu đỏ không chấp nhận</th>
+      <th>màu xanh chấp nhận</th>
+    </tr>
+   </thead>
+   
+      
       <thead>
         <tr>
           <th class="text-center th-tieude">
@@ -79,7 +92,7 @@
       <tbody>
         <template v-for="(topic, index) in tables" :key="topic.id">
           <tr class="text-left">
-            <td><span class ="topic-id">{{ ++index }}</span></td>
+            <td class="top-size"><span class ="topic-id">{{ ++index }}</span></td>
             <td class="topic-size"  >
               {{ topic.name }}
             </td>
@@ -173,7 +186,7 @@
       </tbody>
      
     </q-markup-table>
-    
+  
   </div>
 </template>
 
@@ -268,5 +281,15 @@ export default {
 
 .topic123
   max-width: 10%
+
+  //ten bo chi sass
+.name-bcs
+  margin-top: 20px
+/* .text-left:nth-child(even)
+  background-color: #cfcfc4
+ */
+.text-left:hover
+  background-color: #6e7f80
+
 
 </style>

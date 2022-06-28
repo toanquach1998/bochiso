@@ -1,14 +1,46 @@
 <template>
-  <div class="q-pa-md">
-    <q-markup-table  wrap-cells bordered>
+  <div class="q-pa-md ">
+    <div class="full-width row div-unit">
+    <q-select
+      class="col-md-8"
+      filled
+      dense
+      v-model="choseUnit"
+      :options="units"
+      :option-value="(item) => item.id"
+      option-label="name"
+      label="Khu vực"
+    />
+    <q-btn
+        dense 
+        push 
+        glossy 
+        class="col-md"
+        type="submit"
+        @click="getDetailindicators()"
+        color="primary"
+        label="Xác nhận"
+      />
+      </div>
+    <q-markup-table wrap-cells bordered>
       <thead>
         <tr>
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
-          <th class="text-center" ><span class="text-tieude">CHỈ SỐ</span></th>
-          <th class="text-center" :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">ĐVT</span></th>
-          <th class="text-center" :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">Kế hoạch</span></th>
+          <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
+          <th
+            class="text-center"
+            :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+          >
+            <span class="text-tieude">ĐVT</span>
+          </th>
+          <th
+            class="text-center"
+            :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+          >
+            <span class="text-tieude">Kế hoạch</span>
+          </th>
           <th class="text-center">
             <span class="text-tieude">Thực hiện</span>
           </th>
@@ -24,8 +56,8 @@
             <td class="topic-size">
               {{ topic.name }}
             </td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
             <td>-</td>
           </tr>
           <template
@@ -33,14 +65,22 @@
             :key="target1.id"
           >
             <tr class="text-left">
-              <td class="target1-index target1-size">{{ ++index - index + 1 }}.{{ ++index1 }}</td>
+              <td class="target1-index target1-size">
+                {{ ++index - index + 1 }}.{{ ++index1 }}
+              </td>
               <td class="target1-size">
                 {{ target1.name }}
               </td>
-              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
                 {{ target1.comment }}
               </td>
-              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
                 {{ target1.setindicators[0].plan }}
               </td>
               <td :props="props" class="text-black">
@@ -54,7 +94,7 @@
                <q-btn color="purple" @click="update(target1.setindicators[0].detail_set_indicators[0].id,target1.setindicators[0].detail_set_indicators[0])" label="Cập nhật" />
             </q-popup-edit> -->
                 <q-input
-                class="target1-size"
+                  class="target1-size"
                   dense
                   rounded
                   standout
@@ -86,26 +126,30 @@
                     ++index2
                   }}
                 </td>
-                <td  class="target1-size">
+                <td class="target1-size">
                   {{ target2.name }}
                 </td>
 
-                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="target1-size"
+                >
                   {{ target2.comment }}
                 </td>
 
-                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="target1-size"
+                >
                   {{ target2.setindicators[0].plan }}
                 </td>
 
                 <td>
-                 
                   <q-input
-                   class="target1-size"
+                    class="target1-size"
                     dense
                     rounded
                     standout
-                    
                     bg-color="#e2e2e2"
                     @change="
                       update(
@@ -128,7 +172,20 @@
           </template>
         </template>
       </tbody>
+     
+       
+    
     </q-markup-table>
+
+      
+        <q-input filled  dense debounce="400" v-model="filter"
+         placeholder="Search" >
+          <div>
+            <q-icon name="search" />
+          </div>
+        </q-input>
+    
+      
   </div>
 </template>
 
@@ -136,6 +193,7 @@
 import { useQuasar } from "quasar";
 import setindicator from "../boot/callApi/setindicators";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
+import units from "../boot/callApi/units"
 
 export default {
   name: "inputdata",
@@ -143,11 +201,11 @@ export default {
   async created() {
     setInterval(function () {}, 30000);
     /*   const data = await setindicator.index(); */
-    const cator = await detailsetindicator.detail();
-
+    const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics;
-
     console.log(this.cators);
+    const data1 = await units.units();
+    this.units = data1.units;
   },
   methods: {
     tinhphantram(totalPlan, plan) {
@@ -158,22 +216,29 @@ export default {
     },
     async update(id, total_plan) {
       const data = await detailsetindicator.update(id, total_plan);
-
       if (data.statuscode == 1) {
-        this.showNotif("top", " thanh cong ", "green");
+        this.showNotif("top", "Cập nhât dữ liệu thành công", "green");
       } else {
-        this.showNotif("top", "that bai", "red");
+        this.showNotif("top", "Cập nhật dữ liệu thất bại", "red");
       }
     },
     canhbao(tinhphantram) {
       return tinhphantram;
     },
+    async getDetailindicators() {
+      const data = await detailsetindicator.detail(this.choseUnit.id);
+      console.log(this.choseUnit.id);
+      this.tables = data.topics;
+    },
+    
   },
 
   data() {
     const $q = useQuasar();
     return {
       tables: {},
+      units: [],
+      choseUnit: null,
       /* tables-detail: {}, */
       showNotif(position, mess, color) {
         $q.notify({
@@ -188,8 +253,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.bg-green
-  color: #a2aa33
+
+.div-unit
+  margin: 20px  
+  max-width: 300px
+
 .bg-success
   background-color: #28a745
 .bg-danger
@@ -222,16 +290,12 @@ export default {
 .topic-size
   font-size: 16px
 .target1-index
-  
+
   margin-left: 3px
   font-weight: 650
 
 .target1-size
   font-size: 16px
 .target2-index
-  margin-left: 6px 
-    
-
-
-
+  margin-left: 6px
 </style>
