@@ -1,4 +1,4 @@
-<template >
+<template>
   <div class="q-pa-md">
     <!--     <div class="tbheader">
       <div class="header row justify-center full-width text-bold header-bcs">
@@ -58,33 +58,32 @@
     <!--  TẠO BẢNG BẰNG QTABLE -->
 
     <q-markup-table wrap-cells bordered>
-   <thead class="name-bcs">
-    <tr>
-      <th></th>
-      <th class="text-left">BỘ CHỈ SỐ THÁNG 5</th>
-      <th></th>
-      <th></th>
-      <th>màu vàng quan tâm</th>
-      <th>màu đỏ không chấp nhận</th>
-      <th>màu xanh chấp nhận</th>
-    </tr>
-   </thead>
-   
-      
       <thead>
         <tr>
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
           <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">ĐVT</span></th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">Kế hoạch</span></th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+            <span class="text-tieude">ĐVT</span>
+          </th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+            <span class="text-tieude">Chỉ tiêu năm</span>
+          </th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+            <span class="text-tieude">Kế hoạch</span>
+          </th>
           <th class="text-center">
             <span class="text-tieude">Thực hiện</span>
           </th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`"><span class="text-tieude">% so KH</span></th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`">
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+            <span class="text-tieude">% so KH</span>
+          </th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
             <span class="text-tieude">Ngưỡng cảnh báo</span>
+          </th>
+          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+            <span class="text-tieude">Người cập nhật lần cuối</span>
           </th>
         </tr>
       </thead>
@@ -92,36 +91,90 @@
       <tbody>
         <template v-for="(topic, index) in tables" :key="topic.id">
           <tr class="text-left">
-            <td class="top-size"><span class ="topic-id">{{ ++index }}</span></td>
-            <td class="topic-size"  >
+            <td class="top-size">
+              <span class="topic-id">{{ ++index }}</span>
+            </td>
+            <td class="topic-size">
               {{ topic.name }}
             </td>
             <td class="topic-size">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="topic-size">-</td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              -
+            </td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              -
+            </td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              -
+            </td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              -
+            </td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              -
+            </td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              -
+            </td>
           </tr>
 
-          <template v-for="(target1, index1) in topic.targets" :key="target1.id">
-            <tr class="text-left">
+          <template
+            v-for="(target1, index1) in topic.targets"
+            :key="target1.id"
+          >
+            <tr 
+            class="text-left">
               <td class="target1-index target1-size">
-                 {{++index-index+1}}.{{ ++index1 }}
+                {{ ++index - index + 1 }}.{{ ++index1 }}
               </td>
               <td class="target1-size">
                 {{ target1.name }}
               </td>
-              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+              
+            
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
                 {{ target1.comment }}
               </td>
-              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+                <td  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
+                {{target1.setindicators[0].year_plan}}
+              </td>
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
                 {{ target1.setindicators[0].plan }}
               </td>
               <td class="target1-size">
                 {{ target1.setindicators[0].total_plan }}
               </td>
 
-              <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
                 {{
                   tinhphantram(
                     target1.setindicators[0].total_plan,
@@ -129,37 +182,63 @@
                   )
                 }}
               </td>
-              <td 
+              <td
                 :class="
                   tinhphantram(
                     target1.setindicators[0].total_plan,
                     target1.setindicators[0].plan
                   ) < 100
                     ? 'bg-danger'
-                    : 'bg-success' "
+                    : 'bg-success'
+                "
               ></td>
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
+                <!-- {{ target1.setindicators[0]?.detail_set_indicator.id }}: -->
+                <!-- {{ target1.setindicators[0].detail_set_indicator.updated_at }} -->
+              </td>
             </tr>
-            <template v-for="(target2, index2) in target1.targets" :key="target2.id">
+            <template
+              v-for="(target2, index2) in target1.targets"
+              :key="target2.id"
+            >
               <tr class="text-left">
                 <td class="target2-index target1-size">
-                  {{ index-index1+index2}}.{{ ++index1-index2-1 }}.{{ ++index2 }}
-                 
+                  {{ index - index1 + index2 }}.{{ ++index1 - index2 - 1 }}.{{
+                    ++index2
+                  }}
                 </td>
                 <td class="target1-size">
                   {{ target2.name }}
                 </td>
-
-                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
-                  {{ target2.comment }}
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="target1-size"
+                >
+                  {{ target1.comment }}
                 </td>
-
-                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+                    <td  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="target1-size"
+              >
+                {{target2.setindicators[0].year_plan}}
+              </td>
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="target1-size"
+                >
                   {{ target2.setindicators[0].plan }}
                 </td>
 
-                <td class="target1-size">{{ target2.setindicators[0].total_plan }}</td>
+                <td class="target1-size">
+                  {{ target2.setindicators[0].total_plan }}
+                </td>
 
-                <td :class="`col-md-3 ${$q.screen.xs ? 'hidden': ''}`" class="target1-size">
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="target1-size"
+                >
                   {{
                     tinhphantram(
                       target2.setindicators[0].total_plan,
@@ -168,48 +247,48 @@
                   }}
                 </td>
 
-                <td   :class="
+                <td
+                  :class="
                     tinhphantram(
                       target2.setindicators[0].total_plan,
                       target2.setindicators[0].plan
                     ) < 100
                       ? 'bg-danger'
                       : 'bg-success'
-                  " 
+                  "
+                ></td>
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="target1-size"
                 >
-                
+                  <!-- {{ target1.setindicators[0].detail_set_indicator.username_updated }} -->
                 </td>
               </tr>
             </template>
           </template>
         </template>
       </tbody>
-     
     </q-markup-table>
-  
   </div>
 </template>
 
 <script>
-
 import setindicator from "../../boot/callApi/setindicators";
-import { ref } from 'vue'
+import { ref } from "vue";
 export default {
   name: "table_bcs",
-  props:{
+  props: {
     tables: {
-      type: Array, 
-      required: true, 
-    }
+      type: Array,
+      required: true,
+    },
   },
   async created() {
     setInterval(function () {}, 30000);
-
   },
   methods: {
     tinhphantram(totalPlan, plan) {
       return (totalPlan / plan) * 100;
-        
     },
 
     canhbao(tinhphantram) {
@@ -218,19 +297,24 @@ export default {
   },
   data() {
     return {
-      filter: ref(''),
+      filter: ref(""),
       // tables: {},
       /* tables-detail: {}, */
     };
   },
-};  
+};
 </script>
 
 <style lang="sass" scoped>
+
+.name-bcs
+  font-size: 30px
+
+
 .bg-green
   color: #a2aa33
 .bg-success
-  background-color: #28a745 
+  background-color: #28a745
 .bg-danger
   background-color: #f52727
 
@@ -261,35 +345,29 @@ export default {
   font-size: 16px
 .topic-size
   font-size: 16px
- 
+
 
   //sass cho tieu chi cha
 .target1-index
-  display: block
+
   margin-left: 3px
   font-weight: 550
 
 .target1-size
   font-size: 16px
- 
-  
+
+
 
 //sass cho tieu chi con
 .target2-index
-  display: block
-  margin-left: 6px  
+
+  margin-left: 6px
 
 .topic123
   max-width: 10%
 
   //ten bo chi sass
-.name-bcs
-  margin-top: 20px
-/* .text-left:nth-child(even)
-  background-color: #cfcfc4
- */
+
 .text-left:hover
-  background-color: #6e7f80
-
-
+  background-color: #bbb9b9
 </style>

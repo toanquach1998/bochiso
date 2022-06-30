@@ -1,12 +1,12 @@
 <template class="test">
   <!-- <cardSocial id="card-social"></cardSocial> -->
-<div class="test1">
+<div>
   <q-form @submit="onSubmit">
     <div class="q-pa-md q-gutter-md row dashboard-select">
       <q-select
-        class="col"
+        class="col-md-2 col-xs-10"
         filled
-        dense
+        
         v-model="choseUnit"
         :options="units"
         :option-value="(item) => item.id"
@@ -14,23 +14,26 @@
         label="Khu vực"
       />
       <q-select
-        class="col"
+        class="col-md-2 col-xs-10"
         filled
-        dense
+        
         v-model="choseMonth"
         :options="months"
         label="Tháng"
       />
       <q-select
-        class="col"
+        class="col-md-2 col-xs-10"
         filled
-        dense
+        
         v-model="choseYear"
         :options="years"
         label="Năm"
+        table-colspan="2"
+
       />
       <q-btn
-        dense
+      class="col-md-1 col-xs-5"
+        
         push
         glossy
         type="submit"
@@ -48,6 +51,20 @@
 
 <!--   <chartColumn></chartColumn>
  -->
+  <div class= row>
+    <div  class="col-md-9 col-xs-12" >
+        <span class="namebcs" v-if="unitName !== ' '"> Bộ chỉ số đơn vị {{ unitName}} - {{ monthName }} {{yearName}}</span>
+    </div>
+    <div class="col-md-1 col-xs-4">
+      <q-icon name="fiber_manual_record" color="red" size="30px"/><span > Cảnh báo </span>
+    </div>
+    <div class="col-md-1 col-xs-4">
+      <q-icon name="fiber_manual_record" color="yellow" size="30px"/><span > Quan tâm </span>
+    </div>
+    <div class="col-md-1 col-xs-4">
+      <q-icon name="fiber_manual_record" color="green" size="30px"/><span > Chấp nhận </span>
+    </div>
+  </div>
   <tableBCS :tables="tables"></tableBCS>
 </div>
 </template>
@@ -56,6 +73,8 @@
 import units from "src/boot/callApi/units";
 import setindicators from "src/boot/callApi/setindicators";
 import { defineComponent, defineAsyncComponent } from "vue";
+import { useQuasar } from "quasar";
+import { months } from "moment";
 
 const chartColumn = defineAsyncComponent(() =>
   import("components/charts/columnchart.vue")
@@ -87,15 +106,27 @@ export default defineComponent({
     });
     for (let i = 1; i < 13; i++) {
       this.months.push({
-        label: "Tháng" + i,
+        label: "Tháng " + i,
         value: i,
       });
     }
     for (let i = 2020; i < 2029; i++) {
       this.years.push({
-        label: "Năm" + i,
+        label: "Năm " + i,
         value: i,
       });
+    }
+    //set this year , month 
+    let date = new Date();
+    this.monthName = ' Tháng'  + date.getMonth().toString(); 
+    this.yearName = ' Năm' + date.getFullYear().toString();
+    this.choseMonth = {
+      label: this.monthName,
+      value: date.getMonth().toString()
+    }
+        this.choseYear = {
+      label: this.yearName,
+      value: date.getFullYear().toString()
     }
     const data1 = await units.units();
     this.units = data1.units;
@@ -115,6 +146,7 @@ export default defineComponent({
     progressBCS,
   },
   data() {
+    const $q = useQuasar();
     return {
       years: [],
       months: [],
@@ -123,7 +155,17 @@ export default defineComponent({
       choseYear: null,
       choseMonth: null,
       choseUnit: null,
-      unitId: null, 
+      unitName: null, 
+      monthName: '', 
+      yearName: '',
+      unitId: '', 
+      showNotif(position, mess, color) {
+        $q.notify({
+          message: mess,
+          position,
+          color: color,
+        });
+      },
     };
   },
   methods: {
@@ -132,23 +174,38 @@ export default defineComponent({
         this.choseUnit?.id,
         this.choseYear?.value,
         this.choseMonth?.value
-      );
-      this.tables = data.topics;
-      if (this.tables.lenght == 0) {
+      ); 
+      console.log(data.topics.length)
+      if (data?.topics.length == 0) {
         this.showNotif("top", "Bộ chỉ số chưa được tạo", "red");
       } else {
         this.showNotif("top", "Lấy dữ liệu thành công", "green");
       }
+      this.tables = data.topics;
+      this.unitName = this.choseUnit.name;
+      this.monthName = ' ' + this.choseMonth.label; 
+      this.yearName = ' ' + this.choseYear.label 
+    
     },
   },
 });
 </script>
 
 <style lang="sass" scoped>
+
+.namebcs
+  margin-left: 20px
+  font-size: 25px
+  
+
+
 .dashboard-select
-  max-width: 600px
+  max-width: 100%
+  margin-top: 10px
+  margin-bottom: 10px
   margin-left: auto
   margin-right: auto
+  
 .test
   background-color: #f2f2f2
 </style>

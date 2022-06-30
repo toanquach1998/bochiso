@@ -2,9 +2,8 @@
   <div class="q-pa-md ">
     <div class="full-width row div-unit">
     <q-select
-      class="col-md-8"
+      class="col-md-6 col-xs-6 select-unit"
       filled
-      dense
       v-model="choseUnit"
       :options="units"
       :option-value="(item) => item.id"
@@ -12,10 +11,10 @@
       label="Khu vực"
     />
     <q-btn
-        dense 
+        
         push 
         glossy 
-        class="col-md"
+        class="col-md-4 col-xs-4"
         type="submit"
         @click="getDetailindicators()"
         color="primary"
@@ -62,11 +61,11 @@
           </tr>
           <template
             v-for="(target1, index1) in topic.targets"
-            :key="target1.id"
+            :key="index1"
           >
             <tr class="text-left">
               <td class="target1-index target1-size">
-                {{ ++index - index + 1 }}.{{ ++index1 }}
+                {{ index }}.{{ target1?.order }}
               </td>
               <td class="target1-size">
                 {{ target1.name }}
@@ -118,11 +117,11 @@
             </tr>
             <template
               v-for="(target2, index2) in target1.targets"
-              :key="target2.id"
+              :key="index2"
             >
               <tr class="text-left">
                 <td class="target2-index target1-size">
-                  {{ index - index1 + index2 }}.{{ ++index1 - index2 - 1 }}.{{
+                  {{ index  }}.{{ target1?.order }}.{{
                     ++index2
                   }}
                 </td>
@@ -256,7 +255,7 @@ export default {
 
 .div-unit
   margin: 20px  
-  max-width: 300px
+  max-width: 400px
 
 .bg-success
   background-color: #28a745
@@ -270,7 +269,8 @@ export default {
 .background-green
   background-color: green
 
-
+.select-unit
+  margin-right: 10px 
 
 .header-bcs
   margin-bottom: 10px
@@ -299,3 +299,5 @@ export default {
 .target2-index
   margin-left: 6px
 </style>
+
+
