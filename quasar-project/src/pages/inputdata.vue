@@ -178,13 +178,7 @@
     </q-markup-table>
 
       
-        <q-input filled  dense debounce="400" v-model="filter"
-         placeholder="Search" >
-          <div>
-            <q-icon name="search" />
-          </div>
-        </q-input>
-    
+      
       
   </div>
 </template>

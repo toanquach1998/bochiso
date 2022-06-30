@@ -79,7 +79,7 @@
             <q-item-label> <span class="text-list">Dashboard</span> </q-item-label>
           </q-item-section>
         </q-item>
-        <q-expansion-item icon="pages" label="Pages" size="30px">
+        <q-expansion-item icon="account_circle" label="Pages" size="30px">
           <q-list class="q-pl-lg">
             <q-item to="/login" active-class="q-item-no-link-highlighting">
               <q-item-section avatar>
@@ -89,35 +89,21 @@
                 <q-item-label class="login-button">Đăng nhập</q-item-label>
               </q-item-section>
             </q-item>
-        <!--     <q-item
-              to="src/pages/register"
+            <q-item
+              to="/login"
               active-class="q-item-no-link-highlighting"
             >
               <q-item-section avatar>
-                <q-icon name="person" />
+                <q-icon name="logout" />
               </q-item-section>
               <q-item-section>
-                <q-item-label>Tạo tài khoản</q-item-label>
+                <q-item-label>Đăng xuất</q-item-label>
               </q-item-section>
-            </q-item> -->
+            </q-item>
           </q-list>
-        </q-expansion-item>
-        <!--  <q-item to="src/pages/table" active-class="q-item-no-link-highlighting">
-          <q-item-section avatar>
-            <q-icon name="chat" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Table</q-item-label>
-          </q-item-section>
-        </q-item> -->
-    <!--     <q-item to="/createdemuc" active-class="q-item-no-link-highlighting">
-          <q-item-section avatar>
-            <q-icon name="add_circle" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Tạo Đề Mục</q-item-label>
-          </q-item-section>
-        </q-item> -->
+      </q-expansion-item>
+     
+  
         <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px"/>
@@ -171,7 +157,7 @@ export default defineComponent({
 
 .text-header
   text-transform: uppercase
-  font-size: 1.3rem
+  font-size: 1rem
   display: block
   margin: 0.75rem 0
   margin-left: 10px
@@ -185,4 +171,7 @@ export default defineComponent({
   font-size: 30px 
 .body--light 
   background-color: #f8faff
+
+
+
 </style>

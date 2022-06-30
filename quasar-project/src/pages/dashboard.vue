@@ -53,7 +53,7 @@
  -->
   <div class= row>
     <div  class="col-md-9 col-xs-12" >
-        <span class="namebcs" v-if="unitName !== ' '"> Bộ chỉ số đơn vị {{ unitName}} - {{ monthName }} {{yearName}}</span>
+        <span :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`" class="namebcs" v-if="unitName !== ' '"> Bộ chỉ số đơn vị {{ unitName}} - {{ monthName }} {{yearName}}</span>
     </div>
     <div class="col-md-1 col-xs-4">
       <q-icon name="fiber_manual_record" color="red" size="30px"/><span > Cảnh báo </span>
@@ -101,7 +101,7 @@ export default defineComponent({
     this.unitId = data.topics.id; 
     console.log(this.tables);
     this.months.push({
-      label: "cả năm ",
+      label: "Cả năm ",
       value: 13,
     });
     for (let i = 1; i < 13; i++) {
@@ -205,6 +205,8 @@ export default defineComponent({
   margin-bottom: 10px
   margin-left: auto
   margin-right: auto
-  
+
+
+
 
 </style>
