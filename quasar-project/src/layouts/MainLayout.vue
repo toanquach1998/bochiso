@@ -68,7 +68,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="darkMode">
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list size="50px">
         <q-item-label > <span class="text-header">Danh mục</span> </q-item-label>
         <q-item to="/dashboard" active-class="q-item-no-link-highlighting">
@@ -183,5 +183,6 @@ export default defineComponent({
   font-size: 18px */
 .q-item__section--side > .q-icon
   font-size: 30px 
-  
+.body--light 
+  background-color: #f8faff
 </style>

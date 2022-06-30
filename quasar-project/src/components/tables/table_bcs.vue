@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md ">
     <!--     <div class="tbheader">
       <div class="header row justify-center full-width text-bold header-bcs">
         <div class="col-md-1">STT </div>
@@ -196,8 +196,8 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="target1-size"
               >
-                <!-- {{ target1.setindicators[0]?.detail_set_indicator.id }}: -->
-                <!-- {{ target1.setindicators[0].detail_set_indicator.updated_at }} -->
+                {{ target1.setindicators[0]?.detail_set_indicator?.name }}
+                 {{ time(target1.updated_at) }}
               </td>
             </tr>
             <template
@@ -217,7 +217,7 @@
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="target1-size"
                 >
-                  {{ target1.comment }}
+                  {{ target2.comment }}
                 </td>
                     <td  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="target1-size"
@@ -261,7 +261,11 @@
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="target1-size"
                 >
-                  <!-- {{ target1.setindicators[0].detail_set_indicator.username_updated }} -->
+                {{ target2.setindicators[0]?.detail_set_indicator?.name }}
+                {{ time( target2.updated_at) }}
+               <!--  {{ str.slice(1,3)}} -->
+            <!--     {{timeToParse(target1.setindicator[0]?.detail_set_indicator?.update_at )}} -->
+             <!--      {{ (target1.setindicators[0].detail_set_indicator.updated_at).slice(1,12) }} -->
                 </td>
               </tr>
             </template>
@@ -275,6 +279,9 @@
 <script>
 import setindicator from "../../boot/callApi/setindicators";
 import { ref } from "vue";
+import { date } from "quasar";
+import topics from "src/boot/callApi/topics";
+
 export default {
   name: "table_bcs",
   props: {
@@ -285,15 +292,23 @@ export default {
   },
   async created() {
     setInterval(function () {}, 30000);
+    const dataToParse =  await setindicator.index();
   },
   methods: {
     tinhphantram(totalPlan, plan) {
-      return (totalPlan / plan) * 100;
+      
+      return ((totalPlan / plan) * 100).toFixed(3);
     },
+    time(time){
+    
+      return time.slice(0,12);
+
+    }, 
 
     canhbao(tinhphantram) {
       return tinhphantram;
     },
+
   },
   data() {
     return {
@@ -310,9 +325,6 @@ export default {
 .name-bcs
   font-size: 30px
 
-
-.bg-green
-  color: #a2aa33
 .bg-success
   background-color: #28a745
 .bg-danger
@@ -320,10 +332,6 @@ export default {
 
 
 
-.background-red
-  background-color: red
-.background-green
-  background-color: green
 
 
 .header-bcs
@@ -368,6 +376,8 @@ export default {
 
   //ten bo chi sass
 
-.text-left:hover
-  background-color: #bbb9b9
+ 
+
+  
+  
 </style>

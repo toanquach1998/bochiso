@@ -1,4 +1,4 @@
-<template class="test">
+<template>
   <!-- <cardSocial id="card-social"></cardSocial> -->
 <div>
   <q-form @submit="onSubmit">
@@ -33,7 +33,7 @@
       />
       <q-btn
       class="col-md-1 col-xs-5"
-        
+        dense
         push
         glossy
         type="submit"
@@ -118,8 +118,8 @@ export default defineComponent({
     }
     //set this year , month 
     let date = new Date();
-    this.monthName = ' Tháng'  + date.getMonth().toString(); 
-    this.yearName = ' Năm' + date.getFullYear().toString();
+    this.monthName = ' Tháng '  + date.getMonth().toString(); 
+    this.yearName = ' Năm ' + date.getFullYear().toString();
     this.choseMonth = {
       label: this.monthName,
       value: date.getMonth().toString()
@@ -206,6 +206,5 @@ export default defineComponent({
   margin-left: auto
   margin-right: auto
   
-.test
-  background-color: #f2f2f2
+
 </style>

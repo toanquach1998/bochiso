@@ -24,7 +24,7 @@
       </div>
     <q-markup-table wrap-cells bordered>
       <thead>
-        <tr>
+        <tr class="q color-thead">
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
@@ -98,7 +98,7 @@
                   dense
                   rounded
                   standout
-                  text-color=""
+            
                   bg-color="#e2e2e2"
                   @change="
                     update(
@@ -202,7 +202,7 @@ export default {
     setInterval(function () {}, 30000);
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1);
-    this.tables = cator.topics;
+    this.tables = cator.topics; 
     console.log(this.cators);
     const data1 = await units.units();
     this.units = data1.units;
@@ -230,6 +230,7 @@ export default {
       console.log(this.choseUnit.id);
       this.tables = data.topics;
     },
+ 
     
   },
 
@@ -290,6 +291,7 @@ export default {
 .text-tieude
   font-size: 16px
   font-weight: bold
+  color: #6486c5
 .topic-id
   font-weight: 750
   font-size: 16px
@@ -301,7 +303,18 @@ export default {
 
 
 .text-left:hover
-  background-color: #bbb9b9
+
+
+.color-thead
+
+
+.body--light 
+  background-color: #f8faff
+
+
+.body.body--dark 
+  background-color: yellow
+
 </style>
 
 
