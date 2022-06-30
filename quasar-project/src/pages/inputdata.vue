@@ -4,6 +4,7 @@
     <q-select
       class="col-md-6 col-xs-6 select-unit"
       filled
+      dense
       v-model="choseUnit"
       :options="units"
       :option-value="(item) => item.id"
@@ -11,7 +12,7 @@
       label="Khu vực"
     />
     <q-btn
-        
+        dense
         push 
         glossy 
         class="col-md-4 col-xs-4"
@@ -262,8 +263,13 @@ export default {
 .bg-danger
   background-color: #f52727
 
+.target1-index
 
+  margin-left: 3px
+  font-weight: 550
+.target2-index
 
+  margin-left: 6px
 .background-red
   background-color: red
 .background-green
@@ -289,15 +295,13 @@ export default {
   font-size: 16px
 .topic-size
   font-size: 16px
-.target1-index
-
-  margin-left: 3px
-  font-weight: 650
 
 .target1-size
   font-size: 16px
-.target2-index
-  margin-left: 6px
+
+
+.text-left:hover
+  background-color: #bbb9b9
 </style>
 
 

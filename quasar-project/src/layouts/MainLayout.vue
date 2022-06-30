@@ -11,7 +11,7 @@
           icon="menu"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="col-xs-7">
           <q-avatar>
             <img
               src="https://vpdtnd.vnptioffice.vn/qlvbdh_ndh/login/img/logo-header.png"
@@ -24,7 +24,7 @@
         <div class="q-gutter-sm row items-center no-wrap">
           <dark-mode-t />
 
-          <q-btn round dense flat color="white" icon="filter_list">
+          <!-- <q-btn round dense flat color="white" icon="filter_list">
             <q-menu>
               <q-list style="min-width: 100px">
                 <q-item clickable v-close-popup>
@@ -47,7 +47,7 @@
                 <q-separator />
               </q-list>
             </q-menu>
-          </q-btn>
+          </q-btn> -->
           <q-btn round flat>
             <q-avatar size="35px">
               <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
@@ -69,27 +69,27 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="darkMode">
-      <q-list>
-        <q-item-label header>Danh mục</q-item-label>
+      <q-list size="50px">
+        <q-item-label > <span class="text-header">Danh mục</span> </q-item-label>
         <q-item to="/dashboard" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="dashboard" />
+            <q-icon name="dashboard" size="30px"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Dashboard</q-item-label>
+            <q-item-label> <span class="text-list">Dashboard</span> </q-item-label>
           </q-item-section>
         </q-item>
-        <q-expansion-item icon="pages" label="Pages">
+        <q-expansion-item icon="pages" label="Pages" size="30px">
           <q-list class="q-pl-lg">
             <q-item to="/login" active-class="q-item-no-link-highlighting">
               <q-item-section avatar>
-                <q-icon name="lock" />
+                <q-icon name="login" size="30px"/>
               </q-item-section>
               <q-item-section>
                 <q-item-label class="login-button">Đăng nhập</q-item-label>
               </q-item-section>
             </q-item>
-            <q-item
+        <!--     <q-item
               to="src/pages/register"
               active-class="q-item-no-link-highlighting"
             >
@@ -99,7 +99,7 @@
               <q-item-section>
                 <q-item-label>Tạo tài khoản</q-item-label>
               </q-item-section>
-            </q-item>
+            </q-item> -->
           </q-list>
         </q-expansion-item>
         <!--  <q-item to="src/pages/table" active-class="q-item-no-link-highlighting">
@@ -110,25 +110,25 @@
             <q-item-label>Table</q-item-label>
           </q-item-section>
         </q-item> -->
-        <q-item to="/createdemuc" active-class="q-item-no-link-highlighting">
+    <!--     <q-item to="/createdemuc" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="dashboard" />
+            <q-icon name="add_circle" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Tạo Đề Mục</q-item-label>
           </q-item-section>
-        </q-item>
+        </q-item> -->
         <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="dashboard" />
+            <q-icon name="add_circle" size="30px"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Tạo BCS</q-item-label>
+            <q-item-label>Tạo Bộ chỉ số</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/inputdata" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="dashboard" />
+            <q-icon name="edit_note" size="40px"/>
           </q-item-section>
           <q-item-section>
             <q-item-label>Nhập dữ liệu</q-item-label>
@@ -167,4 +167,21 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style lang="sass" scope>
+
+.text-header
+  text-transform: uppercase
+  font-size: 1.3rem
+  display: block
+  margin: 0.75rem 0
+  margin-left: 10px
+  color: #1976D2
+  white-space: nowrap
+  position: relative
+  font-weight: blod
+/* .text-list
+  font-size: 18px */
+.q-item__section--side > .q-icon
+  font-size: 30px 
+  
+</style>

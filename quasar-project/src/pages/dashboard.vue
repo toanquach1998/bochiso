@@ -6,7 +6,7 @@
       <q-select
         class="col-md-2 col-xs-10"
         filled
-        
+        dense
         v-model="choseUnit"
         :options="units"
         :option-value="(item) => item.id"
@@ -16,7 +16,7 @@
       <q-select
         class="col-md-2 col-xs-10"
         filled
-        
+        dense
         v-model="choseMonth"
         :options="months"
         label="Tháng"
@@ -24,7 +24,7 @@
       <q-select
         class="col-md-2 col-xs-10"
         filled
-        
+        dense
         v-model="choseYear"
         :options="years"
         label="Năm"

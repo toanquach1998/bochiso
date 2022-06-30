@@ -138,12 +138,12 @@
 
           <template
             v-for="(target1, index1) in topic.targets"
-            :key="target1.id"
+            :key="index1"
           >
             <tr 
             class="text-left">
               <td class="target1-index target1-size">
-                {{ ++index - index + 1 }}.{{ ++index1 }}
+                {{ index }}.{{ target1?.order }}
               </td>
               <td class="target1-size">
                 {{ target1.name }}
@@ -202,11 +202,11 @@
             </tr>
             <template
               v-for="(target2, index2) in target1.targets"
-              :key="target2.id"
+              :key="index2"
             >
               <tr class="text-left">
                 <td class="target2-index target1-size">
-                  {{ index - index1 + index2 }}.{{ ++index1 - index2 - 1 }}.{{
+                 {{ index  }}.{{ target1?.order }}.{{
                     ++index2
                   }}
                 </td>
