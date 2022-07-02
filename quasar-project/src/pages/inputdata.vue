@@ -22,6 +22,18 @@
         label="Xác nhận"
       />
       </div>
+       <div class="col-md-9 col-xs-12">
+        <span
+          :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+          class="namebcs"
+          v-if="unitName !== ' '"
+        >
+          Bộ chỉ số đơn vị:
+          <div class="text-bold" style="display: inline-block">
+            {{ unitName }}
+          </div>
+        </span>
+      </div>
     <q-markup-table wrap-cells bordered>
       <thead>
         <tr class="q color-thead">
@@ -79,7 +91,7 @@
               </td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                class="target1-size"
+                class="text-right target1-size"
               >
                 {{ target1.setindicators[0].plan }}
               </td>
@@ -139,7 +151,7 @@
 
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                  class="target1-size"
+                  class="text-right target1-size"
                 >
                   {{ target2.setindicators[0].plan }}
                 </td>
@@ -200,6 +212,8 @@ export default {
     console.log(this.cators);
     const data1 = await units.units();
     this.units = data1.units;
+    this.unitName = cator.unit.name;
+    this.choseUnit = cator.unit;
   },
   methods: {
     tinhphantram(totalPlan, plan) {
@@ -220,8 +234,9 @@ export default {
       return tinhphantram;
     },
     async getDetailindicators() {
+            console.log(this.choseUnit.id);
       const data = await detailsetindicator.detail(this.choseUnit.id);
-      console.log(this.choseUnit.id);
+
       this.tables = data.topics;
     },
  
@@ -234,6 +249,8 @@ export default {
       tables: {},
       units: [],
       choseUnit: null,
+      unitName: "",
+      unitID: "",
       /* tables-detail: {}, */
       showNotif(position, mess, color) {
         $q.notify({
@@ -296,11 +313,8 @@ export default {
   font-size: 16px
 
 
-.text-left:hover
-
-
-.color-thead
-
+.namebcs
+  font-size: 20px
 
 .body--light 
   background-color: #f8faff

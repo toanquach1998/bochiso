@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md ">
+  <div class="q-pa-md">
     <!--     <div class="tbheader">
       <div class="header row justify-center full-width text-bold header-bcs">
         <div class="col-md-1">STT </div>
@@ -56,7 +56,7 @@
       </div>
     </div> -->
     <!--  TẠO BẢNG BẰNG QTABLE -->
-
+   
     <q-markup-table wrap-cells bordered>
       <thead>
         <tr>
@@ -136,44 +136,40 @@
             </td>
           </tr>
 
-          <template
-            v-for="(target1, index1) in topic.targets"
-            :key="index1"
-          >
-            <tr 
-            class="text-left">
+          <template v-for="(target1, index1) in topic.targets" :key="index1">
+            <tr class="text-left">
               <td class="target1-index target1-size">
                 {{ index }}.{{ target1?.order }}
               </td>
               <td class="target1-size">
                 {{ target1.name }}
               </td>
-              
-            
+
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="target1-size"
               >
                 {{ target1.comment }}
               </td>
-                <td  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                class="target1-size"
+              <td
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                class="text-right target1-size"
               >
-                {{target1.setindicators[0].year_plan}}
+                {{ toSwap(target1.setindicators[0].year_plan) }}
               </td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                class="target1-size"
+                class="text-right target1-size"
               >
-                {{ target1.setindicators[0].plan }}
+                {{ toSwap(target1.setindicators[0].plan) }}
               </td>
-              <td class="target1-size">
-                {{ target1.setindicators[0].total_plan }}
+              <td class="text-right target1-size">
+                {{ toSwap(target1.setindicators[0].total_plan) }}
               </td>
 
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                class="target1-size"
+                class="text-right target1-size"
               >
                 {{
                   tinhphantram(
@@ -184,31 +180,32 @@
               </td>
               <td
                 :class="
-                  tinhphantram(
-                    target1.setindicators[0].total_plan,
-                    target1.setindicators[0].plan
-                  ) < 100
-                    ? 'bg-danger'
-                    : 'bg-success'
+                  canhbaomucdo(
+                    tinhphantram(
+                      target1.setindicators[0].total_plan,
+                      target1.setindicators[0].plan
+                    ),
+                    target1.setindicators[0].plan_warning
+                  ) == 0
+                    ? 'bg-red'
+                    : 'bg-green'
                 "
               ></td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                class="target1-size"
+                class="text-left target1-size"
               >
                 {{ target1.setindicators[0]?.detail_set_indicator?.name }}
-                 {{ time(target1.updated_at) }}
+                {{ time(target1.setindicators[0].updated_at) }}
               </td>
             </tr>
             <template
               v-for="(target2, index2) in target1.targets"
               :key="index2"
             >
-              <tr class="text-left">
+              <tr class="text-left">  
                 <td class="target2-index target1-size">
-                 {{ index  }}.{{ target1?.order }}.{{
-                    ++index2
-                  }}
+                  {{ index }}.{{ target1?.order }}.{{ ++index2 }}
                 </td>
                 <td class="target1-size">
                   {{ target2.name }}
@@ -219,25 +216,26 @@
                 >
                   {{ target2.comment }}
                 </td>
-                    <td  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                class="target1-size"
-              >
-                {{target2.setindicators[0].year_plan}}
-              </td>
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                  class="target1-size"
+                  class="text-right target1-size"
                 >
-                  {{ target2.setindicators[0].plan }}
+                  {{ toSwap(target2.setindicators[0].year_plan) }}
+                </td>
+                <td
+                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  class="text-right target1-size"
+                >
+                  {{ toSwap(target2.setindicators[0].plan) }}
                 </td>
 
-                <td class="target1-size">
-                  {{ target2.setindicators[0].total_plan }}
+                <td class="text-right target1-size">
+                  {{ toSwap(target2.setindicators[0].total_plan) }}
                 </td>
 
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                  class="target1-size"
+                  class="text-right target1-size"
                 >
                   {{
                     tinhphantram(
@@ -259,13 +257,13 @@
                 ></td>
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-                  class="target1-size"
+                  class="text-left target1-size"
                 >
-                {{ target2.setindicators[0]?.detail_set_indicator?.name }}
-                {{ time( target2.updated_at) }}
-               <!--  {{ str.slice(1,3)}} -->
-            <!--     {{timeToParse(target1.setindicator[0]?.detail_set_indicator?.update_at )}} -->
-             <!--      {{ (target1.setindicators[0].detail_set_indicator.updated_at).slice(1,12) }} -->
+                  {{ target2.setindicators[0]?.detail_set_indicator?.name }} 
+                  {{ time(target1.setindicators[0].updated_at) }}
+                  <!--  {{ str.slice(1,3)}} -->
+                  <!--     {{timeToParse(target1.setindicator[0]?.detail_set_indicator?.update_at )}} -->
+                  <!--      {{ (target1.setindicators[0].detail_set_indicator.updated_at).slice(1,12) }} -->
                 </td>
               </tr>
             </template>
@@ -281,6 +279,7 @@ import setindicator from "../../boot/callApi/setindicators";
 import { ref } from "vue";
 import { date } from "quasar";
 import topics from "src/boot/callApi/topics";
+import sp from "src/boot/sp/sp";
 
 export default {
   name: "table_bcs",
@@ -292,23 +291,28 @@ export default {
   },
   async created() {
     setInterval(function () {}, 30000);
-    const dataToParse =  await setindicator.index();
+    const dataToParse = await setindicator.index();
   },
   methods: {
     tinhphantram(totalPlan, plan) {
-      
       return ((totalPlan / plan) * 100).toFixed(3);
     },
-    time(time){
-    
-      return time.slice(0,12);
-
-    }, 
-
+    time(time) {
+      return time.slice(0, 10);
+    },
+    toMoney(money) { 
+      return sp.toMoney(money);
+    },
+    toSwap(money) { 
+      return sp.toSwap(money);
+    },
     canhbao(tinhphantram) {
       return tinhphantram;
     },
-
+    canhbaomucdo(tinhphantram, planWarning) {
+      console.log(tinhphantram, planWarning ,tinhphantram < planWarning ? 0 : 1);
+      return tinhphantram < parseInt(planWarning) ? 0 : 1;
+    },
   },
   data() {
     return {
@@ -375,9 +379,4 @@ export default {
   max-width: 10%
 
   //ten bo chi sass
-
- 
-
-  
-  
 </style>
