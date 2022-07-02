@@ -25,7 +25,7 @@
             </div>
           </q-card-section>
           <q-card-section>
-            <q-form class="q-gutter-md" @submit.prevent="submitForm">
+            <q-form class="q-gutter-md" @submit.prevent="userLogin()">
               <q-input label="Username" v-model="login.username"> </q-input>
               <q-input
                 label="Password"
@@ -39,7 +39,6 @@
                   color="primary"
                   label="Login"
                   type="submit"
-                  to="/dashboard"
                   rounded
                 ></q-btn>
               </div>
@@ -52,16 +51,37 @@
 </template>
 
 <script>
+
+import user from 'src/boot/callApi/user';
+import { mapGetters } from 'vuex';
 export default {
   name: "login",
+  created() {
+    if(user.id > 0) {
+      this.$router.push('/dashboard');
+    }
+  },
   data() {
     return {
       login: {
-        username: "admin",
-        password: "admin123",
+        username: "ntphong.hgi",
+        password: "123456",
       },
     };
   },
+  methods: {
+    async userLogin() {
+      console.log(this.login.username, this.login.password);
+      const data =await user.login(this.login.username, this.login.password);
+      this.$store.dispatch("User/user" , data.user[0]);
+      localStorage.setItem('key', data.token);
+      this.$router.push('/dashboard');
+
+    }
+  },
+  computed:{
+    ...mapGetters("User", ['user']),
+  }
 };
 </script>
 

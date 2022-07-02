@@ -9,10 +9,11 @@ import axios from 'axios'
 // for each client)
 // const api = axios.create({ baseURL: 'http:/192.168.1.20:8000/api/' })
 
-const api = axios.create({ baseURL: 'http://10.143.124.120:8000/api/' })
+const api = axios.create({ baseURL: 'http://192.168.0.158:8000/api/' })
 // const api = axios.create({ baseURL: 'http://192.168.1.40:8000/api/' })
 
-api.defaults.headers.common['Authorization'] = 'Bearer 21|RlIpbTIAM6ZzF2XZmkr2AIEpiuWgbprdi25Clibk'  ;
+// api.defaults.headers.common['Authorization'] = 'Bearer 21|RlIpbTIAM6ZzF2XZmkr2AIEpiuWgbprdi25Clibk'  ;
+api.defaults.headers.common['Authorization'] = 'Bearer ' +  localStorage.getItem('key');
 
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api

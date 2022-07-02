@@ -2,6 +2,7 @@
   <q-layout view="lHh Lpr lFf" class="darkMode">
     <q-header reveal>
       <q-toolbar>
+        <q-btn color="primary" icon="check" label="OK" @click="reloadpage()" />
         <q-btn
           flat
           dense
@@ -102,8 +103,8 @@
             </q-item>
           </q-list>
       </q-expansion-item>
-     
-  
+
+
         <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px"/>
@@ -132,7 +133,8 @@
 <script>
 import { defineComponent, ref } from "vue";
 import DarkModeT from "src/components/DarkModeT.vue";
-
+import users from "src/boot/callApi/user";
+import { mapGetters } from "vuex";
 export default defineComponent({
   name: "MainLayout",
 
@@ -150,6 +152,26 @@ export default defineComponent({
       toggleLeftDrawer,
     };
   },
+  async created() {
+    try {
+      console.log(this.user);
+      const  res = await users.index();
+      this.$store.dispatch("User/user", res.user);
+    } catch(e) {
+      console.log('user ', this.user.username.length);
+      if(this.user.username.length > 1) {
+        this.$router.go();
+      }
+    }
+  },
+  computed: {
+    ...mapGetters("User" , ['user']),
+  },
+  methods: {
+    reloadpage() {
+      this.$router.go();
+    }
+  }
 });
 </script>
 
@@ -168,8 +190,8 @@ export default defineComponent({
 /* .text-list
   font-size: 18px */
 .q-item__section--side > .q-icon
-  font-size: 30px 
-.body--light 
+  font-size: 30px
+.body--light
   background-color: #f8faff
 
 
