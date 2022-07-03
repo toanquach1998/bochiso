@@ -118,7 +118,15 @@
             <q-icon name="edit_note" size="40px"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Nhập dữ liệu</q-item-label>
+            <q-item-label>Cập nhật bộ chỉ số tháng</q-item-label>
+          </q-item-section>
+        </q-item>
+          <q-item to="/inputdata" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="edit_note" size="40px"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Cập nhật bộ chỉ số tháng</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>

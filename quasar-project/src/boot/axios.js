@@ -9,8 +9,8 @@ import axios from 'axios'
 // for each client)
 // const api = axios.create({ baseURL: 'http:/192.168.1.20:8000/api/' })
 
-const api = axios.create({ baseURL: 'http://192.168.0.158:8000/api/' })
-// const api = axios.create({ baseURL: 'http://192.168.1.40:8000/api/' })
+// const api = axios.create({ baseURL: 'http://192.168.0.158:8000/api/' })
+ const api = axios.create({ baseURL: 'http://192.168.1.131:8000/api/' })
 
 // api.defaults.headers.common['Authorization'] = 'Bearer 21|RlIpbTIAM6ZzF2XZmkr2AIEpiuWgbprdi25Clibk'  ;
 api.defaults.headers.common['Authorization'] = 'Bearer ' +  localStorage.getItem('key');
@@ -23,7 +23,7 @@ export default boot(({ app }) => {
   //       so you won't necessarily have to import axios in each vue file
 
   app.config.globalProperties.$api = api
-  // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
+  // ^ ^ ^ this will allow you to u se this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
 })
 
