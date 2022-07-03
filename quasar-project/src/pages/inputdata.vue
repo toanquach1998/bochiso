@@ -110,8 +110,9 @@
                   dense
                   rounded
                   standout
-            
-                  bg-color="#e2e2e2"
+                  :disable="toLength(target1.target_updates) == 0 ? true : false"
+                  :bg-color="toLength(target1.target_updates) == 0 ? 'red' : '#121212' "
+                  
                   @change="
                     update(
                       target1.setindicators[0].detail_set_indicators[0].id,
@@ -221,6 +222,9 @@ export default {
        console.log(totalPlan)
       console.log((plan/totalPlan)*100) */
       return (totalPlan / plan) * 100;
+    },
+    toLength(arr) {
+      return arr.length; 
     },
     async update(id, total_plan) {
       const data = await detailsetindicator.update(id, total_plan);

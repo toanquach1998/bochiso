@@ -56,7 +56,7 @@
       </div>
     </div> -->
     <!--  TẠO BẢNG BẰNG QTABLE -->
-   
+    <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
     <q-markup-table wrap-cells bordered>
       <thead>
         <tr>
@@ -185,9 +185,19 @@
                       target1.setindicators[0].total_plan,
                       target1.setindicators[0].plan
                     ),
-                    target1.setindicators[0].plan_warning
+                    target1.setindicators[0].plan_warning,
+                    target1.setindicators[0].min_warning
                   ) == 0
                     ? 'bg-red'
+                    : canhbaomucdo(
+                        tinhphantram(
+                          target1.setindicators[0].total_plan,
+                          target1.setindicators[0].plan
+                        ),
+                        target1.setindicators[0].plan_warning,
+                        target1.setindicators[0].min_warning
+                      ) == 1
+                    ? 'bg-yellow'
                     : 'bg-green'
                 "
               ></td>
@@ -203,7 +213,7 @@
               v-for="(target2, index2) in target1.targets"
               :key="index2"
             >
-              <tr class="text-left">  
+              <tr class="text-left">
                 <td class="target2-index target1-size">
                   {{ index }}.{{ target1?.order }}.{{ ++index2 }}
                 </td>
@@ -247,19 +257,32 @@
 
                 <td
                   :class="
-                    tinhphantram(
-                      target2.setindicators[0].total_plan,
-                      target2.setindicators[0].plan
-                    ) < 100
-                      ? 'bg-danger'
-                      : 'bg-success'
+                    canhbaomucdo(
+                      tinhphantram(
+                        target2.setindicators[0].total_plan,
+                        target2.setindicators[0].plan
+                      ),
+                      target2.setindicators[0].plan_warning,
+                      target2.setindicators[0].min_warning
+                    ) == 0
+                      ? 'bg-red'
+                      : canhbaomucdo(
+                          tinhphantram(
+                            target2.setindicators[0].total_plan,
+                            target2.setindicators[0].plan
+                          ),
+                          target2.setindicators[0].plan_warning,
+                          target2.setindicators[0].min_warning
+                        ) == 1
+                      ? 'bg-yellow'
+                      : 'bg-green'
                   "
                 ></td>
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-left target1-size"
                 >
-                  {{ target2.setindicators[0]?.detail_set_indicator?.name }} 
+                  {{ target2.setindicators[0]?.detail_set_indicator?.name }}
                   {{ time(target1.setindicators[0].updated_at) }}
                   <!--  {{ str.slice(1,3)}} -->
                   <!--     {{timeToParse(target1.setindicator[0]?.detail_set_indicator?.update_at )}} -->
@@ -300,18 +323,32 @@ export default {
     time(time) {
       return time.slice(0, 10);
     },
-    toMoney(money) { 
+    toMoney(money) {
       return sp.toMoney(money);
     },
-    toSwap(money) { 
+    toSwap(money) {
       return sp.toSwap(money);
     },
     canhbao(tinhphantram) {
       return tinhphantram;
     },
-    canhbaomucdo(tinhphantram, planWarning) {
-      console.log(tinhphantram, planWarning ,tinhphantram < planWarning ? 0 : 1);
-      return tinhphantram < parseInt(planWarning) ? 0 : 1;
+    canhbaomucdo(tinhphantram, planWarning, minWarning) {
+      //   console.log(tinhphantram, planWarning ,tinhphantram < planWarning ? 0 : 1);
+      //   return tinhphantram < parseInt(planWarning) ? 0 : 1;
+      var a = parseFloat(tinhphantram);
+      var b = parseFloat(planWarning);
+      var c = parseFloat(minWarning);
+      var re = 0;
+      if (a < c) {
+        re= 0;
+      } else if (b > a && a >= c) {
+        re= 1;
+      } else {
+        re= 2;
+      }
+      // console.log('tinhphan tram', tinhphantram)
+      // console.log('check chi so', re);
+      return re;
     },
   },
   data() {
