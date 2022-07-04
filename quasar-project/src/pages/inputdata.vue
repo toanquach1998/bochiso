@@ -205,7 +205,6 @@ export default {
   name: "inputdata",
 
   async created() {
-    setInterval(function () {}, 30000);
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics;
