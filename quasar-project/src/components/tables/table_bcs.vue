@@ -32,7 +32,7 @@
           <div class="col-md-1"> {{target1.setindicators[0].plan}}</div>
           <div class="col-md-2"> {{ target1.setindicators[0].total_plan }}  </div>
           <div class="col-md-1">{{ tinhphantram(target1.setindicators[0].total_plan , target1.setindicators[0].plan) }}</div>
-          <div class="col-md-1" :class=" tinhphantram(target1.setindicators[0].total_plan, target1.setindicators[0].plan) < 100 ? 'bg-red' : 'bg-green' " > 
+          <div class="col-md-1" :class=" tinhphantram(target1.setindicators[0].total_plan, target1.setindicators[0].plan) < 100 ? 'bg-red' : 'bg-green' " >
             </div>
           <hr class="col-md-12" />
           <br />
@@ -57,7 +57,7 @@
     </div> -->
     <!--  TẠO BẢNG BẰNG QTABLE -->
     <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
-    <q-markup-table wrap-cells bordered dense>
+    <q-markup-table wrap-cells bordered >
       <thead>
         <tr>
           <th class="text-center th-tieude">
@@ -421,7 +421,7 @@ export default {
   font-size: 16px
 
 .test1
-  border-radius: 2px  
+  border-radius: 2px
 
 //sass cho tieu chi con
 .target2-index

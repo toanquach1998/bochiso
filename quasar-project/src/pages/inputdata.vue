@@ -13,7 +13,7 @@
     />
     <q-btn
         dense
-       
+
         class="col-md-4 col-xs-4"
         type="submit"
         @click="getDetailindicators()"
@@ -96,9 +96,9 @@
               </td>
               <td :props="props" class="text-black">
                 <!-- {{ target1.setindicators[0].detail_set_indicators[0].total_plan }} -->
-                <!-- <q-popup-edit v-model="target1.setindicators[0].detail_set_indicators[0].total_plan" 
-              auto-save v-slot="scope" 
-              
+                <!-- <q-popup-edit v-model="target1.setindicators[0].detail_set_indicators[0].total_plan"
+              auto-save v-slot="scope"
+
                >
               <q-input type="number" v-model.number="scope.value"
                dense autofocus @keyup.enter="scope.set" />
@@ -111,7 +111,7 @@
                   standout
                   :disable="toLength(target1.target_updates) == 0 ? true : false"
                   :bg-color="toLength(target1.target_updates) == 0 ? 'red' : '#121212' "
-                  
+
                   @change="
                     update(
                       target1.setindicators[0].detail_set_indicators[0].id,
@@ -184,14 +184,14 @@
           </template>
         </template>
       </tbody>
-     
-       
-    
+
+
+
     </q-markup-table>
 
-      
-      
-      
+
+
+
   </div>
 </template>
 
@@ -200,7 +200,7 @@ import { useQuasar } from "quasar";
 import setindicator from "../boot/callApi/setindicators";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
 import units from "../boot/callApi/units"
-
+import notis from "../boot/noti/noti";
 export default {
   name: "inputdata",
 
@@ -208,7 +208,7 @@ export default {
     setInterval(function () {}, 30000);
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1);
-    this.tables = cator.topics; 
+    this.tables = cator.topics;
     console.log(this.cators);
     const data1 = await units.units();
     this.units = data1.units;
@@ -223,7 +223,7 @@ export default {
       return (totalPlan / plan) * 100;
     },
     toLength(arr) {
-      return arr.length; 
+      return arr.length;
     },
     async update(id, total_plan) {
       const data = await detailsetindicator.update(id, total_plan);
@@ -239,11 +239,14 @@ export default {
     async getDetailindicators() {
             console.log(this.choseUnit.id);
       const data = await detailsetindicator.detail(this.choseUnit.id);
-
       this.tables = data.topics;
+      if(data?.statuscode ==1 ) {
+        this.unitName = data.unit.name;
+        notis.showNoti(' đã load ' + this.unitName, 'black');
+      }
     },
- 
-    
+
+
   },
 
   data() {
@@ -270,7 +273,7 @@ export default {
 <style lang="sass" scoped>
 
 .div-unit
-  margin: 20px  
+  margin: 20px
   max-width: 400px
 
 .bg-success
@@ -291,7 +294,7 @@ export default {
   background-color: green
 
 .select-unit
-  margin-right: 10px 
+  margin-right: 10px
 
 .header-bcs
   margin-bottom: 10px
@@ -319,11 +322,11 @@ export default {
 .namebcs
   font-size: 20px
 
-.body--light 
+.body--light
   background-color: #f8faff
 
 
-.body.body--dark 
+.body.body--dark
   background-color: yellow
 
 </style>
