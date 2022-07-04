@@ -17,6 +17,7 @@ const routes = [
       },
       { path: "/createbcs", component: () => import("pages/createbcs.vue") },
       { path: "/inputdata", component: () => import("pages/inputdata.vue") },
+      { path: "/inputdata_year", component: () => import("pages/inputdata_year.vue") },
     ],
   },
 

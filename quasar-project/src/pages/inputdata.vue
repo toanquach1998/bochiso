@@ -13,8 +13,7 @@
     />
     <q-btn
         dense
-        push 
-        glossy 
+       
         class="col-md-4 col-xs-4"
         type="submit"
         @click="getDetailindicators()"
@@ -34,7 +33,7 @@
           </div>
         </span>
       </div>
-    <q-markup-table wrap-cells bordered>
+    <q-markup-table wrap-cells bordered dense>
       <thead>
         <tr class="q color-thead">
           <th class="text-center th-tieude">

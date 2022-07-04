@@ -35,8 +35,8 @@
         <q-btn
           class="col-md-1 col-xs-5"
           dense
-          push
-          glossy
+          
+          
           type="submit"
           @click="getSetIndicator()"
           color="primary"

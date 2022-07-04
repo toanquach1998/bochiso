@@ -57,7 +57,7 @@
     </div> -->
     <!--  TẠO BẢNG BẰNG QTABLE -->
     <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
-    <q-markup-table wrap-cells bordered>
+    <q-markup-table wrap-cells bordered dense>
       <thead>
         <tr>
           <th class="text-center th-tieude">
@@ -90,7 +90,7 @@
 
       <tbody>
         <template v-for="(topic, index) in tables" :key="topic.id">
-          <tr class="text-left">
+          <tr class="text-left bg-cyan-3">
             <td class="top-size">
               <span class="topic-id">{{ ++index }}</span>
             </td>
@@ -155,30 +155,37 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
+               <q-badge color="blue-grey" >
                 {{ toSwap(target1.setindicators[0].year_plan) }}
+                </q-badge>
               </td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
+              <q-badge color="teal">
                 {{ toSwap(target1.setindicators[0].plan) }}
+              </q-badge>
               </td>
               <td class="text-right target1-size">
+                <q-badge color="blue-grey">
                 {{ toSwap(target1.setindicators[0].total_plan) }}
+                </q-badge>
               </td>
 
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
-              >
+              > <q-badge color="teal">
                 {{
                   tinhphantram(
                     target1.setindicators[0].total_plan,
                     target1.setindicators[0].plan
                   )
                 }}
+                </q-badge>
               </td>
-              <td
+              <td class="test1"
                 :class="
                   canhbaomucdo(
                     tinhphantram(
@@ -188,7 +195,7 @@
                     target1.setindicators[0].plan_warning,
                     target1.setindicators[0].min_warning
                   ) == 0
-                    ? 'bg-red'
+                    ? 'bg-red-6'
                     : canhbaomucdo(
                         tinhphantram(
                           target1.setindicators[0].total_plan,
@@ -197,8 +204,8 @@
                         target1.setindicators[0].plan_warning,
                         target1.setindicators[0].min_warning
                       ) == 1
-                    ? 'bg-yellow'
-                    : 'bg-green'
+                    ? 'bg-amber-3'
+                    : 'bg-green-14'
                 "
               ></td>
               <td
@@ -229,33 +236,40 @@
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
-                >
+                ><q-badge color="blue-grey">
                   {{ toSwap(target2.setindicators[0].year_plan) }}
-                </td>
+                 </q-badge>
+                 </td>
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
                 >
+                <q-badge color="teal">
                   {{ toSwap(target2.setindicators[0].plan) }}
+                  </q-badge>
                 </td>
 
                 <td class="text-right target1-size">
+                  <q-badge color="blue-grey">
                   {{ toSwap(target2.setindicators[0].total_plan) }}
+                  </q-badge>
                 </td>
 
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
                 >
+                <q-badge  color="teal">
                   {{
                     tinhphantram(
                       target2.setindicators[0].total_plan,
                       target2.setindicators[0].plan
                     )
                   }}
+                  </q-badge>
                 </td>
 
-                <td
+                <td class="test1"
                   :class="
                     canhbaomucdo(
                       tinhphantram(
@@ -265,7 +279,7 @@
                       target2.setindicators[0].plan_warning,
                       target2.setindicators[0].min_warning
                     ) == 0
-                      ? 'bg-red'
+                      ? 'bg-red-6'
                       : canhbaomucdo(
                           tinhphantram(
                             target2.setindicators[0].total_plan,
@@ -274,8 +288,8 @@
                           target2.setindicators[0].plan_warning,
                           target2.setindicators[0].min_warning
                         ) == 1
-                      ? 'bg-yellow'
-                      : 'bg-green'
+                      ? 'bg-amber-3'
+                      : 'bg-green-14'
                   "
                 ></td>
                 <td
@@ -387,6 +401,7 @@ export default {
 .text-tieude
   font-size: 16px
   font-weight: bold
+  color: $light-blue-9
 
   // sass cho DE MUC
 .topic-id
@@ -405,7 +420,8 @@ export default {
 .target1-size
   font-size: 16px
 
-
+.test1
+  border-radius: 2px  
 
 //sass cho tieu chi con
 .target2-index
@@ -416,4 +432,6 @@ export default {
   max-width: 10%
 
   //ten bo chi sass
+
+
 </style>
