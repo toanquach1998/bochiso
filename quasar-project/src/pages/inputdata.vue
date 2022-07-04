@@ -242,7 +242,7 @@ export default {
       this.tables = data.topics;
       if(data?.statuscode ==1 ) {
         this.unitName = data.unit.name;
-        notis.showNoti(' đã load ' + this.unitName, 'black');
+        notis.showNoti(' Đã load ' + this.unitName, 'black');
       }
     },
 

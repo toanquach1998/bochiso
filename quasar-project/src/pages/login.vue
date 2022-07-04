@@ -21,8 +21,9 @@
         <q-form class="q-gutter-md" @submit.prevent="userLogin()">
           <q-input
             outlined
-            
-            standout="text-bule-10"
+            style="font-size:18px"
+            color="light-blue-9"
+            standout
             class="input-h"
             bg-color="blue-grey-3"
             label="Tên đăng nhập"
@@ -32,8 +33,9 @@
           <q-input
           class="input-h"
             outlined
-            standout="text-blue-10"
-            
+            standout
+            color="light-blue-9"
+            style="font-size:18px"
             bg-color="blue-grey-3"
             label="Mật khẩu"
             type="password"
@@ -67,7 +69,7 @@ export default {
   data() {
     return {
       login: {
-        username: "ntphong.hgi",
+        username: "binhdlt.hgi",
         password: "123456",
       },
     };

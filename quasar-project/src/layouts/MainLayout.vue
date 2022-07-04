@@ -71,29 +71,28 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list size="50px">
-        <q-item-label > <span class="text-header">Danh mục</span> </q-item-label>
+        <q-item-label> <span class="text-header">Danh mục</span> </q-item-label>
         <q-item to="/dashboard" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="dashboard" size="30px"/>
+            <q-icon name="dashboard" size="30px" />
           </q-item-section>
           <q-item-section>
-            <q-item-label> <span class="text-list">Dashboard</span> </q-item-label>
+            <q-item-label>
+              <span class="text-list">Dashboard</span>
+            </q-item-label>
           </q-item-section>
         </q-item>
         <q-expansion-item icon="account_circle" label="Pages" size="30px">
           <q-list class="q-pl-lg">
             <q-item to="/login" active-class="q-item-no-link-highlighting">
               <q-item-section avatar>
-                <q-icon name="login" size="30px"/>
+                <q-icon name="login" size="30px" />
               </q-item-section>
               <q-item-section>
                 <q-item-label class="login-button">Đăng nhập</q-item-label>
               </q-item-section>
             </q-item>
-            <q-item
-              to="/login"
-              active-class="q-item-no-link-highlighting"
-            >
+            <q-item to="/login" active-class="q-item-no-link-highlighting">
               <q-item-section avatar>
                 <q-icon name="logout" />
               </q-item-section>
@@ -102,28 +101,42 @@
               </q-item-section>
             </q-item>
           </q-list>
-      </q-expansion-item>
+        </q-expansion-item>
 
+        <q-expansion-item icon="add_circle" label="Tạo bộ chỉ số" size="30px">
+          <q-list class="q-pl-lg">
+            <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
+              <q-item-section avatar>
+                <q-icon name="add" size="30px" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label class="login-button"
+                  >Tạo bộ chỉ số tháng</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+            <q-item to="/" active-class="q-item-no-link-highlighting">
+              <q-item-section avatar>
+                <q-icon name="add" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>Tạo bộ chỉ số năm</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
 
-        <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
-          <q-item-section avatar>
-            <q-icon name="add_circle" size="30px"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Tạo Bộ chỉ số</q-item-label>
-          </q-item-section>
-        </q-item>
         <q-item to="/inputdata" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="edit_note" size="40px"/>
+            <q-icon name="edit_note" size="40px" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Cập nhật bộ chỉ số tháng</q-item-label>
           </q-item-section>
         </q-item>
-          <q-item to="/inputdata_year" active-class="q-item-no-link-highlighting">
+        <q-item to="/inputdata_year" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="edit_note" size="40px"/>
+            <q-icon name="edit_note" size="40px" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Cập nhật bộ chỉ số năm</q-item-label>
@@ -163,23 +176,23 @@ export default defineComponent({
   async created() {
     try {
       console.log(this.user);
-      const  res = await users.index();
+      const res = await users.index();
       this.$store.dispatch("User/user", res.user);
-    } catch(e) {
-      console.log('user ', this.user.username.length);
-      if(this.user.username.length > 1) {
+    } catch (e) {
+      console.log("user ", this.user.username.length);
+      if (this.user.username.length > 1) {
         this.$router.go();
       }
     }
   },
   computed: {
-    ...mapGetters("User" , ['user']),
+    ...mapGetters("User", ["user"]),
   },
   methods: {
     reloadpage() {
       this.$router.go();
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -201,7 +214,4 @@ export default defineComponent({
   font-size: 30px
 .body--light
   background-color: #f8faff
-
-
-
 </style>

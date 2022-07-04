@@ -155,7 +155,7 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-               <q-badge color="blue-grey" >
+               <q-badge color="blue-grey"  class="badge-number">
                 {{ toSwap(target1.setindicators[0].year_plan) }}
                 </q-badge>
               </td>
@@ -163,12 +163,12 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-              <q-badge color="teal">
+              <q-badge color="teal" class="badge-number">
                 {{ toSwap(target1.setindicators[0].plan) }}
               </q-badge>
               </td>
               <td class="text-right target1-size">
-                <q-badge color="blue-grey">
+                <q-badge color="blue-grey" class="badge-number">
                 {{ toSwap(target1.setindicators[0].total_plan) }}
                 </q-badge>
               </td>
@@ -176,7 +176,7 @@
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
-              > <q-badge color="teal">
+              > <q-badge color="teal" class="badge-number">
                 {{
                   tinhphantram(
                     target1.setindicators[0].total_plan,
@@ -236,7 +236,7 @@
                 <td
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
-                ><q-badge color="blue-grey">
+                ><q-badge color="blue-grey" class="badge-number">
                   {{ toSwap(target2.setindicators[0].year_plan) }}
                  </q-badge>
                  </td>
@@ -244,13 +244,13 @@
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
                 >
-                <q-badge color="teal">
+                <q-badge color="teal" class="badge-number">
                   {{ toSwap(target2.setindicators[0].plan) }}
                   </q-badge>
                 </td>
 
                 <td class="text-right target1-size">
-                  <q-badge color="blue-grey">
+                  <q-badge color="blue-grey" class="badge-number">
                   {{ toSwap(target2.setindicators[0].total_plan) }}
                   </q-badge>
                 </td>
@@ -259,7 +259,7 @@
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
                 >
-                <q-badge  color="teal">
+                <q-badge  color="teal" class="badge-number">
                   {{
                     tinhphantram(
                       target2.setindicators[0].total_plan,
@@ -376,7 +376,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+.badge-number
+  font-size: 16px
 .name-bcs
   font-size: 30px
 
