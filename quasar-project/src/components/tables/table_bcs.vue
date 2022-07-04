@@ -163,7 +163,7 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-              <q-badge color="teal" class="badge-number">
+              <q-badge  color="teal" class="badge-number">
                 {{ toSwap(target1.setindicators[0].plan) }}
               </q-badge>
               </td>
@@ -433,6 +433,8 @@ export default {
   max-width: 10%
 
   //ten bo chi sass
-
+.q-badge
+  padding-top: 6px !important
+  padding-bottom: 6px !important
 
 </style>

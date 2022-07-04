@@ -207,7 +207,7 @@ export default {
   async created() {
     setInterval(function () {}, 30000);
     /*   const data = await setindicator.index(); */
-    const cator = await detailsetindicator.detail(-1);
+    const cator = await detailsetindicator.detail(-1, 1);
     this.tables = cator.topics;
     console.log(this.cators);
     const data1 = await units.units();
@@ -237,8 +237,8 @@ export default {
       return tinhphantram;
     },
     async getDetailindicators() {
-            console.log(this.choseUnit.id);
-      const data = await detailsetindicator.detail(this.choseUnit.id);
+   
+      const data = await detailsetindicator.detail(this.choseUnit.id, 1);
       this.tables = data.topics;
       if(data?.statuscode ==1 ) {
         this.unitName = data.unit.name;
