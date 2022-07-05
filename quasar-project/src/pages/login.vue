@@ -2,7 +2,7 @@
   <q-layout
     class="q-pa-md bg-image"
     style="
-      background-image: url(https://i.stack.imgur.com/SvWWN.png)
+      background-image: url(https://image.winudf.com/v2/image/Y29tLlBSSVNTSS5XYWxscGFwZXIuQmFja2dyb3VuZC5XaGl0ZUJhY2tncm91bmRXYWxscGFwZXJfc2NyZWVuXzBfMTUyODUwODAxNF8wNjk/screen-0.jpg?h=500&fakeurl=1&type=.jpg)
         no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
@@ -11,7 +11,7 @@
   >
     <q-page-container class="login-container justify-center">
       <div class="">
-        <q-img
+        <q-img 
           id="login-logo"
           src="../../public/icons/logo-vnpt.png"
         />
@@ -26,7 +26,7 @@
             
             standout="text-blue-14"
             class="input-h"
-            bg-color="blue-grey-4"
+            bg-color="blue-grey-2"
             label="Tên đăng nhập"
             v-model="login.username"
           >
@@ -36,9 +36,9 @@
           filled 
             outlined
             standout
-            color="red-9"
+            color="bule-14"
             style="font-size:18px"
-            bg-color="blue-grey-4"
+            bg-color="blue-grey-2"
             label="Mật khẩu"
             type="password"
             v-model="login.password"
@@ -107,6 +107,7 @@ export default {
 #login-logo
   max-width: 100%
   height:  auto
+  margin-bottom: 5px
 
   
   
