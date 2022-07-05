@@ -234,7 +234,7 @@
                           target2.setindicators[0].plan_warning,
                           target2.setindicators[0].min_warning
                         ) == 1
-                      ? 'bg-amber-3'
+                      ? 'bg-amber-5'
                       : 'bg-green-14'
                   "
                 ></td>

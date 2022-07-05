@@ -13,7 +13,7 @@
       <div class="">
         <q-img
           id="login-logo"
-          src="https://kyluc.vn/Userfiles/Upload/images/VNPT.png"
+          src="../../public/icons/logo-vnpt.png"
         />
       </div>
 
@@ -21,22 +21,24 @@
         <q-form class="q-gutter-md" @submit.prevent="userLogin()">
           <q-input
             outlined
+            filled 
             style="font-size:18px"
-            color="light-blue-9"
-            standout
+            
+            standout="text-blue-14"
             class="input-h"
-            bg-color="blue-grey-3"
+            bg-color="blue-grey-4"
             label="Tên đăng nhập"
             v-model="login.username"
           >
           </q-input>
           <q-input
           class="input-h"
+          filled 
             outlined
             standout
-            color="light-blue-9"
+            color="red-9"
             style="font-size:18px"
-            bg-color="blue-grey-3"
+            bg-color="blue-grey-4"
             label="Mật khẩu"
             type="password"
             v-model="login.password"
@@ -105,7 +107,7 @@ export default {
 #login-logo
   max-width: 100%
   height:  auto
-  margin-bottom: 30px
+
   
   
 .q-field__control
