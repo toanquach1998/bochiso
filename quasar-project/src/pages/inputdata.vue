@@ -1,38 +1,37 @@
 <template>
-  <div class="q-pa-md ">
+  <div class="q-pa-md">
     <div class="full-width row div-unit">
-    <q-select
-      class="col-md-6 col-xs-6 select-unit"
-      filled
-      dense
-      v-model="choseUnit"
-      :options="units"
-      :option-value="(item) => item.id"
-      option-label="name"
-      label="Khu vực"
-    />
-    <q-btn
+      <q-select
+        class="col-md-6 col-xs-6 select-unit"
+        filled
         dense
-
+        v-model="choseUnit"
+        :options="units"
+        :option-value="(item) => item.id"
+        option-label="name"
+        label="Khu vực"
+      />
+      <q-btn
+        dense
         class="col-md-4 col-xs-4"
         type="submit"
         @click="getDetailindicators()"
         color="primary"
         label="Xác nhận"
       />
-      </div>
-       <div class="col-md-9 col-xs-12">
-        <span
-          :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-          class="namebcs"
-          v-if="unitName !== ' '"
-        >
-          Bộ chỉ số đơn vị:
-          <div class="text-bold" style="display: inline-block">
-            {{ unitName }}
-          </div>
-        </span>
-      </div>
+    </div>
+    <div class="col-md-9 col-xs-12">
+      <span
+        :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+        class="namebcs"
+        v-if="unitName !== ' '"
+      >
+        Bộ chỉ số đơn vị:
+        <div class="text-bold" style="display: inline-block">
+          {{ unitName }}
+        </div>
+      </span>
+    </div>
     <q-markup-table wrap-cells bordered dense>
       <thead>
         <tr class="q color-thead">
@@ -71,10 +70,7 @@
             <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
             <td>-</td>
           </tr>
-          <template
-            v-for="(target1, index1) in topic.targets"
-            :key="index1"
-          >
+          <template v-for="(target1, index1) in topic.targets" :key="index1">
             <tr class="text-left">
               <td class="target1-index target1-size">
                 {{ index }}.{{ target1?.order }}
@@ -109,9 +105,12 @@
                   dense
                   rounded
                   standout
-                  :disable="toLength(target1.target_updates) == 0 ? true : false"
-                  :bg-color="toLength(target1.target_updates) == 0 ? 'red' : '#121212' "
-
+                  :disable="
+                    toLength(target1.target_updates) == 0 ? true : false
+                  "
+                  :bg-color="
+                    toLength(target1.target_updates) == 0 ? 'red' : '#121212'
+                  "
                   @change="
                     update(
                       target1.setindicators[0].detail_set_indicators[0].id,
@@ -134,9 +133,7 @@
             >
               <tr class="text-left">
                 <td class="target2-index target1-size">
-                  {{ index  }}.{{ target1?.order }}.{{
-                    ++index2
-                  }}
+                  {{ index }}.{{ target1?.order }}.{{ ++index2 }}
                 </td>
                 <td class="target1-size">
                   {{ target2.name }}
@@ -162,7 +159,12 @@
                     dense
                     rounded
                     standout
-                    bg-color="#e2e2e2"
+                    :disable="
+                      toLength(target2.target_updates) == 0 ? true : false
+                    "
+                    :bg-color="
+                      toLength(target2.target_updates) == 0 ? 'red' : '#121212'
+                    "
                     @change="
                       update(
                         target2.setindicators[0].detail_set_indicators[0].id,
@@ -184,14 +186,7 @@
           </template>
         </template>
       </tbody>
-
-
-
     </q-markup-table>
-
-
-
-
   </div>
 </template>
 
@@ -199,7 +194,7 @@
 import { useQuasar } from "quasar";
 import setindicator from "../boot/callApi/setindicators";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
-import units from "../boot/callApi/units"
+import units from "../boot/callApi/units";
 import notis from "../boot/noti/noti";
 export default {
   name: "inputdata",
@@ -222,6 +217,7 @@ export default {
       return (totalPlan / plan) * 100;
     },
     toLength(arr) {
+      console.log(arr);
       return arr.length;
     },
     async update(id, total_plan) {
@@ -236,16 +232,14 @@ export default {
       return tinhphantram;
     },
     async getDetailindicators() {
-            console.log(this.choseUnit.id);
+      console.log(this.choseUnit.id);
       const data = await detailsetindicator.detail(this.choseUnit.id);
       this.tables = data.topics;
-      if(data?.statuscode ==1 ) {
+      if (data?.statuscode == 1) {
         this.unitName = data.unit.name;
-        notis.showNoti(' Đã load ' + this.unitName, 'black');
+        notis.showNoti(" Đã load " + this.unitName, "black");
       }
     },
-
-
   },
 
   data() {
@@ -327,7 +321,4 @@ export default {
 
 .body.body--dark
   background-color: yellow
-
 </style>
-
-

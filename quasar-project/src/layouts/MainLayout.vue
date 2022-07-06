@@ -181,7 +181,7 @@ export default defineComponent({
     } catch (e) {
       if (
         localStorage.getItem("key") !== null
-        //  ||
+        // ||
         // this.user?.username.length > 1
       ) {
         this.$router.go();
