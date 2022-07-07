@@ -2,7 +2,7 @@
   <q-layout
     class="q-pa-md bg-image"
     style="
-      background-image: url(https://image.winudf.com/v2/image/Y29tLlBSSVNTSS5XYWxscGFwZXIuQmFja2dyb3VuZC5XaGl0ZUJhY2tncm91bmRXYWxscGFwZXJfc2NyZWVuXzBfMTUyODUwODAxNF8wNjk/screen-0.jpg?h=500&fakeurl=1&type=.jpg)
+      background-image: url(https://img.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg?t=st=1657069042~exp=1657069642~hmac=2e07139a0496cc992799ec09b64e68ad308158ab6769ed4655051fad524e5d6f&w=1480)
         no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
@@ -97,9 +97,9 @@ export default {
   margin-right: auto
   margin-left: auto
   padding: 2rem
-  max-width: 350px
+  max-width: 400px
   min-width: 200px
-  margin-top: 40px
+  margin-top: 60px
 
 .btn-css
   height: 52px
