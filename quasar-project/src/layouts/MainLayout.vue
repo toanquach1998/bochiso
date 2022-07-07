@@ -179,9 +179,14 @@ export default defineComponent({
       const res = await users.index();
       this.$store.dispatch("User/user", res.user);
     } catch (e) {
-      console.log("user ", this.user.username.length);
-      if (this.user.username.length > 1) {
+      if (
+        localStorage.getItem("key") !== null
+        // ||
+        // this.user?.username.length > 1
+      ) {
         this.$router.go();
+      } else {
+        this.$router.push("/");
       }
     }
   },
