@@ -103,28 +103,18 @@
           </q-list>
         </q-expansion-item>
 
-        <q-expansion-item icon="add_circle" label="Tạo bộ chỉ số" size="30px">
-          <q-list class="q-pl-lg">
-            <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
-              <q-item-section avatar>
-                <q-icon name="add" size="30px" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="login-button"
-                  >Tạo bộ chỉ số tháng</q-item-label
-                >
-              </q-item-section>
-            </q-item>
-            <q-item to="/" active-class="q-item-no-link-highlighting">
-              <q-item-section avatar>
-                <q-icon name="add" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Tạo bộ chỉ số năm</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-expansion-item>
+ 
+
+           <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="add_circle" size="30px" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>
+              <span class="text-list">Tạo bộ chỉ số</span>
+            </q-item-label>
+          </q-item-section>
+        </q-item>
 
         <q-item to="/inputdata" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>

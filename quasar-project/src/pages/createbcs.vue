@@ -1,67 +1,150 @@
 <template>
-  <div class="q-pa-md ">
+  <div class="">
     <p class="text-left text-h6">Tạo Bộ Chỉ Số</p>
     <q-form @reset="onReset" class="q-gutter-md">
-      <div class="row q-gutter-sm">
-       <q-select
-        class="col"
-        filled
-        v-model="choseUnit"
-        :options="units"
-        :option="(item) => item.id"
-        option-label="name"
-        label="Khu vực"
-       />
-       <q-select
-        class="col"
-        filled
-        v-model="choseMonth"
-        :options="months"
-        label="Tháng"
-       />
-       <q-select 
-       class="col"
-       filled
-       v-model="choseYear"
-       :options="years"
-       label="Năm"
-       
-       />
+      <div class="q-pa-md">
+        <div class="row q-gutter-sm">
+          <q-select
+            class="col"
+            filled
+            v-model="choseUnit"
+            :options="units"
+            :option="(item) => item.id"
+            option-label="name"
+            label="Khu vực"
+          />
+          <q-select
+            class="col"
+            filled
+            v-model="choseMonth"
+            :options="months"
+            label="Tháng"
+          />
+          <q-select
+            class="col"
+            filled
+            v-model="choseYear"
+            :options="years"
+            label="Năm"
+          />
+        </div>
+        <div class="row q-gutter-sm">
+          <q-select
+            class="col-md-6"
+            name="accepted_genres"
+            v-model="choseDicator"
+            multiple
+            :options="topics"
+            option-label="name"
+            color="primary"
+            filled
+            clearable
+            label="Đề mục"
+          />
+          <q-btn
+            class="col-md-3"
+            @click="choseTopic()"
+            label="Xác nhận"
+            type="submit"
+            color="primary"
+          />
+        </div>
       </div>
-      <div class="row q-gutter-sm">
-        <q-input
-          class="col"
-          filled
-          v-model="name"
-          label="Tên Bộ Chỉ Số"
-          :rules="[
-            (val) => (val && val.length > 0) || 'Vui lòng nhập tên Bộ Chỉ Số',
-          ]"
-        />
-
-        <q-select
-          class="col"
-          name="accepted_genres"
-          v-model="choseDicator"
-          multiple
-          :options="topics"
-          option-label= "name"
-          color="primary"
-          filled
-          clearable
-          label="Đề mục"
-        />
+      <div v-if="!isActive == true">
+        <q-markup-table>
+          <thead>
+            <tr class="q color-thead">
+              <th class="text-center th-tieude">
+                <span class="text-tieude">TT</span>
+              </th>
+              <th class="text-center">
+                <span class="text-tieude">CHỈ SỐ</span>
+              </th>
+              <th
+                class="text-center"
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              >
+                <span class="text-tieude">ĐVT</span>
+              </th>
+              <th
+                class="text-center"
+                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              >
+                <span class="text-tieude">Chỉ tiêu tháng</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="(topic, index) in tables" :key="topic.id">
+              <tr class="text-left">
+                <td>
+                  <span class="topic-id">{{ ++index }}</span>
+                </td>
+                <td class="topic-size">
+                  {{ topic.name }}
+                </td>
+                <td class="text-left">-</td>
+                <td class="text-left">-</td>
+              </tr>
+              <template
+                v-for="(target1, index1) in topic.targets"
+                :key="index1"
+              >
+                <tr class="text-left">
+                  <td class="target1-index target1-size">
+                    {{ index }}.{{ target1?.order }}
+                  </td>
+                  <td class="target1-size">
+                    {{ target1.name }}
+                  </td>
+                  <td
+                    :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                    class="target1-size"
+                  >
+                    {{ target1.comment }}
+                  </td>
+                  <td>
+                    <q-input
+                      v-model="
+                        target1.setindicators[0].detail_set_indicators[0].plan
+                      "
+                      label="cập nhật chỉ số tháng"
+                    />
+                  </td>
+                </tr>
+                <template
+                  v-for="(target2, index2) in target1.targets"
+                  :key="index2"
+                >
+                  <tr class="text-left">
+                    <td class="target2-index target1-size">
+                      {{ index }}.{{ target1?.order }}.{{ ++index2 }}
+                    </td>
+                    <td class="target1-size">
+                      {{ target2.name }}
+                    </td>
+                    <td
+                      :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                      class="target1-size"
+                    >
+                      {{ target2.comment }}
+                    </td>
+                    <td>
+                      <q-input
+                        v-model="
+                          target2.setindicators[0].detail_set_indicators[0].plan
+                        "
+                        label="cập nhật chỉ số tháng"
+                      />
+                    </td>
+                  </tr>
+                </template>
+              </template>
+            </template>
+          </tbody>
+        </q-markup-table>
       </div>
-      <div>
-        <q-btn
-          @click="choseTopic()"
-          label="Xác nhân đề mục"
-          type="submit"
-          color="primary"
-        />
-      
-      </div>
-      <div class="q-col-gutter-sm" v-if="!isActive">
+      <!--     <div class="q-col-gutter-sm" >
         <q-tree
           class="col-12 col-sm-6"
           :nodes="simple"
@@ -84,7 +167,7 @@
           />
        
         </div>
-      </div>
+      </div> -->
     </q-form>
   </div>
 </template>
@@ -96,21 +179,24 @@ import { ref } from "vue";
 import units from "src/boot/callApi/units";
 import topics from "src/boot/callApi/topics";
 import targets from "src/boot/callApi/targets";
+import detailsetindicator from "../boot/callApi/detailsetindicators";
 
 export default {
   name: "createbcs",
 
-  async created(){
+  async created() {
+    const cator = await detailsetindicator.detail(-1);
+    this.tables = cator.topics;
 
-    for(let i = 1; i < 13; i++){
+    for (let i = 1; i < 13; i++) {
       this.months.push({
-        label: "Tháng" + i,
+        label: "Tháng " + i,
         value: i,
       });
     }
-    for(let i =2020; i <2029; i++){
+    for (let i = 2020; i < 2029; i++) {
       this.years.push({
-        label: "Năm" + i,
+        label: "Năm " + i,
         value: i,
       });
     }
@@ -119,8 +205,8 @@ export default {
     // console.log(this.units);
     // const data2 = await topics.topics();
     // this.topics = data2.topics;
-    
-    const [data1, data2] =await Promise.all([units.units() , topics.topics()]); 
+
+    const [data1, data2] = await Promise.all([units.units(), topics.topics()]);
     this.units = data1.units;
     this.topics = data2.topics;
   },
@@ -130,7 +216,6 @@ export default {
     const name = ref(null);
     const age = ref(null);
     const accept = ref(false);
- 
 
     return {
       years: [],
@@ -142,8 +227,8 @@ export default {
       choseMonth: null,
       choseUnit: null,
       choseDicator: null,
-      
-      isActive: true,
+
+      isActive: false,
       showTest: false,
       name,
       age,
@@ -212,19 +297,17 @@ export default {
       ],
     };
   },
-  methods:{
-    async choseTopic(){
-      let arrTopics = '' ; 
-      for(let i= 0 ; i< this.choseDicator.length  ; i++) {
-        arrTopics += this.choseDicator[i].id  + ',';
+  methods: {
+    async choseTopic() {
+      let arrTopics = "";
+      for (let i = 0; i < this.choseDicator.length; i++) {
+        arrTopics += this.choseDicator[i].id + ",";
       }
       const resTopics = await targets.getwitharraytopic(arrTopics);
-      console.log(resTopics);
-      
-      this.isActive = false ;
-    }
-    
-  }
+
+      this.isActive = true;
+    },
+  },
 };
 </script>
 

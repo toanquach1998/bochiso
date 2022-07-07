@@ -203,7 +203,7 @@ export default {
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics;
-    console.log(this.cators);
+   
     const data1 = await units.units();
     this.units = data1.units;
     this.unitName = cator.unit.name;
