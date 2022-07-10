@@ -1,36 +1,35 @@
 <template>
   <div class="">
-    <p class="text-left text-h6">Tạo Bộ Chỉ Số</p>
-    <q-form @reset="onReset" class="q-gutter-md">
-      <div class="q-pa-md">
+    <p class="text-center text-h5 topic-text"><q-badge class="badge-topic" >Tạo Bộ Chỉ Số</q-badge></p>
+    <q-form @reset="onReset" @submit="onSubmit" class="q-gutter-md">
+      <div class="q-pa-md ">
         <div class="row q-gutter-sm">
           <q-select
-            class="col"
+            class="col-md col-xs-12"
             filled
             v-model="choseUnit"
             :options="units"
             :option="(item) => item.id"
             option-label="name"
             label="Khu vực"
+           
           />
           <q-select
-            class="col"
+            class="col-md col-xs-12"
             filled
             v-model="choseMonth"
             :options="months"
             label="Tháng"
           />
           <q-select
-            class="col"
+            class="col-md col-xs-12"
             filled
             v-model="choseYear"
             :options="years"
             label="Năm"
           />
-        </div>
-        <div class="row q-gutter-sm">
           <q-select
-            class="col-md-6"
+            class="col-md col-xs-12"
             name="accepted_genres"
             v-model="choseDicator"
             multiple
@@ -42,18 +41,18 @@
             label="Đề mục"
           />
           <q-btn
-            class="col-md-3"
-            @click="choseTopic()"
+            class="col-md-2 col-xs-12"
+            v-on:click="seen=!seen"
             label="Xác nhận"
             type="submit"
             color="primary"
           />
         </div>
       </div>
-      <div v-if="!isActive == true">
+      <div v-if="seen==false">
         <q-markup-table>
           <thead>
-            <tr class="q color-thead">
+            <tr class="q color-thead test-tr">
               <th class="text-center th-tieude">
                 <span class="text-tieude">TT</span>
               </th>
@@ -108,7 +107,7 @@
                       v-model="
                         target1.setindicators[0].detail_set_indicators[0].plan
                       "
-                      label="cập nhật chỉ số tháng"
+                      label="cập nhật chỉ tiêu tháng"
                     />
                   </td>
                 </tr>
@@ -227,30 +226,12 @@ export default {
       choseMonth: null,
       choseUnit: null,
       choseDicator: null,
-
-      isActive: false,
       showTest: false,
       name,
       age,
       accept,
       accepted: ref([]),
-      tieudecha: [
-        {
-          label: "Kinh Doanh 1",
-          value: "Kinh Doanh 1",
-        },
-        {
-          label: "Kinh Doanh 2",
-          value: "Kinh Doanh 2",
-        },
-        {
-          label: "Kinh Doanh 3",
-          value: "Kinh Doanh 3",
-        },
-      ],
-      model1: ref(null),
-      model2: ref(null),
-      model3: ref(null),
+      seen: true,
       triggerNoGrouping() {
         $q.notify({
           group: false,
@@ -265,61 +246,65 @@ export default {
         accept.value = false;
       },
       selected: ref(""),
-      ticked: ref([""]),
-      expanded: ref([""]),
 
-      simple: [
-        {
-          label: "Kinh doanh",
-          children: [
-            {
-              label: "My TV",
-              children: [{ label: "TV1" }, { label: "tv2 VÀ SW" }],
-            },
-            {
-              label: "Good service (disabled node)",
-              disabled: false,
-              children: [
-                { label: "Prompt attention" },
-                { label: "Professional waiter" },
-              ],
-            },
-            {
-              label: "Ple asant surroundings",
-              children: [
-                { label: "Happy atmosphere" },
-                { label: "Good table presentation" },
-                { label: "Pleasing decor" },
-              ],
-            },
-          ],
-        },
-      ],
+
+
+     
     };
   },
   methods: {
-    async choseTopic() {
+    //SHOW HIDE DE MUC
+   /*  async choseTopic() {
       let arrTopics = "";
       for (let i = 0; i < this.choseDicator.length; i++) {
         arrTopics += this.choseDicator[i].id + ",";
       }
       const resTopics = await targets.getwitharraytopic(arrTopics);
 
-      this.isActive = true;
-    },
+      return this.seen = false;
+    }, */
   },
 };
 </script>
 
 <style lang="sass" scoped>
 .q-pa-md
-    max-width: 600px
-    margin-left: auto
-    margin-right: auto
-    text-align: center
-    margin-top:  30px
+  margin-top:  30px
 
-.text-left
+.topic-text
   margin-bottom: 20px
-  margin-left: 5px
+  margin-top: 10px
+
+.demuc-div
+  margin-top: 10px
+
+.badge-topic
+  font-size: 30px
+  padding: 20px 
+  background-color: #F87474
+.topic-id
+  font-weight: 750
+  font-size: 16px
+.topic-size
+  font-size: 16px
+.text-tieude
+  color: #1976d2  
+  font-weight: bold
+  font-size: 15px
+.target1-index
+
+  margin-left: 3px
+  font-weight: 550
+
+.target1-size
+  font-size: 16px
+
+.test1
+  border-radius: 2px  
+
+//sass cho tieu chi con
+.target2-index
+
+  margin-left: 6px
+
 </style>

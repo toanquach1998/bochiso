@@ -16,7 +16,6 @@
         />
         <q-select
           class="col-md-2 col-xs-10"
-          
           filled
           dense
           v-model="choseMonth"
@@ -112,10 +111,10 @@ export default defineComponent({
   name: "dashboard",
   async created() {
     const data = await setindicators.index();
-    console.log(data.topics);
+
     this.tables = data.topics;
     //this.unitId = data.topics.id;
-    console.log(this.tables);
+    
     this.months.push({
       label: "Cả năm ",
       value: 13,

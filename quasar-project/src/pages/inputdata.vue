@@ -28,7 +28,8 @@
       >
         Bộ chỉ số đơn vị:
         <div class="text-bold" style="display: inline-block">
-          {{ unitName }}
+          {{ unitName }} 
+          <p id="d1"></p>
         </div>
       </span>
     </div>
@@ -203,19 +204,17 @@ export default {
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics;
-   
+
     const data1 = await units.units();
     this.units = data1.units;
     this.unitName = cator.unit.name;
     this.choseUnit = cator.unit;
+      const d = new Date();
+let text = d.toLocaleDateString();
+document.getElementById("d1").innerHTML = text; 
   },
   methods: {
-    tinhphantram(totalPlan, plan) {
-      /* console.log(plan)
-       console.log(totalPlan)
-      console.log((plan/totalPlan)*100) */
-      return (totalPlan / plan) * 100;
-    },
+  
     toLength(arr) {
       console.log(arr);
       return arr.length;
@@ -228,9 +227,7 @@ export default {
         this.showNotif("top", "Cập nhật dữ liệu thất bại", "red");
       }
     },
-    canhbao(tinhphantram) {
-      return tinhphantram;
-    },
+   
     async getDetailindicators() {
       console.log(this.choseUnit.id);
       const data = await detailsetindicator.detail(this.choseUnit.id);
@@ -240,9 +237,19 @@ export default {
         notis.showNoti(" Đã load " + this.unitName, "black");
       }
     },
+    nowDate() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+
+      today = yy + "/" + mm + "/" + yyyy;
+     return  nowDate(document.write(today));
+    },
   },
 
   data() {
+  
     const $q = useQuasar();
     return {
       tables: {},

@@ -36,7 +36,7 @@
 
       <tbody>
         <template v-for="(topic, index) in tables" :key="topic.id">
-          <tr class="text-left bg-cyan-14">
+          <tr class="text-left bg-topic">
             <td class="top-size">
               <span class="topic-id">{{ ++index }}</span>
             </td>
@@ -234,7 +234,7 @@
                           target2.setindicators[0].plan_warning,
                           target2.setindicators[0].min_warning
                         ) == 1
-                      ? 'bg-amber-5'
+                      ? 'bg-amber-5 '
                       : 'bg-green-14'
                   "
                 ></td>
@@ -368,7 +368,7 @@ export default {
   font-size: 16px
 
 .test1
-  border-radius: 2px
+  border-radius: 2px  
 
 //sass cho tieu chi con
 .target2-index
@@ -382,5 +382,6 @@ export default {
 .q-badge
   padding-top: 6px !important
   padding-bottom: 6px !important
-
+.bg-topic
+  background-color: #FFB562
 </style>

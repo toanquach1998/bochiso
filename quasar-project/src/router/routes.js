@@ -11,11 +11,9 @@ const routes = [
       { path: "/dashboard", component: () => import("pages/dashboard.vue") },
       { path: "/register", component: () => import("pages/register.vue") },
       { path: "/table", component: () => import("pages/table.vue") },
-      {
-        path: "/createdemuc",
-        component: () => import("pages/createdemuc.vue"),
-      },
+      
       { path: "/createbcs", component: () => import("pages/createbcs.vue") },
+      { path: "/createtarget", component: () => import("pages/createtarget.vue") },
       { path: "/inputdata", component: () => import("pages/inputdata.vue") },
       { path: "/inputdata_year", component: () => import("pages/inputdata_year.vue") },
     ],
