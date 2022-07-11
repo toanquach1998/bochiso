@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <p class="text-center text-h5 topic-text"><q-badge class="badge-topic" >Tạo Bộ Chỉ Số</q-badge></p>
-    <q-form @reset="onReset" @submit="onSubmit" class="q-gutter-md">
+    <q-form @reset="onReset" @submit="createBCS()" class="q-gutter-md">
       <div class="q-pa-md ">
         <div class="row q-gutter-sm">
           <q-select
@@ -9,10 +9,9 @@
             filled
             v-model="choseUnit"
             :options="units"
-            :option="(item) => item.id"
             option-label="name"
             label="Khu vực"
-           
+
           />
           <q-select
             class="col-md col-xs-12"
@@ -42,7 +41,7 @@
           />
           <q-btn
             class="col-md-2 col-xs-12"
-            v-on:click="seen=!seen"
+            @click="seen=!seen"
             label="Xác nhận"
             type="submit"
             color="primary"
@@ -105,8 +104,9 @@
                   <td>
                     <q-input
                       v-model="
-                        target1.setindicators[0].detail_set_indicators[0].plan
+                        target1.setindicators[0].plan
                       "
+                      @change="updated( target1.setindicator[0].id, target1.setindicators[0].plan)"
                       label="cập nhật chỉ tiêu tháng"
                     />
                   </td>
@@ -131,8 +131,9 @@
                     <td>
                       <q-input
                         v-model="
-                          target2.setindicators[0].detail_set_indicators[0].plan
+                          target2.setindicators[0].plan
                         "
+                        @change="updated(target1.setindicator[0].id,target2.setindicators[0].plan)"
                         label="cập nhật chỉ số tháng"
                       />
                     </td>
@@ -147,11 +148,11 @@
         <q-tree
           class="col-12 col-sm-6"
           :nodes="simple"
-          node-key="label"  
+          node-key="label"
           tick-strategy="leaf-filtered"
           ticked = "flase"
           default-expand-all
-          accordion 
+          accordion
           selected-color="primary"
           v-model:selected="selected"
           v-model:ticked="ticked"
@@ -164,7 +165,7 @@
             color="primary"
             @click="triggerNoGrouping"
           />
-       
+
         </div>
       </div> -->
     </q-form>
@@ -173,12 +174,13 @@
 
 <script>
 import { useQuasar } from "quasar";
-import setindicators from "src/boot/callApi/setindicators";
+import setIndicators from "src/boot/callApi/setindicators";
 import { ref } from "vue";
 import units from "src/boot/callApi/units";
 import topics from "src/boot/callApi/topics";
 import targets from "src/boot/callApi/targets";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
+import noti from "src/boot/noti/noti";
 
 export default {
   name: "createbcs",
@@ -186,6 +188,10 @@ export default {
   async created() {
     const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics;
+      this.months.push({
+        label: "Cả năm",
+        value: 13,
+      });
 
     for (let i = 1; i < 13; i++) {
       this.months.push({
@@ -249,10 +255,37 @@ export default {
 
 
 
-     
+
     };
   },
   methods: {
+    async updated(id, plan) {
+      let data = await setIndicators.update(id,plan);
+
+      if(data?.statuscode == 1) { noti.showNoti('đã cập nhật','black'); }
+    },
+    async createBCS() {
+      let unitId = this.choseUnit?.id ;
+      let month = this.choseMonth.value == 13 ? null : this.choseMonth.value;
+      let year = this.choseYear.value;
+      var topicId = [];
+      for( let i = 0; i< this.choseDicator?.length ; i++ ) {
+        topicId.push(this.choseDicator[i].id);
+      }
+      topicId = topicId.toString();
+      console.log(unitId, month, year, topicId);
+      var data = await setIndicators.createWithTopicArr(unitId,topicId , year, month);
+      if(data?.statuscode == 1) { noti.showNoti(' tạo thành công','black'); }
+      if(data?.statuscode == 2) { noti.showNoti(' Bộ chỉ số năm Trung tâm chưa tạo','black'); }
+      if(data?.statuscode == 3) { noti.showNoti(' Bộ chỉ số tháng đã tạo rồi','black'); }
+      if(data?.statuscode == 4) { noti.showNoti(' Bộ chỉ số tháng Trung tâm chưa tạo','black'); }
+      if(data?.statuscode == 5) { noti.showNoti(' Bộ chỉ số năm chưa có','black'); }
+      if( data.statuscode == 1 || data.statuscode == 3) {
+        var data1 = await setIndicators.index(unitId, year, month);
+        console.log( data1.topics );
+        this.tables = data1.topics;
+      }
+    }
     //SHOW HIDE DE MUC
    /*  async choseTopic() {
       let arrTopics = "";
@@ -280,7 +313,7 @@ export default {
 
 .badge-topic
   font-size: 30px
-  padding: 20px 
+  padding: 20px
   background-color: #F87474
 .topic-id
   font-weight: 750
@@ -288,7 +321,7 @@ export default {
 .topic-size
   font-size: 16px
 .text-tieude
-  color: #1976d2  
+  color: #1976d2
   font-weight: bold
   font-size: 15px
 .target1-index
@@ -300,7 +333,7 @@ export default {
   font-size: 16px
 
 .test1
-  border-radius: 2px  
+  border-radius: 2px
 
 //sass cho tieu chi con
 .target2-index
