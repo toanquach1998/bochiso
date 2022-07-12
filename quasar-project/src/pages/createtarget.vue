@@ -75,10 +75,13 @@
               hello word
             </div>
           </q-card-section>
+          
+          <div class="button-dialog">
           <q-card-section class="row items-center q-gutter-sm">
-            <q-btn class="col" v-close-popup label="Tạo" color="primary" />
-            <q-btn class="col" v-close-popup label="Hủy" color="red" />
+            <q-btn class="col-md-2" v-close-popup label="Tạo" color="primary" />
+            <q-btn class="col-md-2" v-close-popup label="Hủy" color="red" />
           </q-card-section>
+          </div>
         </q-card>
       </q-dialog>
    
@@ -160,4 +163,10 @@ export default {
 
 .width-card2
   min-width: 70%
+
+.button-dialog
+  margin-left: auto
+  margin-right: auto
+
+  justify-content: center
 </style>
