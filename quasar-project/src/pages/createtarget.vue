@@ -142,7 +142,7 @@ export default {
 .badge-text
   font-size: 30px
   padding: 20px
-  background-color: #F87474
+
 
 .width-topic
 

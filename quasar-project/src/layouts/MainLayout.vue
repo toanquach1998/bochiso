@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf" class="darkMode">
     <q-header reveal>
       <q-toolbar>
-        <q-btn color="primary" icon="check" label="OK" @click="reloadpage()" />
+       <!--  <q-btn color="primary" icon="check" label="OK" @click="reloadpage()" /> -->
         <q-btn
           flat
           dense
@@ -18,7 +18,7 @@
               src="https://vpdtnd.vnptioffice.vn/qlvbdh_ndh/login/img/logo-header.png"
             />
           </q-avatar>
-          Bộ Chỉ Số
+          Bộ chỉ số điều hành
         </q-toolbar-title>
         <q-space />
 
@@ -50,8 +50,9 @@
             </q-menu>
           </q-btn> -->
           <q-btn round flat>
-            <q-avatar size="35px">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+            <q-avatar size="35px" icon="account_circle">
+              <!-- <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/6/65/VNPT_Logo.svg/1551px-VNPT_Logo.svg.png" /> -->
+              
               <q-menu>
                 <q-list style="min-width: 100px">
                   <q-item clickable v-close-popup>
@@ -82,26 +83,7 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-expansion-item icon="account_circle" label="Pages" size="30px">
-          <q-list class="q-pl-lg">
-            <q-item to="/login" active-class="q-item-no-link-highlighting">
-              <q-item-section avatar>
-                <q-icon name="login" size="30px" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="login-button">Đăng nhập</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item to="/login" active-class="q-item-no-link-highlighting">
-              <q-item-section avatar>
-                <q-icon name="logout" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Đăng xuất</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-expansion-item>
+    
 
  
 
@@ -128,7 +110,7 @@
             <q-icon name="edit_note" size="40px" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Cập nhật bộ chỉ số tháng</q-item-label>
+            <q-item-label>Cập nhật bộ chỉ số theo tháng</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/inputdata_year" active-class="q-item-no-link-highlighting">
@@ -136,7 +118,7 @@
             <q-icon name="edit_note" size="40px" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Cập nhật bộ chỉ số năm</q-item-label>
+            <q-item-label>Cập nhật bộ chỉ số theo năm</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -153,6 +135,7 @@ import { defineComponent, ref } from "vue";
 import DarkModeT from "src/components/DarkModeT.vue";
 import users from "src/boot/callApi/user";
 import { mapGetters } from "vuex";
+
 export default defineComponent({
   name: "MainLayout",
 

@@ -13,11 +13,11 @@
       />
       <q-btn
         dense
-        class="col-md-4 col-xs-4"
+        class="col-md-2 col-xs-4"
         type="submit"
         @click="getDetailindicators()"
         color="primary"
-        label="Xác nhận"
+        icon="search"
       />
     </div>
     <div class="col-md-9 col-xs-12">
@@ -26,7 +26,7 @@
         class="namebcs"
         v-if="unitName !== ' '"
       >
-        Bộ chỉ số đơn vị:
+        Cập nhật dữ liệu năm cho đơn vị:
         <div class="text-bold" style="display: inline-block">
           {{ unitName }}
         </div>
@@ -88,7 +88,9 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-                {{ target1.setindicators[0].plan }}
+               <q-badge color="teal" class="badge-number">
+                  {{ toSwap(target1.setindicators[0].plan) }}
+                  </q-badge>
               </td>
               <td :props="props" class="text-black">
                 <!-- {{ target1.setindicators[0].detail_set_indicators[0].total_plan }} -->
@@ -162,7 +164,9 @@
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
                 >
-                  {{ target2.setindicators[0].plan }}
+                  <q-badge color="teal" class="badge-number">
+                  {{ toSwap(target2.setindicators[0].plan) }}
+                  </q-badge>
                 </td>
 
                 <td>
@@ -220,6 +224,7 @@ import setindicator from "../boot/callApi/setindicators";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
 import units from "../boot/callApi/units";
 import notis from "../boot/noti/noti";
+import sp from "src/boot/sp/sp";
 export default {
   name: "inputdata_year",
 
@@ -271,6 +276,12 @@ export default {
       }
       console.log("aaa", child, userUpdate, id);
       return false;
+    },
+      toMoney(money) {
+      return sp.toMoney(money);
+    },
+    toSwap(money) {
+      return sp.toSwap(money);
     },
   },
 
@@ -333,7 +344,7 @@ export default {
 .text-tieude
   font-size: 16px
   font-weight: bold
-  color: #6486c5
+  color: #0277bd
 .topic-id
   font-weight: 750
   font-size: 16px
@@ -353,4 +364,11 @@ export default {
 
 .body.body--dark
   background-color: yellow
+
+.badge-number
+  font-size: 16px
+
+.q-badge
+  padding-top: 6px !important
+  padding-bottom: 6px !important
 </style>

@@ -9,7 +9,7 @@
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
-          <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
+          <th class="text-center"><span class="text-tieude">Chỉ số</span></th>
           <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
             <span class="text-tieude">ĐVT</span>
           </th>

@@ -27,7 +27,7 @@
             :options="years"
             label="Năm"
           />
-          <q-select
+   <!--        <q-select
             class="col-md col-xs-12"
             name="accepted_genres"
             v-model="choseDicator"
@@ -38,7 +38,7 @@
             filled
             clearable
             label="Đề mục"
-          />
+          /> -->
           <q-btn
             class="col-md-2 col-xs-12"
             @click="seen=!seen"
@@ -262,7 +262,7 @@ export default {
     async updated(id, plan) {
       let data = await setIndicators.update(id,plan);
 
-      if(data?.statuscode == 1) { noti.showNoti('đã cập nhật','black'); }
+      if(data?.statuscode == 1) { noti.showNoti('Đã cập nhật','black'); }
     },
     async createBCS() {
       let unitId = this.choseUnit?.id ;
@@ -275,11 +275,11 @@ export default {
       topicId = topicId.toString();
       console.log(unitId, month, year, topicId);
       var data = await setIndicators.createWithTopicArr(unitId,topicId , year, month);
-      if(data?.statuscode == 1) { noti.showNoti(' tạo thành công','black'); }
+      if(data?.statuscode == 1) { noti.showNoti(' Tạo thành công','black'); }
       if(data?.statuscode == 2) { noti.showNoti(' Bộ chỉ số năm Trung tâm chưa tạo','black'); }
       if(data?.statuscode == 3) { noti.showNoti(' Bộ chỉ số tháng đã tạo rồi','black'); }
       if(data?.statuscode == 4) { noti.showNoti(' Bộ chỉ số tháng Trung tâm chưa tạo','black'); }
-      if(data?.statuscode == 5) { noti.showNoti(' Bộ chỉ số năm chưa có','black'); }
+      if(data?.statuscode == 5) { noti.showNoti(' Bộ chỉ số năm chưa có','black'); }  
       if( data.statuscode == 1 || data.statuscode == 3) {
         var data1 = await setIndicators.index(unitId, year, month);
         console.log( data1.topics );
@@ -303,6 +303,7 @@ export default {
 <style lang="sass" scoped>
 .q-pa-md
   margin-top:  30px
+  
 
 .topic-text
   margin-bottom: 20px
@@ -314,7 +315,7 @@ export default {
 .badge-topic
   font-size: 30px
   padding: 20px
-  background-color: #F87474
+  
 .topic-id
   font-weight: 750
   font-size: 16px

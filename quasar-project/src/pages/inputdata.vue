@@ -13,24 +13,29 @@
       />
       <q-btn
         dense
-        class="col-md-4 col-xs-4"
+        class="col-md-2 col-xs-4"
         type="submit"
         @click="getDetailindicators()"
         color="primary"
-        label="Xác nhận"
+        icon="search"
       />
     </div>
     <div class="col-md-9 col-xs-12">
       <span
-        :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+       
         class="namebcs"
         v-if="unitName !== ' '"
       >
-        Bộ chỉ số đơn vị:
+        Cập nhật dữ liệu cho đơn vị: 
         <div class="text-bold" style="display: inline-block">
-          {{ unitName }} 
-          <p id="d1"></p>
+           {{ unitName }}
+       
+       
         </div>
+    <!--     <div class="text-bold" style="display: inline-block">
+          <p id="d1"></p>
+        </div> -->
+        
       </span>
     </div>
     <q-markup-table wrap-cells bordered dense>
@@ -39,7 +44,7 @@
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
-          <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
+          <th class="text-center"><span class="text-tieude">Chỉ số</span></th>
           <th
             class="text-center"
             :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
@@ -53,7 +58,7 @@
             <span class="text-tieude">Kế hoạch</span>
           </th>
           <th class="text-center">
-            <span class="text-tieude">Thực hiện</span>
+            <span class="text-tieude">Cập nhật dữ liệu thực hiện</span>
           </th>
         </tr>
       </thead>
@@ -89,7 +94,9 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-                {{ target1.setindicators[0].plan }}
+                <q-badge color="teal" class="badge-number">
+                  {{ toSwap(target1.setindicators[0].plan) }}
+                  </q-badge>
               </td>
               <td :props="props" class="text-black">
                 <!-- {{ target1.setindicators[0].detail_set_indicators[0].total_plan }} -->
@@ -151,7 +158,9 @@
                   :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                   class="text-right target1-size"
                 >
-                  {{ target2.setindicators[0].plan }}
+                  <q-badge color="teal" class="badge-number">
+                  {{ toSwap(target2.setindicators[0].plan) }}
+                  </q-badge>
                 </td>
 
                 <td>
@@ -197,6 +206,7 @@ import setindicator from "../boot/callApi/setindicators";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
 import units from "../boot/callApi/units";
 import notis from "../boot/noti/noti";
+import sp from "src/boot/sp/sp";
 export default {
   name: "inputdata",
 
@@ -245,6 +255,12 @@ document.getElementById("d1").innerHTML = text;
 
       today = yy + "/" + mm + "/" + yyyy;
      return  nowDate(document.write(today));
+    },
+    toMoney(money) {
+      return sp.toMoney(money);
+    },
+    toSwap(money) {
+      return sp.toSwap(money);
     },
   },
 
@@ -308,7 +324,7 @@ document.getElementById("d1").innerHTML = text;
 .text-tieude
   font-size: 16px
   font-weight: bold
-  color: #6486c5
+  color: #0277bd
 .topic-id
   font-weight: 750
   font-size: 16px
@@ -328,4 +344,10 @@ document.getElementById("d1").innerHTML = text;
 
 .body.body--dark
   background-color: yellow
+
+.badge-number
+  font-size: 16px
+.q-badge
+  padding-top: 6px !important
+  padding-bottom: 6px !important
 </style>

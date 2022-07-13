@@ -1,5 +1,11 @@
 <template>
   <!-- <cardSocial id="card-social"></cardSocial> -->
+  
+  <div class="q-pa-md  text-blod text-center">
+  <span class="namebcs" >BỘ CHỈ SỐ ĐIỀU HÀNH SXKD </span>
+   </div>
+
+      
   <div>
     <q-form @submit="onSubmit">
       <div class="q-md q-gutter-md row dashboard-select">
@@ -34,12 +40,10 @@
         <q-btn
           class="col-md-1 col-xs-5"
           dense
-          
-          
           type="submit"
           @click="getSetIndicator()"
           color="primary"
-          label="Tìm kiếm"
+          icon="search"
           to="/dashboard"
         />
       </div>
@@ -51,31 +55,32 @@
 
     <!--   <chartColumn></chartColumn>
  -->
-    <div class="row">
-      <div class="col-md-9 col-xs-12">
+    <div class="row text-right iconcb">
+        <div class="col-md-9 col-xs-12 text-left"> 
         <span
           :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-          class="namebcs"
+          class="namedonvi"
           v-if="unitName !== ' '"
         >
-          Bộ chỉ số đơn vị:
+          Đơn vị:
           <div class="text-bold" style="display: inline-block">
             {{ unitName }} - {{ monthName }} {{ yearName }}
           </div>
+         
         </span>
       </div>
       <div class="col-md-1 col-xs-4">
-        <q-icon name="fiber_manual_record" color="red" size="22px" /><span>
+        <q-badge rounded color="red" /><span>
           Cảnh báo
         </span>
       </div>
       <div class="col-md-1 col-xs-4">
-        <q-icon name="fiber_manual_record" color="yellow" size="22px" /><span>
+       <q-badge rounded color="yellow"/><span>
           Quan tâm
         </span>
       </div>
-      <div class="col-md-1 col-xs-4">
-        <q-icon name="fiber_manual_record" color="green" size="22px" /><span>
+      <div class="col-md-1   col-xs-4" >
+        <q-badge rounded color="green" /><span>
           Chấp nhận
         </span>
       </div>
@@ -152,7 +157,10 @@ export default defineComponent({
   },
   async mounted() {
     setInterval(async function () {
-      const data = await setindicators.index(this.unitId);
+      var monthset = this.monthValue ; 
+      var yearset = this.yearValue ; 
+      console.log(monthset, yearset);
+      const data = await setindicators.index(this.unitId, yearset,monthset);
       // alert('lk' , this.unitId);
       this.tables = data.topics;
       console.log('sdf',this.unitId);
@@ -178,6 +186,8 @@ export default defineComponent({
       unitName: "",
       monthName: "",
       yearName: "",
+      monthValue: null, 
+      yearValue: null,
       unitId: "",
       showNotif(position, mess, color) {
         $q.notify({
@@ -205,6 +215,8 @@ export default defineComponent({
       this.unitName = this.choseUnit.name;
       this.monthName = " " + this.choseMonth.label;
       this.yearName = " " + this.choseYear.label;
+      this.monthValue = this.choseMonth.value; 
+      this.yearValue = this.choseYear.value; 
       this.unitId = this.choseUnit.id;
     },
   },
@@ -213,14 +225,20 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 
-.namebcs
+.namedonvi
   margin-left: 20px
   font-size: 20px
+.namebcs
+  font-size: 25px
+  font-weight: 600
 
 .dashboard-select
   max-width: 100%
-  margin-top: 10px
   margin-bottom: 10px
   margin-left: auto
   margin-right: auto
+// Icon nguong canh bao
+.iconcb
+  margin-right: 20px
+
 </style>
