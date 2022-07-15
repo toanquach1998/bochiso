@@ -38,7 +38,7 @@
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
-          <th class="text-center"><span class="text-tieude">CHỈ SỐ</span></th>
+          <th class="text-center"><span class="text-tieude">Chỉ s</span></th>
           <th
             class="text-center"
             :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
@@ -122,7 +122,7 @@
                       toLength(target1.target_updates),
                       target1.id
                     )
-                      ? 'red'
+                      ? 'hidden'
                       : '#121212'
                   "
                   @change="
@@ -190,7 +190,7 @@
                         toLength(target2.target_updates),
                         target2.id
                       )
-                        ? 'red'
+                        ? 'hidden'
                         : '#121212'
                     "
                     @change="

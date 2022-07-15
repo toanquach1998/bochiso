@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <p class="text-center text-h5 topic-text"><q-badge class="badge-topic" >Tạo Bộ Chỉ Số</q-badge></p>
+    <p class="text-center text-h5 topic-text"><q-badge class="badge-topic" >Tạo bộ chỉ số</q-badge></p>
     <q-form @reset="onReset" @submit="createBCS()" class="q-gutter-md">
       <div class="q-pa-md ">
         <div class="row q-gutter-sm">

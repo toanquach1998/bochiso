@@ -16,7 +16,9 @@
           src="../../public/icons/logo-vnpt.png"
         />
       </div>
-
+      <div class="justify-center text-center topic-name">
+      <span>BỘ CHỈ SỐ ĐIỀU HÀNH</span>
+      </div>
       <div>
         <q-form class="q-gutter-md" @submit.prevent="userLogin()">
           <q-input
@@ -114,4 +116,10 @@ export default {
 .q-field__control
   height: 50px !important
 
+//css BCSDH
+.topic-name
+  margin-bottom: 30px
+  font-size: 23px
+  font-weight: 600
+  color: #1265b6
 </style>
