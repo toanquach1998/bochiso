@@ -129,11 +129,11 @@ export default defineComponent({
     }
     //set this year , month
     let date = new Date();
-    this.monthName = " Tháng " + (date.getMonth() + 1).toString();
-    this.yearName = " Năm " + date.getFullYear().toString();
+    this.monthName = "Tháng " + (date.getMonth() + 1).toString();
+    this.yearName = "Năm " + date.getFullYear().toString();
     this.choseMonth = {
       label: this.monthName,
-      value: date.getMonth().toString(),
+      value: (date.getMonth() + 1).toString(),
     };
     this.choseYear = {
       label: this.yearName,
