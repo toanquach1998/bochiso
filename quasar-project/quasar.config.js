@@ -81,7 +81,6 @@ module.exports = configure(function (ctx) {
       port: 80,
       open: true, // opens browser window automatically
     },
-
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
       config: {

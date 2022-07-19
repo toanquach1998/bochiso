@@ -9,8 +9,18 @@ import axios from 'axios'
 // for each client)
 // const api = axios.create({ baseURL: 'http:/192.168.1.20:8000/api/' })
 
- const api = axios.create({ baseURL: 'http://192.168.168.10:8000/api/' })
-//  const api = axios.create({ baseURL: 'http://192.168.2.187:8000/api/' })
+// const api = axios.create({ baseURL: 'http://192.168.168.10:8000/api/'})
+
+const api = axios.create({
+  baseURL: 'http://192.168.168.10:8000/api/',
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+  }
+})
+ 
+//  const api = axios.create({ baseURL: 'http://192.168.168.10:8000/api/' })
 //const api = axios.create({baseURL: 'http://localhost:8000/api/'});
 
 // api.defaults.headers.common['Authorization'] = 'Bearer 21|RlIpbTIAM6ZzF2XZmkr2AIEpiuWgbprdi25Clibk'  ;

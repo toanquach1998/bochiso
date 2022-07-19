@@ -97,43 +97,44 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="target1-size"
               >
-                {{ target1.comment }}
+             <!--    {{ target1.comment }} -->
               </td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-               <q-badge color="blue-grey"  class="badge-number">
+             <!--   <q-badge color="blue-grey"  class="badge-number">
                 {{ toSwap(target1.setindicators[0].year_plan) }}
-                </q-badge>
+                </q-badge> -->
               </td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
-              <q-badge  color="teal" class="badge-number">
+            <!--   <q-badge  color="teal" class="badge-number">
                 {{ toSwap(target1.setindicators[0].plan) }}
-              </q-badge>
+              </q-badge> -->
               </td>
               <td class="text-right target1-size">
-                <q-badge color="blue-grey" class="badge-number">
+                <!-- <q-badge color="blue-grey" class="badge-number">
                 {{ toSwap(target1.setindicators[0].total_plan) }}
-                </q-badge>
+                </q-badge> -->
               </td>
 
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
-              > <q-badge color="teal" class="badge-number">
+              >
+               <!-- <q-badge color="teal" class="badge-number">
                 {{
                   tinhphantram(
                     target1.setindicators[0].total_plan,
                     target1.setindicators[0].plan
                   )
                 }}
-                </q-badge>
+                </q-badge> -->
               </td>
-              <td class="test1"
+    <!--           <td class="test1"
                 :class="
                   canhbaomucdo(
                     tinhphantram(
@@ -155,13 +156,14 @@
                     ? 'bg-amber-3'
                     : 'bg-green-14'
                 "
-              ></td>
+              ></td> -->
+              <td></td>
               <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-left target1-size"
               >
-                {{ target1.setindicators[0]?.detail_set_indicator?.name }}
-                {{ time(target1.setindicators[0].updated_at) }}
+            <!--     {{ target1.setindicators[0]?.detail_set_indicator?.name }}
+                {{ time(target1.setindicators[0].updated_at) }} -->
               </td>
             </tr>
             <template

@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="full-width row div-unit">
       <q-select
-        class="col-md-6 col-xs-6 select-unit"
+        class="col-md-7 col-xs-6 select-unit"
         filled
         dense
         v-model="choseUnit"
@@ -129,8 +129,9 @@
             <template
               v-for="(target2, index2) in target1.targets"
               :key="index2"
+              
             >
-              <tr class="text-left">
+              <tr class="text-left" v-if=" toLength(target2.target_updates) == 0 ? false : true">
                 <td class="target2-index target1-size">
                   {{ index }}.{{ target1?.order }}.{{ ++index2 }}
                 </td>
@@ -211,7 +212,7 @@ export default {
     this.unitName = cator.unit.name;
     this.choseUnit = cator.unit;
       const d = new Date();
-let text = d.toLocaleDateString();
+let text = d.toLocaleDateString('vi-VN');
 document.getElementById("d1").innerHTML = text; 
   },
   methods: {

@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="full-width row div-unit">
       <q-select
-        class="col-md-6 col-xs-6 select-unit"
+        class="col-md-7 col-xs-6 select-unit"
         filled
         dense
         v-model="choseUnit"
@@ -22,7 +22,7 @@
     </div>
     <div class="col-md-9 col-xs-12">
       <span
-        :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+      
         class="namebcs"
         v-if="unitName !== ' '"
       >
@@ -52,7 +52,7 @@
             <span class="text-tieude">Kế hoạch</span>
           </th>
           <th class="text-center">
-            <span class="text-tieude">Thực hiện</span>
+            <span class="text-tieude">Cập nhật dữ liệu thực hiện</span>
           </th>
         </tr>
       </thead>

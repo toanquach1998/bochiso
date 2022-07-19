@@ -8,7 +8,7 @@
   <q-form @submit="onSubmit">
     <div class="q-md q-gutter-md row dashboard-select">
       <q-select
-        class="col-md-3 col-xs-10 justify-around"
+        class="col-md-2 col-xs-10 justify-around"
         filled
         dense
         v-model="choseUnit"
@@ -65,14 +65,13 @@
         </div>
       </span>
     </div>
-
-    <div class="col-md col-xs-4 badge-color">
+      <div class="col-md col-xs-4 badge-color">
       <q-badge rounded color="red" /><span> Cảnh báo </span>
     </div>
-    <div class="col-md col-xs-4">
+    <div class="col-md col-xs-3">
       <q-badge rounded color="yellow" /><span> Quan tâm </span>
     </div>
-    <div class="col-md col-xs-4">
+    <div class="col-md col-xs-3">
       <q-badge rounded color="green" /><span> Chấp nhận </span>
     </div>
   </div>
