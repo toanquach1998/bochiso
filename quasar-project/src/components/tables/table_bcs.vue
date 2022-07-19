@@ -43,42 +43,44 @@
             <td class="topic-size">
               {{ topic.name }}
             </td>
-            <td class="topic-size">-</td>
-            <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-              class="topic-size"
-            >
-              -
+            <td class="topic-size">
+              
             </td>
             <td
               :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
               class="topic-size"
             >
-              -
+              
             </td>
             <td
               :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
               class="topic-size"
             >
-              -
+              
             </td>
             <td
               :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
               class="topic-size"
             >
-              -
+              
             </td>
             <td
               :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
               class="topic-size"
             >
-              -
+              
             </td>
             <td
               :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
               class="topic-size"
             >
-              -
+              
+            </td>
+            <td
+              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              class="topic-size"
+            >
+              
             </td>
           </tr>
 
@@ -87,7 +89,7 @@
               <td class="target1-index target1-size">
                 {{ index }}.{{ target1?.order }}
               </td>
-              <td class="target1-size">
+              <td class="target1-size target1-index">
                 {{ target1.name }}
               </td>
 
@@ -383,5 +385,6 @@ export default {
   padding-top: 6px !important
   padding-bottom: 6px !important
 .bg-topic
-  background-color: #FFB562
+  font-weight: 700
+  /* background-color: #FFB562 */
 </style>
