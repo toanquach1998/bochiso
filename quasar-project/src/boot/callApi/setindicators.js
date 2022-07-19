@@ -11,7 +11,7 @@ async function  index(unitid1 = null, year1 = null , month1 = null){
     return res.data;
 }
 
-async function createWithTopicArr(unitId, topicIdArr,  year,month = null )  {
+async function createWithTopicArr(unitId, topicIdArr,  year ,month = null )  {
   const res = await api.post(prefix + 'createwitharr', {
     unitId : unitId,
     topic_id_arr: topicIdArr,

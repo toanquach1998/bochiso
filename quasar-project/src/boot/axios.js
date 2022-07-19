@@ -9,7 +9,7 @@ import axios from 'axios'
 // for each client)
 // const api = axios.create({ baseURL: 'http:/192.168.1.20:8000/api/' })
 
- const api = axios.create({ baseURL: 'http://10.143.124.120:8000/api/' })
+ const api = axios.create({ baseURL: 'http://192.168.168.10:8000/api/' })
 //  const api = axios.create({ baseURL: 'http://192.168.2.187:8000/api/' })
 //const api = axios.create({baseURL: 'http://localhost:8000/api/'});
 

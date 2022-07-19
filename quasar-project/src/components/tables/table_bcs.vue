@@ -281,7 +281,7 @@ export default {
       return ((totalPlan / plan) * 100).toFixed(3);
     },
     time(time) {
-      return time.slice(0, 10);
+      return time.slice(0, 19).replace('T', ' ');
     },
     toMoney(money) {
       return sp.toMoney(money);

@@ -27,20 +27,22 @@
             :options="years"
             label="Năm"
           />
-   <!--        <q-select
+          <q-select
             class="col-md col-xs-12"
             name="accepted_genres"
             v-model="choseDicator"
-            multiple
+            multiple 
+      
             :options="topics"
             option-label="name"
             color="primary"
             filled
             clearable
             label="Đề mục"
-          /> -->
+           
+          />
           <q-btn
-            class="col-md-2 col-xs-12"
+            class="col-md-2 col-xs-12 css-btn"
             @click="seen=!seen"
             label="Xác nhận"
             type="submit"
@@ -106,7 +108,7 @@
                       v-model="
                         target1.setindicators[0].plan
                       "
-                      @change="updated( target1.setindicator[0].id, target1.setindicators[0].plan)"
+                      @change="updated( target1.setindicators[0].id, target1.setindicators[0].plan)"
                       label="cập nhật chỉ tiêu tháng"
                     />
                   </td>
@@ -133,7 +135,7 @@
                         v-model="
                           target2.setindicators[0].plan
                         "
-                        @change="updated(target1.setindicator[0].id,target2.setindicators[0].plan)"
+                        @change="updated(target2.setindicators[0].id,target2.setindicators[0].plan)"
                         label="cập nhật chỉ số tháng"
                       />
                     </td>
@@ -179,15 +181,14 @@ import { ref } from "vue";
 import units from "src/boot/callApi/units";
 import topics from "src/boot/callApi/topics";
 import targets from "src/boot/callApi/targets";
-import detailsetindicator from "../boot/callApi/detailsetindicators";
 import noti from "src/boot/noti/noti";
 
 export default {
   name: "createbcs",
 
   async created() {
-    const cator = await detailsetindicator.detail(-1);
-    this.tables = cator.topics;
+    // const cator = await detailsetindicator.detail(-1);
+    // this.tables = cator.topics;
       this.months.push({
         label: "Cả năm",
         value: 13,
@@ -260,6 +261,7 @@ export default {
   },
   methods: {
     async updated(id, plan) {
+      console.log('id ',id, 'plan ',plan);
       let data = await setIndicators.update(id,plan);
 
       if(data?.statuscode == 1) { noti.showNoti('Đã cập nhật','black'); }
@@ -275,12 +277,12 @@ export default {
       topicId = topicId.toString();
       console.log(unitId, month, year, topicId);
       var data = await setIndicators.createWithTopicArr(unitId,topicId , year, month);
-      if(data?.statuscode == 1) { noti.showNoti(' Tạo thành công','black'); }
-      if(data?.statuscode == 2) { noti.showNoti(' Bộ chỉ số năm Trung tâm chưa tạo','black'); }
-      if(data?.statuscode == 3) { noti.showNoti(' Bộ chỉ số tháng đã tạo rồi','black'); }
-      if(data?.statuscode == 4) { noti.showNoti(' Bộ chỉ số tháng Trung tâm chưa tạo','black'); }
-      if(data?.statuscode == 5) { noti.showNoti(' Bộ chỉ số năm chưa có','black'); }  
-      if( data.statuscode == 1 || data.statuscode == 3) {
+      if(data?.statuscode == 1) { noti.showNoti(' Tạo thành công','green'); }
+      if(data?.statuscode == 2) { noti.showNoti(' Bộ chỉ số năm Trung tâm chưa tạo','red'); }
+      if(data?.statuscode == 3) { noti.showNoti(' Bộ chỉ số tháng đã tạo rồi','red'); }
+      if(data?.statuscode == 4) { noti.showNoti(' Bộ chỉ số tháng Trung tâm chưa tạo','red'); }
+      if(data?.statuscode == 5) { noti.showNoti(' Bộ chỉ số năm chưa có','red'); }  
+      if( data.statuscode == 1 || data.statuscode == 3 ||data.statuscode == 0) {
         var data1 = await setIndicators.index(unitId, year, month);
         console.log( data1.topics );
         this.tables = data1.topics;
@@ -341,4 +343,7 @@ export default {
 
   margin-left: 6px
 
+// css nut button xac nhan
+.css-btn
+  max-height: 56px
 </style>

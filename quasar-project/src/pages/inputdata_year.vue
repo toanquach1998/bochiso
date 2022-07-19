@@ -34,11 +34,11 @@
     </div>
     <q-markup-table wrap-cells bordered dense>
       <thead>
-        <tr class="q color-thead">
+        <tr class="q color-thead" >
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
-          <th class="text-center"><span class="text-tieude">Chỉ s</span></th>
+          <th class="text-center"><span class="text-tieude">Chỉ số</span></th>
           <th
             class="text-center"
             :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
@@ -71,7 +71,17 @@
             <td>-</td>
           </tr>
           <template v-for="(target1, index1) in topic.targets" :key="index1">
-            <tr class="text-left">
+            <tr class="text-left"          
+              
+                  v-if="
+                    checkUpdate(
+                      target1.is_child_update,
+                      toLength(target1.target_updates),
+                      target1.id
+                    )
+                      ? false
+                      : true
+                  ">
               <td class="target1-index target1-size">
                 {{ index }}.{{ target1?.order }}
               </td>
@@ -122,7 +132,7 @@
                       toLength(target1.target_updates),
                       target1.id
                     )
-                      ? 'hidden'
+                      ? 'red'
                       : '#121212'
                   "
                   @change="
@@ -145,7 +155,15 @@
               v-for="(target2, index2) in target1.targets"
               :key="index2"
             >
-              <tr class="text-left">
+              <tr class="text-left"   v-if="
+                    checkUpdate(
+                      target2.is_child_update,
+                      toLength(target2.target_updates),
+                      target2.id
+                    )
+                      ? false
+                      : true
+                  ">
                 <td class="target2-index target1-size">
                   {{ index }}.{{ target1?.order }}.{{ ++index2 }}
                 </td>

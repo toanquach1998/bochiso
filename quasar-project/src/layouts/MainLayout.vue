@@ -55,9 +55,7 @@
               
               <q-menu>
                 <q-list style="min-width: 100px">
-                  <q-item clickable v-close-popup>
-                    <q-item-section>Xin chào, Admin</q-item-section>
-                  </q-item>
+                
                   <q-separator />
                   <q-item clickable v-close-popup to="/login">
                     <q-item-section>Đăng xuất</q-item-section>
@@ -72,7 +70,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list size="50px">
-        <q-item-label> <span class="text-header">Danh mục</span> </q-item-label>
+        <q-item-label> <span class="text-header">MENU</span> </q-item-label>
         <q-item to="/dashboard" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="dashboard" size="30px" />
@@ -83,9 +81,6 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-    
-
- 
 
            <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
@@ -97,6 +92,7 @@
             </q-item-label>
           </q-item-section>
         </q-item>
+        
             <q-item to="/createtarget" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />

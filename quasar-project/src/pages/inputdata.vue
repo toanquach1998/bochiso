@@ -32,9 +32,9 @@
        
        
         </div>
-    <!--     <div class="text-bold" style="display: inline-block">
+    -    <div class="text-bold" style="display: inline-block">
           <p id="d1"></p>
-        </div> -->
+        </div>
         
       </span>
     </div>
@@ -90,7 +90,7 @@
               >
                 {{ target1.comment }}
               </td>
-              <td
+         <!--      <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
               >
@@ -99,15 +99,6 @@
                   </q-badge>
               </td>
               <td :props="props" class="text-black">
-                <!-- {{ target1.setindicators[0].detail_set_indicators[0].total_plan }} -->
-                <!-- <q-popup-edit v-model="target1.setindicators[0].detail_set_indicators[0].total_plan"
-              auto-save v-slot="scope"
-
-               >
-              <q-input type="number" v-model.number="scope.value"
-               dense autofocus @keyup.enter="scope.set" />
-               <q-btn color="purple" @click="update(target1.setindicators[0].detail_set_indicators[0].id,target1.setindicators[0].detail_set_indicators[0])" label="Cập nhật" />
-            </q-popup-edit> -->
                 <q-input
                   class="target1-size"
                   dense
@@ -133,7 +124,7 @@
                   min="0"
                   label="Cập nhật dữ liệu"
                 />
-              </td>
+              </td>  -->
             </tr>
             <template
               v-for="(target2, index2) in target1.targets"

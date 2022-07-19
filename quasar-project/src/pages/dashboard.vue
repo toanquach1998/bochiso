@@ -1,92 +1,83 @@
 <template>
   <!-- <cardSocial id="card-social"></cardSocial> -->
-  
-  <div class="q-pa-md  text-blod text-center">
-  <span class="namebcs" >BỘ CHỈ SỐ ĐIỀU HÀNH SXKD </span>
-   </div>
 
-      
-  <div>
-    <q-form @submit="onSubmit">
-      <div class="q-md q-gutter-md row dashboard-select">
-        <q-select
-          class="col-md-2 col-xs-10 justify-around"
-         
-          filled
-          dense
-          v-model="choseUnit"
-          :options="units"
-          :option-value="(item) => item.id"
-          option-label="name"
-          label="Khu vực"
-        />
-        <q-select
-          class="col-md-2 col-xs-10"
-          filled
-          dense
-          v-model="choseMonth"
-          :options="months"
-          label="Tháng"
-        />
-        <q-select
-          class="col-md-2 col-xs-10"
-          filled
-          dense
-          v-model="choseYear"
-          :options="years"
-          label="Năm"
-          table-colspan="2"
-        />
-        <q-btn
-          class="col-md-1 col-xs-5"
-          dense
-          type="submit"
-          @click="getSetIndicator()"
-          color="primary"
-          icon="search"
-          to="/dashboard"
-        />
-      </div>
-    </q-form>
+<div class="q-pa-md text-blod text-center">
+    <span class="namebcs">BỘ CHỈ SỐ ĐIỀU HÀNH SXKD </span>
+  </div> 
 
-    <!--  <div class="'row'">
+  <q-form @submit="onSubmit">
+    <div class="q-md q-gutter-md row dashboard-select">
+      <q-select
+        class="col-md-3 col-xs-10 justify-around"
+        filled
+        dense
+        v-model="choseUnit"
+        :options="units"
+        :option-value="(item) => item.id"
+        option-label="name"
+        label="Khu vực"
+      />
+      <q-select
+        class="col-md-2 col-xs-10"
+        filled
+        dense
+        v-model="choseMonth"
+        :options="months"
+        label="Tháng"
+      />
+      <q-select
+        class="col-md-2 col-xs-10"
+        filled
+        dense
+        v-model="choseYear"
+        :options="years"
+        label="Năm"
+        table-colspan="2"
+      />
+      <q-btn
+        class="col-md-1 col-xs-5"
+        dense
+        type="submit"
+        @click="getSetIndicator()"
+        color="primary"
+        icon="search"
+        to="/dashboard"
+      />
+    </div>
+  </q-form>
+
+  <!--  <div class="'row'">
     <progressBCS></progressBCS>
   </div> -->
 
-    <!--   <chartColumn></chartColumn>
+  <!--   <chartColumn></chartColumn>
  -->
-    <div class="row text-right iconcb">
-        <div class="col-md-9 col-xs-12 text-left"> 
-        <span
-          :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
-          class="namedonvi"
-          v-if="unitName !== ' '"
-        >
-          Đơn vị:
-          <div class="text-bold" style="display: inline-block">
-            {{ unitName }} - {{ monthName }} {{ yearName }}
-          </div>
-         
-        </span>
-      </div>
-      <div class="col-md-1 col-xs-4">
-        <q-badge rounded color="red" /><span>
-          Cảnh báo
-        </span>
-      </div>
-      <div class="col-md-1 col-xs-4">
-       <q-badge rounded color="yellow"/><span>
-          Quan tâm
-        </span>
-      </div>
-      <div class="col-md-1   col-xs-4" >
-        <q-badge rounded color="green" /><span>
-          Chấp nhận
-        </span>
-      </div>
+  <div class="row text-right iconcb">
+    <div class="col-md-9 col-xs-12 text-left">
+      <span
+        :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+        class="namedonvi"
+        v-if="unitName !== ' '"
+      >
+        Đơn vị:
+        <div class="text-bold" style="display: inline-block">
+          {{ unitName }} - {{ monthName }} {{ yearName }}
+        </div>
+      </span>
     </div>
-    <tableBCS :tables="tables"></tableBCS>
+
+    <div class="col-md col-xs-4 badge-color">
+      <q-badge rounded color="red" /><span> Cảnh báo </span>
+    </div>
+    <div class="col-md col-xs-4">
+      <q-badge rounded color="yellow" /><span> Quan tâm </span>
+    </div>
+    <div class="col-md col-xs-4">
+      <q-badge rounded color="green" /><span> Chấp nhận </span>
+    </div>
   </div>
+
+  <tableBCS :tables="tables"></tableBCS>
 </template>
 
 <script>
@@ -119,7 +110,7 @@ export default defineComponent({
 
     this.tables = data.topics;
     //this.unitId = data.topics.id;
-    
+
     this.months.push({
       label: "Cả năm ",
       value: 13,
@@ -156,16 +147,19 @@ export default defineComponent({
     // console.log(this.unitId);
   },
   async mounted() {
-    setInterval(async function () {
-      var monthset = this.monthValue ; 
-      var yearset = this.yearValue ; 
-      console.log(monthset, yearset);
-      const data = await setindicators.index(this.unitId, yearset,monthset);
-      // alert('lk' , this.unitId);
-      this.tables = data.topics;
-      console.log('sdf',this.unitId);
-      console.log(this.unitName);
-    }.bind(this), 10000);
+    setInterval(
+      async function () {
+        var monthset = this.monthValue;
+        var yearset = this.yearValue;
+        console.log(monthset, yearset);
+        const data = await setindicators.index(this.unitId, yearset, monthset);
+        // alert('lk' , this.unitId);
+        this.tables = data.topics;
+      /*   console.log("sdf", this.unitId);
+        console.log(this.unitName); */
+      }.bind(this),
+      10000
+    );
   },
   components: {
     chartColumn,
@@ -186,7 +180,7 @@ export default defineComponent({
       unitName: "",
       monthName: "",
       yearName: "",
-      monthValue: null, 
+      monthValue: null,
       yearValue: null,
       unitId: "",
       showNotif(position, mess, color) {
@@ -215,8 +209,8 @@ export default defineComponent({
       this.unitName = this.choseUnit.name;
       this.monthName = " " + this.choseMonth.label;
       this.yearName = " " + this.choseYear.label;
-      this.monthValue = this.choseMonth.value; 
-      this.yearValue = this.choseYear.value; 
+      this.monthValue = this.choseMonth.value;
+      this.yearValue = this.choseYear.value;
       this.unitId = this.choseUnit.id;
     },
   },
@@ -241,4 +235,6 @@ export default defineComponent({
 .iconcb
   margin-right: 20px
 
+.badge-color
+  margin-left: 1px
 </style>
