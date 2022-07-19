@@ -72,12 +72,12 @@
             <td class="topic-size">
               {{ topic.name }}
             </td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
-            <td>-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"></td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"></td>
+            <td></td>
           </tr>
-          <template v-for="(target1, index1) in topic.targets" :key="index1">
-            <tr class="text-left">
+          <template v-for="(target1, index1) in topic.targets" :key="index1" >
+            <tr class="text-left"  v-if=" toLength(target1.target_updates) == 0 ? false : true">
               <td class="target1-index target1-size">
                 {{ index }}.{{ target1?.order }}
               </td>
@@ -88,7 +88,7 @@
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="target1-size"
               >
-                {{ target1.comment }}
+            <!--     {{ target1.comment }} -->
               </td>
          <!--      <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
@@ -322,7 +322,7 @@ document.getElementById("d1").innerHTML = text;
   font-size: 16px
 .topic-size
   font-size: 16px
-
+  font-weight: 550
 .target1-size
   font-size: 16px
 

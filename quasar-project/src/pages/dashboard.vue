@@ -236,4 +236,9 @@ export default defineComponent({
 
 .badge-color
   margin-left: 1px
+
+
+
+
+  
 </style>

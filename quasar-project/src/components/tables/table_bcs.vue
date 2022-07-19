@@ -3,32 +3,32 @@
 
     <!--  TẠO BẢNG BẰNG QTABLE -->
     <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
-    <q-markup-table wrap-cells bordered >
+    <q-markup-table grid wrap-cells bordered class="table1">
       <thead>
         <tr>
           <th class="text-center th-tieude">
             <span class="text-tieude">TT</span>
           </th>
           <th class="text-center"><span class="text-tieude">Chỉ số</span></th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+          <th >
             <span class="text-tieude">ĐVT</span>
           </th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+          <th >
             <span class="text-tieude">Chỉ tiêu năm</span>
           </th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+          <th >
             <span class="text-tieude">Kế hoạch</span>
           </th>
           <th class="text-center">
             <span class="text-tieude">Thực hiện</span>
           </th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+          <th >
             <span class="text-tieude">% so KH</span>
           </th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+          <th >
             <span class="text-tieude">Ngưỡng cảnh báo</span>
           </th>
-          <th :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">
+          <th >
             <span class="text-tieude">Người cập nhật lần cuối</span>
           </th>
         </tr>
@@ -47,37 +47,37 @@
               
             </td>
             <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              
               class="topic-size"
             >
               
             </td>
             <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              
               class="topic-size"
             >
               
             </td>
             <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              
               class="topic-size"
             >
               
             </td>
             <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              
               class="topic-size"
             >
               
             </td>
             <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              
               class="topic-size"
             >
               
             </td>
             <td
-              :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+              
               class="topic-size"
             >
               
@@ -94,13 +94,13 @@
               </td>
 
               <td
-                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                
                 class="target1-size"
               >
              <!--    {{ target1.comment }} -->
               </td>
               <td
-                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                
                 class="text-right target1-size"
               >
              <!--   <q-badge color="blue-grey"  class="badge-number">
@@ -108,7 +108,7 @@
                 </q-badge> -->
               </td>
               <td
-                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                
                 class="text-right target1-size"
               >
             <!--   <q-badge  color="teal" class="badge-number">
@@ -122,7 +122,7 @@
               </td>
 
               <td
-                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                
                 class="text-right target1-size"
               >
                <!-- <q-badge color="teal" class="badge-number">
@@ -159,7 +159,7 @@
               ></td> -->
               <td></td>
               <td
-                :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                
                 class="text-left target1-size"
               >
             <!--     {{ target1.setindicators[0]?.detail_set_indicator?.name }}
@@ -178,20 +178,20 @@
                   {{ target2.name }}
                 </td>
                 <td
-                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  
                   class="target1-size"
                 >
                   {{ target2.comment }}
                 </td>
                 <td
-                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                
                   class="text-right target1-size"
                 ><q-badge color="blue-grey" class="badge-number">
                   {{ toSwap(target2.setindicators[0].year_plan) }}
                  </q-badge>
                  </td>
                 <td
-                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  
                   class="text-right target1-size"
                 >
                 <q-badge color="teal" class="badge-number">
@@ -206,7 +206,7 @@
                 </td>
 
                 <td
-                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  
                   class="text-right target1-size"
                 >
                 <q-badge  color="teal" class="badge-number">
@@ -243,7 +243,7 @@
                   "
                 ></td>
                 <td
-                  :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
+                  
                   class="text-left target1-size"
                 >
                   {{ target2.setindicators[0]?.detail_set_indicator?.name }}
@@ -354,6 +354,7 @@ export default {
   font-weight: bold
   color: $light-blue-9
 
+
   // sass cho DE MUC
 .topic-id
   font-weight: 750
@@ -389,4 +390,8 @@ export default {
 .bg-topic
   font-weight: 700
   /* background-color: #FFB562 */
+.table1
+  display: grid
+  grid-template-columns: 1fr
+
 </style>

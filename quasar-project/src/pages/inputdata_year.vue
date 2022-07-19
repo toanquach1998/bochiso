@@ -66,9 +66,9 @@
             <td class="topic-size">
               {{ topic.name }}
             </td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
-            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`">-</td>
-            <td>-</td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"></td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"></td>
+            <td></td>
           </tr>
           <template v-for="(target1, index1) in topic.targets" :key="index1">
             <tr class="text-left"          
@@ -368,7 +368,7 @@ export default {
   font-size: 16px
 .topic-size
   font-size: 16px
-
+  font-weight: 600
 .target1-size
   font-size: 16px
 
