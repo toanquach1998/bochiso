@@ -1,226 +1,30 @@
 <template>
   <div class="q-pa-md">
-
     <!--  TẠO BẢNG BẰNG QTABLE -->
     <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
-    <q-markup-table grid wrap-cells bordered class="table1">
-      <thead>
-        <tr>
-          <th class="text-center th-tieude">
-            <span class="text-tieude">TT</span>
-          </th>
-          <th class="text-center"><span class="text-tieude">Chỉ số</span></th>
-          <th >
-            <span class="text-tieude">ĐVT</span>
-          </th>
-          <th >
-            <span class="text-tieude">Chỉ tiêu năm</span>
-          </th>
-          <th >
-            <span class="text-tieude">Kế hoạch</span>
-          </th>
-          <th class="text-center">
-            <span class="text-tieude">Thực hiện</span>
-          </th>
-          <th >
-            <span class="text-tieude">% so KH</span>
-          </th>
-          <th >
-            <span class="text-tieude">Ngưỡng cảnh báo</span>
-          </th>
-          <th >
-            <span class="text-tieude">Người cập nhật lần cuối</span>
-          </th>
-        </tr>
-      </thead>
+    
+      
 
-      <tbody>
-        <template v-for="(topic, index) in tables" :key="topic.id">
-          <tr class="text-left bg-topic">
-            <td class="top-size">
-              <span class="topic-id">{{ ++index }}</span>
-            </td>
-            <td class="topic-size">
-              {{ topic.name }}
-            </td>
-            <td class="topic-size">
-              
-            </td>
-            <td
-              
-              class="topic-size"
+      <template v-for="(topic, index) in tables" :key="topic.id">
+        <div class="text-left bg-topic">
+        <q-badge>  <span class="topic-id">{{ ++index }}</span>
+          <span class="topic-size">{{ topic.name }} </span> </q-badge>
+        </div>
+        <template v-for="(target1, index1) in topic.targets" :key="index1">
+          <div >
+            <span class="target1-index target1-size">
+              {{ index }}.{{ target1?.order }}</span
             >
-              
-            </td>
-            <td
-              
-              class="topic-size"
-            >
-              
-            </td>
-            <td
-              
-              class="topic-size"
-            >
-              
-            </td>
-            <td
-              
-              class="topic-size"
-            >
-              
-            </td>
-            <td
-              
-              class="topic-size"
-            >
-              
-            </td>
-            <td
-              
-              class="topic-size"
-            >
-              
-            </td>
-          </tr>
-
-          <template v-for="(target1, index1) in topic.targets" :key="index1">
-            <tr class="text-left">
-              <td class="target1-index target1-size">
-                {{ index }}.{{ target1?.order }}
-              </td>
-              <td class="target1-size target1-index">
-                {{ target1.name }}
-              </td>
-
-              <td
-                
-                class="target1-size"
-              >
-             <!--    {{ target1.comment }} -->
-              </td>
-              <td
-                
-                class="text-right target1-size"
-              >
-             <!--   <q-badge color="blue-grey"  class="badge-number">
-                {{ toSwap(target1.setindicators[0].year_plan) }}
-                </q-badge> -->
-              </td>
-              <td
-                
-                class="text-right target1-size"
-              >
-            <!--   <q-badge  color="teal" class="badge-number">
-                {{ toSwap(target1.setindicators[0].plan) }}
-              </q-badge> -->
-              </td>
-              <td class="text-right target1-size">
-                <!-- <q-badge color="blue-grey" class="badge-number">
-                {{ toSwap(target1.setindicators[0].total_plan) }}
-                </q-badge> -->
-              </td>
-
-              <td
-                
-                class="text-right target1-size"
-              >
-               <!-- <q-badge color="teal" class="badge-number">
-                {{
-                  tinhphantram(
-                    target1.setindicators[0].total_plan,
-                    target1.setindicators[0].plan
-                  )
-                }}
-                </q-badge> -->
-              </td>
-    <!--           <td class="test1"
-                :class="
-                  canhbaomucdo(
-                    tinhphantram(
-                      target1.setindicators[0].total_plan,
-                      target1.setindicators[0].plan
-                    ),
-                    target1.setindicators[0].plan_warning,
-                    target1.setindicators[0].min_warning
-                  ) == 0
-                    ? 'bg-red-6'
-                    : canhbaomucdo(
-                        tinhphantram(
-                          target1.setindicators[0].total_plan,
-                          target1.setindicators[0].plan
-                        ),
-                        target1.setindicators[0].plan_warning,
-                        target1.setindicators[0].min_warning
-                      ) == 1
-                    ? 'bg-amber-3'
-                    : 'bg-green-14'
-                "
-              ></td> -->
-              <td></td>
-              <td
-                
-                class="text-left target1-size"
-              >
-            <!--     {{ target1.setindicators[0]?.detail_set_indicator?.name }}
-                {{ time(target1.setindicators[0].updated_at) }} -->
-              </td>
-            </tr>
-            <template
+            <span class="target1-size target1-index"> {{ target1.name }}</span>
+          </div>
+          <div class="row grid-css">
+            <div
               v-for="(target2, index2) in target1.targets"
               :key="index2"
+              class="col-md-3 col-xs-12"
             >
-              <tr class="text-left">
-                <td class="target2-index target1-size">
-                  {{ index }}.{{ target1?.order }}.{{ ++index2 }}
-                </td>
-                <td class="target1-size">
-                  {{ target2.name }}
-                </td>
-                <td
-                  
-                  class="target1-size"
-                >
-                  {{ target2.comment }}
-                </td>
-                <td
-                
-                  class="text-right target1-size"
-                ><q-badge color="blue-grey" class="badge-number">
-                  {{ toSwap(target2.setindicators[0].year_plan) }}
-                 </q-badge>
-                 </td>
-                <td
-                  
-                  class="text-right target1-size"
-                >
-                <q-badge color="teal" class="badge-number">
-                  {{ toSwap(target2.setindicators[0].plan) }}
-                  </q-badge>
-                </td>
-
-                <td class="text-right target1-size">
-                  <q-badge color="blue-grey" class="badge-number">
-                  {{ toSwap(target2.setindicators[0].total_plan) }}
-                  </q-badge>
-                </td>
-
-                <td
-                  
-                  class="text-right target1-size"
-                >
-                <q-badge  color="teal" class="badge-number">
-                  {{
-                    tinhphantram(
-                      target2.setindicators[0].total_plan,
-                      target2.setindicators[0].plan
-                    )
-                  }}
-                  </q-badge>
-                </td>
-
-                <td class="test1"
-                  :class="
+              <div class="q-pa-md row q-gutter-md text-test column-reverse">
+                <q-card bordered dense class="full-height full-width flex-direction"  :class="
                     canhbaomucdo(
                       tinhphantram(
                         target2.setindicators[0].total_plan,
@@ -229,7 +33,7 @@
                       target2.setindicators[0].plan_warning,
                       target2.setindicators[0].min_warning
                     ) == 0
-                      ? 'bg-red-6'
+                      ? 'bg-negative'
                       : canhbaomucdo(
                           tinhphantram(
                             target2.setindicators[0].total_plan,
@@ -238,26 +42,86 @@
                           target2.setindicators[0].plan_warning,
                           target2.setindicators[0].min_warning
                         ) == 1
-                      ? 'bg-amber-5 '
-                      : 'bg-green-14'
-                  "
-                ></td>
-                <td
+                      ? 'bg-warning '
+                      : 'bg-positive'
+                  ">
                   
-                  class="text-left target1-size"
-                >
-                  {{ target2.setindicators[0]?.detail_set_indicator?.name }}
+
+                
+                  <q-card-section class="row full-width">
+                    <div class="col-md col-xs-10 target1-size">Chỉ số:</div>
+                    <div class="col-md col-xs-10 target1-size">{{ target2.name }}</div>
+                  </q-card-section>
+
+                  <q-card-section class="row">
+                    <div class="col-md col-xs-10">Đơn vị tính:</div>
+                    <div class="col-md col-xs-10">{{ target2.comment }}</div>
+                  </q-card-section>
+ 
+               <!--    <q-card-section class="row">
+                    <div class="col-md col-xs-10">Chỉ tiêu năm:</div>
+                    <div class="col-md col-xs-10">
+                      <q-badge color="blue-grey" class="badge-number">
+                        {{ toSwap(target2.setindicators[0].year_plan) }}
+                      </q-badge>
+                    </div>
+                  </q-card-section> -->
+              
+
+                  <q-card-section class="row">
+                    <div class="col-md col-xs-10">Kế hoạch:</div>
+                    <div class="col-md col-xs-10">
+                        {{ toSwap(target2.setindicators[0].plan) }}
+                    </div>
+                  </q-card-section>
+ 
+
+                 
+ 
+                    <q-card-section class="row">
+                    <div class="col-md col-xs-10">Thực hiện:</div>
+                    <div class="col-md col-xs-10">
+                  {{ toSwap(target2.setindicators[0].total_plan) }}
+                    </div>
+                  </q-card-section>
+ 
+                    <q-card-section class="row">
+                    <div class="col-md col-xs-10">% so KH:</div>
+                    <div class="col-md col-xs-10">
+                  {{
+                    tinhphantram(
+                      target2.setindicators[0].total_plan,
+                      target2.setindicators[0].plan
+                    )
+                  }}
+                    </div>
+                  </q-card-section>
+ 
+            
+
+                         <q-card-section class="row">
+                    <div class="col-md col-xs-10">Cập nhật lần cuối:</div>
+                    <div class="col-md col-xs-10">
+                   {{ target2.setindicators[0]?.detail_set_indicator?.name }}
                   {{ time(target1.setindicators[0].updated_at) }}
-                  <!--  {{ str.slice(1,3)}} -->
-                  <!--     {{timeToParse(target1.setindicator[0]?.detail_set_indicator?.update_at )}} -->
-                  <!--      {{ (target1.setindicators[0].detail_set_indicator.updated_at).slice(1,12) }} -->
-                </td>
-              </tr>
-            </template>
-          </template>
+                    </div>
+                  </q-card-section>
+                </q-card>
+              </div>
+            </div>
+          </div>
         </template>
-      </tbody>
-    </q-markup-table>
+      </template>
+
+      <!--                
+      <td>
+               {{ ++index }}
+ <br/>
+                {{ topic.name }}
+<br/>
+            
+            </td> -->
+ 
   </div>
 </template>
 
@@ -265,7 +129,6 @@
 import setindicator from "../../boot/callApi/setindicators";
 import { ref } from "vue";
 import { date } from "quasar";
-import topics from "src/boot/callApi/topics";
 import sp from "src/boot/sp/sp";
 
 export default {
@@ -285,7 +148,7 @@ export default {
       return ((totalPlan / plan) * 100).toFixed(3);
     },
     time(time) {
-      return time.slice(0, 19).replace('T', ' ');
+      return time.slice(0, 19).replace("T", " ");
     },
     toMoney(money) {
       return sp.toMoney(money);
@@ -304,11 +167,11 @@ export default {
       var c = parseFloat(minWarning);
       var re = 0;
       if (a < c) {
-        re= 0;
+        re = 0;
       } else if (b > a && a >= c) {
-        re= 1;
+        re = 1;
       } else {
-        re= 2;
+        re = 2;
       }
       // console.log('tinhphan tram', tinhphantram)
       // console.log('check chi so', re);
@@ -370,10 +233,11 @@ export default {
   font-weight: 550
 
 .target1-size
-  font-size: 16px
-
+  font-size: 14px
+  font-weight: 600
+  
 .test1
-  border-radius: 2px  
+  border-radius: 2px
 
 //sass cho tieu chi con
 .target2-index
@@ -390,8 +254,10 @@ export default {
 .bg-topic
   font-weight: 700
   /* background-color: #FFB562 */
-.table1
-  display: grid
-  grid-template-columns: 1fr
+.grid-css
+  color: white
 
+//Chinh text  
+.text-lag
+  font-size: 20px
 </style>

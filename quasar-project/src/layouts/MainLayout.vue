@@ -7,6 +7,7 @@
           flat
           dense
           round
+          
           @click="toggleLeftDrawer"
           aria-label="Menu"
           icon="menu"
@@ -75,7 +76,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer v-model="leftDrawerOpen" bordered>
       <q-list size="50px">
         <q-item-label> <span class="text-header">MENU</span> </q-item-label>
         <q-item to="/dashboard" active-class="q-item-no-link-highlighting">

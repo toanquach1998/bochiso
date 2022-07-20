@@ -283,6 +283,7 @@ export default {
       if(data?.statuscode == 4) { noti.showNoti(' Bộ chỉ số tháng Trung tâm chưa tạo','red'); }
       if(data?.statuscode == 5) { noti.showNoti(' Bộ chỉ số năm chưa có','red'); }  
       if( data.statuscode == 1 || data.statuscode == 3 ||data.statuscode == 0) {
+        if(month == null) month=13;
         var data1 = await setIndicators.index(unitId, year, month);
         console.log( data1.topics );
         this.tables = data1.topics;

@@ -65,13 +65,13 @@
         </div>
       </span>
     </div>
-      <div class="col-md col-xs-4 badge-color">
-      <q-badge rounded color="red" /><span> Cảnh báo </span>
+      <div class="col-sm col-xs-4 badge-color">
+      <q-badge rounded color="red" /><span> Cảnh báo</span>
     </div>
-    <div class="col-md col-xs-3">
+    <div class="col-sm col-xs-3">
       <q-badge rounded color="yellow" /><span> Quan tâm </span>
     </div>
-    <div class="col-md col-xs-3">
+    <div class="col-sm col-xs-3">
       <q-badge rounded color="green" /><span> Chấp nhận </span>
     </div>
   </div>

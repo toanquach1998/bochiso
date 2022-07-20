@@ -12,7 +12,7 @@ import axios from 'axios'
 // const api = axios.create({ baseURL: 'http://192.168.168.10:8000/api/'})
 
 const api = axios.create({
-  baseURL: 'http://113.164.176.24:8000/api/',
+ baseURL: 'http://113.164.176.24:8000/api/',
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
