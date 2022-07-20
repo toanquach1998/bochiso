@@ -2,63 +2,69 @@
   <div class="q-pa-md">
     <!--  TẠO BẢNG BẰNG QTABLE -->
     <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
-    
-      
 
-      <template v-for="(topic, index) in tables" :key="topic.id">
-        <div class="text-left bg-topic">
-        <q-badge>  <span class="topic-id">{{ ++index }}</span>
-          <span class="topic-size">{{ topic.name }} </span> </q-badge>
-        </div>
-        <template v-for="(target1, index1) in topic.targets" :key="index1">
-          <div >
-            <span class="target1-index target1-size">
+    <template v-for="(topic, index) in tables" :key="topic.id">
+      <div class="text-left bg-topic">
+        
+          <span class="topic-id">{{ ++index }}</span> 
+          <span class="topic-size">{{ topic.name }} </span>
+        
+      </div>
+      <template v-for="(target1, index1) in topic.targets" :key="index1">
+        <div>
+          
+            <span class="target1-index">
               {{ index }}.{{ target1?.order }}</span
-            >
-            <span class="target1-size target1-index"> {{ target1.name }}</span>
-          </div>
-          <div class="row grid-css">
-            <div
-              v-for="(target2, index2) in target1.targets"
-              :key="index2"
-              class="col-md-3 col-xs-12"
-            >
-              <div class="q-pa-md row q-gutter-md text-test column-reverse">
-                <q-card bordered dense class="full-height full-width flex-direction"  :class="
-                    canhbaomucdo(
-                      tinhphantram(
-                        target2.setindicators[0].total_plan,
-                        target2.setindicators[0].plan
-                      ),
-                      target2.setindicators[0].plan_warning,
-                      target2.setindicators[0].min_warning
-                    ) == 0
-                      ? 'bg-negative'
-                      : canhbaomucdo(
-                          tinhphantram(
-                            target2.setindicators[0].total_plan,
-                            target2.setindicators[0].plan
-                          ),
-                          target2.setindicators[0].plan_warning,
-                          target2.setindicators[0].min_warning
-                        ) == 1
-                      ? 'bg-warning '
-                      : 'bg-positive'
-                  ">
-                  
-
+            >  &nbsp;
+            <span class=" target1-index"> {{ target1.name }}</span>
+         
+        </div>
+        <div class="row grid-css items-stretch">
+          <div
+            v-for="(target2, index2) in target1.targets"
+            :key="index2"
+            class="col-md-3 col-xs-12"
+          >
+            <div class="q-pa-md row q-gutter-md q-gutter-xs  text-test">
+              <q-card
+                class="full-height full-width"
                 
-                  <q-card-section class="row full-width">
-                    <div class="col-md col-xs-10 target1-size">Chỉ số:</div>
-                    <div class="col-md col-xs-10 target1-size">{{ target2.name }}</div>
-                  </q-card-section>
+              >
+                <q-card-section class="row full-width" :class="
+                  canhbaomucdo(
+                    tinhphantram(
+                      target2.setindicators[0].total_plan,
+                      target2.setindicators[0].plan
+                    ),
+                    target2.setindicators[0].plan_warning,
+                    target2.setindicators[0].min_warning
+                  ) == 0
+                    ? 'bg-negative'
+                    : canhbaomucdo(
+                        tinhphantram(
+                          target2.setindicators[0].total_plan,
+                          target2.setindicators[0].plan
+                        ),
+                        target2.setindicators[0].plan_warning,
+                        target2.setindicators[0].min_warning
+                      ) == 1
+                    ? 'bg-orange-10'
+                    : 'bg-positive'
+                ">
+                
+                  <div class="col-md-12 col-xs-12 target1-size text-center text-color-1" >
+                    {{ target2.name }}
+                  </div>
+                </q-card-section>
 
-                  <q-card-section class="row">
-                    <div class="col-md col-xs-10">Đơn vị tính:</div>
-                    <div class="col-md col-xs-10">{{ target2.comment }}</div>
-                  </q-card-section>
- 
-               <!--    <q-card-section class="row">
+                <q-card-section class="row padding1 padding2">
+                  <div class="col-md-4 col-xs-4">Đơn vị tính:</div>
+                  <div class="col-md-8 col-xs-8 target1-size ">
+                    {{ target2.comment }}
+                  </div>
+                </q-card-section>
+
+                <!--    <q-card-section class="row">
                     <div class="col-md col-xs-10">Chỉ tiêu năm:</div>
                     <div class="col-md col-xs-10">
                       <q-badge color="blue-grey" class="badge-number">
@@ -66,54 +72,48 @@
                       </q-badge>
                     </div>
                   </q-card-section> -->
-              
 
-                  <q-card-section class="row">
-                    <div class="col-md col-xs-10">Kế hoạch:</div>
-                    <div class="col-md col-xs-10">
-                        {{ toSwap(target2.setindicators[0].plan) }}
-                    </div>
-                  </q-card-section>
- 
+                <q-card-section class="row padding1">
+                  <div class="col-md-4 col-xs-4">Kế hoạch:</div>
+                  <div class="col-md-8 col-xs-8 target1-size ">
+                    {{ toSwap(target2.setindicators[0].plan) }}
+                  </div>
+                </q-card-section>
 
-                 
- 
-                    <q-card-section class="row">
-                    <div class="col-md col-xs-10">Thực hiện:</div>
-                    <div class="col-md col-xs-10">
-                  {{ toSwap(target2.setindicators[0].total_plan) }}
-                    </div>
-                  </q-card-section>
- 
-                    <q-card-section class="row">
-                    <div class="col-md col-xs-10">% so KH:</div>
-                    <div class="col-md col-xs-10">
-                  {{
-                    tinhphantram(
-                      target2.setindicators[0].total_plan,
-                      target2.setindicators[0].plan
-                    )
-                  }}
-                    </div>
-                  </q-card-section>
- 
-            
+                <q-card-section class="row padding1">
+                  <div class="col-md-4 col-xs-4">Thực hiện:</div>
+                  <div class="col-md-8 col-xs-8 target1-size">
+                    {{ toSwap(target2.setindicators[0].total_plan) }}
+                  </div>
+                </q-card-section>
 
-                         <q-card-section class="row">
-                    <div class="col-md col-xs-10">Cập nhật lần cuối:</div>
-                    <div class="col-md col-xs-10">
-                   {{ target2.setindicators[0]?.detail_set_indicator?.name }}
-                  {{ time(target1.setindicators[0].updated_at) }}
-                    </div>
-                  </q-card-section>
-                </q-card>
-              </div>
+                <q-card-section class="row padding1">
+                  <div class="col-md-4 col-xs-4">So với kế hoạch:</div>
+                  <div class="col-md-8 col-xs-8 target1-size ">
+                    {{
+                      tinhphantram(
+                        target2.setindicators[0].total_plan,
+                        target2.setindicators[0].plan
+                      )
+                    }} &nbsp; <span>(%)</span>
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="row">
+                  <div class="col-md-4 col-xs-4"></div>
+                  <div class="col-md-8 col-xs-8 last-user text-right">
+                    Thông tin cập nhật: {{ target2.setindicators[0]?.detail_set_indicator?.name }}
+                    {{ time(target1.setindicators[0].updated_at) }}
+                  </div>
+                </q-card-section>
+              </q-card>
             </div>
           </div>
-        </template>
+        </div>
       </template>
+    </template>
 
-      <!--                
+    <!--                
       <td>
                {{ ++index }}
  <br/>
@@ -121,7 +121,6 @@
 <br/>
             
             </td> -->
- 
   </div>
 </template>
 
@@ -145,7 +144,7 @@ export default {
   },
   methods: {
     tinhphantram(totalPlan, plan) {
-      return ((totalPlan / plan) * 100).toFixed(3);
+      return ((totalPlan / plan) * 100).toFixed(2);
     },
     time(time) {
       return time.slice(0, 19).replace("T", " ");
@@ -221,21 +220,22 @@ export default {
   // sass cho DE MUC
 .topic-id
   font-weight: 750
-  font-size: 16px
+  font-size: 20px
 .topic-size
-  font-size: 16px
-
+  font-size: 20px
+  padding: 6px 
+  
 
   //sass cho tieu chi cha
 .target1-index
-
-  margin-left: 3px
+  font-size: 20px
   font-weight: 550
+  padding: 5px
 
 .target1-size
   font-size: 14px
-  font-weight: 600
-  
+  font-weight: 700
+
 .test1
   border-radius: 2px
 
@@ -255,9 +255,26 @@ export default {
   font-weight: 700
   /* background-color: #FFB562 */
 .grid-css
-  color: white
+  
 
-//Chinh text  
+//Chinh text
 .text-lag
   font-size: 20px
+.last-user
+  font-style: italic
+  font-size: 12px
+
+.text-test
+  height: 100%
+.padding1
+  padding-top: 0px
+.q-pa-md
+  padding-right: 10px
+
+.text-color-1
+  color: white
+  font-size: 18px
+  
+.padding2
+  padding-top: 20px
 </style>

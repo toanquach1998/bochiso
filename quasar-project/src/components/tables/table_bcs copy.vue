@@ -370,7 +370,7 @@ export default {
   font-weight: 550
 
 .target1-size
-  font-size: 16px
+  font-size: 14px
 
 .test1
   border-radius: 2px  
