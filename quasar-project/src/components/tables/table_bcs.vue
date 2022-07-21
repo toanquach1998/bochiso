@@ -53,8 +53,8 @@
                 </q-card-section>
 
                 <q-card-section class="row padding1 padding2 tentieude-text">
-                  <div class="col-md-5 col-xs-4 ">Đơn vị tính:</div>
-                  <div class="col-md-7 col-xs-8 target1-size">
+                  <div class="col-md-5 col-xs-5 ">Đơn vị tính:</div>
+                  <div class="col-md-7 col-xs-7 target1-size">
                     {{ target2.comment }}
                   </div>
                 </q-card-section>
@@ -69,22 +69,22 @@
                   </q-card-section> -->
 
                 <q-card-section class="row padding1 tentieude-text">
-                  <div class="col-md-5 col-xs-4">Kế hoạch:</div>
-                  <div class="col-md-7 col-xs-8 target1-size">
+                  <div class="col-md-5 col-xs-5">Kế hoạch:</div>
+                  <div class="col-md-7 col-xs-7 target1-size">
                     {{ toSwap(target2.setindicators[0].plan) }}
                   </div>
                 </q-card-section>
 
                 <q-card-section class="row padding1 tentieude-text">
-                  <div class="col-md-5 col-xs-4">Thực hiện:</div>
-                  <div class="col-md-7 col-xs-8 target1-size">
+                  <div class="col-md-5 col-xs-5">Thực hiện:</div>
+                  <div class="col-md-7 col-xs-7 target1-size">
                     {{ toSwap(target2.setindicators[0].total_plan) }}
                   </div>
                 </q-card-section>
 
                 <q-card-section class="row padding1 tentieude-text">
-                  <div class="col-md-5 col-xs-4">So với kế hoạch:</div>
-                  <div class="col-md-7 col-xs-8 target1-size">
+                  <div class="col-md-5 col-xs-5">So với kế hoạch:</div>
+                  <div class="col-md-7 col-xs-7 target1-size">
                     {{
                       tinhphantram(
                         target2.setindicators[0].total_plan,
@@ -95,7 +95,7 @@
                   </div>
                 </q-card-section>
 
-                <q-card-section class="row">
+                <q-card-section class="row q-pa">
                   <div class="col-md-4 col-xs-4"></div>
                   <div class="col-md-8 col-xs-8 last-user text-right">
                     Thông tin cập nhật:
