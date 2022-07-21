@@ -69,7 +69,7 @@
       <q-badge rounded color="red" /><span> Cảnh báo</span>
     </div>
     <div class="col-sm col-xs-3">
-      <q-badge rounded color="orange-10" /><span> Quan tâm </span>
+      <q-badge rounded color="amber-8" /><span> Quan tâm </span>
     </div>
     <div class="col-sm col-xs-3">
       <q-badge rounded color="green" /><span> Chấp nhận </span>

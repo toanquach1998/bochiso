@@ -1,65 +1,60 @@
 <template>
-  <div class="q-pa-md">
-    <!--  TẠO BẢNG BẰNG QTABLE -->
-    <!-- <q-btn color="primary" icon="check" label="OK" @click="canhbaomucdo('95', '100', '90')" /> -->
-
+  <div class="q-pa-md" >
     <template v-for="(topic, index) in tables" :key="topic.id">
       <div class="text-left bg-topic">
-        
-          <span class="topic-id">{{ ++index }}</span> 
-          <span class="topic-size">{{ topic.name }} </span>
-        
+        <span class="topic-id">{{ ++index }}</span>
+        <span class="topic-size">{{ topic.name }} </span>
       </div>
       <template v-for="(target1, index1) in topic.targets" :key="index1">
         <div>
-          
-            <span class="target1-index">
-              {{ index }}.{{ target1?.order }}</span
-            >  &nbsp;
-            <span class=" target1-index"> {{ target1.name }}</span>
-         
+          <span class="target1-index"> {{ index }}.{{ target1?.order }}</span>
+       
+          <span class="target1-index"> {{ target1.name }}</span>
         </div>
         <div class="row grid-css items-stretch">
           <div
             v-for="(target2, index2) in target1.targets"
             :key="index2"
-            class="col-md-3 col-xs-12"
+            class="col-md-4 col-xs-12 col-lg-3"
           >
-            <div class="q-pa-md row q-gutter-md q-gutter-xs  text-test">
-              <q-card
-                class="full-height full-width"
+            <div class="q-pa-md row q-gutter-md q-gutter-xs text-test">
+              <q-card class="full-height full-width ">
+                <q-card-section
+                  class="row css-section "
+                  :class="
+                    canhbaomucdo(
+                      tinhphantram(
+                        target2.setindicators[0].total_plan,
+                        target2.setindicators[0].plan
+                      ),
+                      target2.setindicators[0].plan_warning,
+                      target2.setindicators[0].min_warning
+                    ) == 0
+                      ? 'bg-negative'
+                      : canhbaomucdo(
+                          tinhphantram(
+                            target2.setindicators[0].total_plan,
+                            target2.setindicators[0].plan
+                          ),
+                          target2.setindicators[0].plan_warning,
+                          target2.setindicators[0].min_warning
+                        ) == 1
+                      ? 'bg-amber-8'
+                      : 'bg-positive'
+                  "
+                >
+                  <div
+                    class="col-md-12 col-xs-12 target1-size text-center text-color-1 absolute-center"
+                  >
+          
+             <span class=" h6-text " > {{ target2.name }}</span>
                 
-              >
-                <q-card-section class="row full-width" :class="
-                  canhbaomucdo(
-                    tinhphantram(
-                      target2.setindicators[0].total_plan,
-                      target2.setindicators[0].plan
-                    ),
-                    target2.setindicators[0].plan_warning,
-                    target2.setindicators[0].min_warning
-                  ) == 0
-                    ? 'bg-negative'
-                    : canhbaomucdo(
-                        tinhphantram(
-                          target2.setindicators[0].total_plan,
-                          target2.setindicators[0].plan
-                        ),
-                        target2.setindicators[0].plan_warning,
-                        target2.setindicators[0].min_warning
-                      ) == 1
-                    ? 'bg-orange-10'
-                    : 'bg-positive'
-                ">
-                
-                  <div class="col-md-12 col-xs-12 target1-size text-center text-color-1" >
-                    {{ target2.name }}
                   </div>
                 </q-card-section>
 
-                <q-card-section class="row padding1 padding2">
-                  <div class="col-md-4 col-xs-4">Đơn vị tính:</div>
-                  <div class="col-md-8 col-xs-8 target1-size ">
+                <q-card-section class="row padding1 padding2 tentieude-text">
+                  <div class="col-md-5 col-xs-4 ">Đơn vị tính:</div>
+                  <div class="col-md-7 col-xs-8 target1-size">
                     {{ target2.comment }}
                   </div>
                 </q-card-section>
@@ -73,36 +68,38 @@
                     </div>
                   </q-card-section> -->
 
-                <q-card-section class="row padding1">
-                  <div class="col-md-4 col-xs-4">Kế hoạch:</div>
-                  <div class="col-md-8 col-xs-8 target1-size ">
+                <q-card-section class="row padding1 tentieude-text">
+                  <div class="col-md-5 col-xs-4">Kế hoạch:</div>
+                  <div class="col-md-7 col-xs-8 target1-size">
                     {{ toSwap(target2.setindicators[0].plan) }}
                   </div>
                 </q-card-section>
 
-                <q-card-section class="row padding1">
-                  <div class="col-md-4 col-xs-4">Thực hiện:</div>
-                  <div class="col-md-8 col-xs-8 target1-size">
+                <q-card-section class="row padding1 tentieude-text">
+                  <div class="col-md-5 col-xs-4">Thực hiện:</div>
+                  <div class="col-md-7 col-xs-8 target1-size">
                     {{ toSwap(target2.setindicators[0].total_plan) }}
                   </div>
                 </q-card-section>
 
-                <q-card-section class="row padding1">
-                  <div class="col-md-4 col-xs-4">So với kế hoạch:</div>
-                  <div class="col-md-8 col-xs-8 target1-size ">
+                <q-card-section class="row padding1 tentieude-text">
+                  <div class="col-md-5 col-xs-4">So với kế hoạch:</div>
+                  <div class="col-md-7 col-xs-8 target1-size">
                     {{
                       tinhphantram(
                         target2.setindicators[0].total_plan,
                         target2.setindicators[0].plan
                       )
-                    }} &nbsp; <span>(%)</span>
+                    }}
+                    &nbsp; <span>(%)</span>
                   </div>
                 </q-card-section>
 
                 <q-card-section class="row">
                   <div class="col-md-4 col-xs-4"></div>
                   <div class="col-md-8 col-xs-8 last-user text-right">
-                    Thông tin cập nhật: {{ target2.setindicators[0]?.detail_set_indicator?.name }}
+                    Thông tin cập nhật:
+                    {{ target2.setindicators[0]?.detail_set_indicator?.name }}
                     {{ time(target1.setindicators[0].updated_at) }}
                   </div>
                 </q-card-section>
@@ -188,34 +185,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.badge-number
-  font-size: 16px
-.name-bcs
-  font-size: 30px
-
-.bg-success
-  background-color: #28a745
-.bg-danger
-  background-color: #f52727
-
-
-
-
-
-.header-bcs
-  margin-bottom: 10px
-
-.textover
-  white-space: nowarp
-.target-level
-  margin-left: 10px
-  border-left: 10px solid #f1f3f4
-
-.text-tieude
-  font-size: 16px
-  font-weight: bold
-  color: $light-blue-9
-
 
   // sass cho DE MUC
 .topic-id
@@ -223,8 +192,8 @@ export default {
   font-size: 20px
 .topic-size
   font-size: 20px
-  padding: 6px 
-  
+  padding: 6px
+
 
   //sass cho tieu chi cha
 .target1-index
@@ -233,11 +202,8 @@ export default {
   padding: 5px
 
 .target1-size
-  font-size: 14px
+  font-size: 16px
   font-weight: 700
-
-.test1
-  border-radius: 2px
 
 //sass cho tieu chi con
 .target2-index
@@ -254,8 +220,6 @@ export default {
 .bg-topic
   font-weight: 700
   /* background-color: #FFB562 */
-.grid-css
-  
 
 //Chinh text
 .text-lag
@@ -273,8 +237,25 @@ export default {
 
 .text-color-1
   color: white
-  font-size: 18px
   
+
+.h6-text
+  
+  font-size: 16px
+  font-weight: 700
+  padding: 10px
+  /* line-height: 64px */
+  
+
 .padding2
   padding-top: 20px
+  
+// CSS min-height cho mau ten chi so
+.css-section
+ min-height: 64px
+ max-height: 64px
+
+//css ten tieu de goc phai
+.tentieude-text
+  font-size: 16px
 </style>

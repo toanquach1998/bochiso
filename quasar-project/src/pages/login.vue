@@ -73,8 +73,8 @@ export default {
   data() {
     return {
       login: {
-        username: "binhdlt.hgi",
-        password: "123456",
+        username: "",
+        password: "",
       },
     };
   },
