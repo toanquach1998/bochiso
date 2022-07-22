@@ -3,7 +3,7 @@
     <template v-for="(topic) in tables" :key="topic.id">
       <div class="text-left bg-topic">
         <!-- <span class="topic-id">{{ ++index }}</span> -->
-        <span class="topic-size">{{ topic.name }} </span>
+      <!--   <span class="topic-size">{{ topic.name }} </span> -->
       </div>
 
         <div v-for="(target1) in topic.targets" :key="target1.id">
@@ -11,7 +11,7 @@
           <div>
           <!--   <span class="target1-index"> {{ index }}.{{ target1?.order }}</span> -->
 
-            <span class="target1-index"> {{ target1.name }}</span>
+            <span class="target1-index">{{topic.name}} <q-icon name="keyboard_double_arrow_right " /> {{ target1.name }}</span>
           </div>
 
           <div class="row grid-css items-stretch">
