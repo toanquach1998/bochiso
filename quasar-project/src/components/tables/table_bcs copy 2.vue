@@ -1,17 +1,17 @@
 <template>
   <div class="q-pa-md">
-    <template v-for="(topic) in tables" :key="topic.id">
+    <template v-for="(topic, index) in tables" :key="topic.id">
       <div class="text-left bg-topic">
-        <!-- <span class="topic-id">{{ ++index }}</span> -->
-      <!--   <span class="topic-size">{{ topic.name }} </span> -->
+        <span class="topic-id">{{ ++index }}</span>
+        <span class="topic-size">{{ topic.name }} </span>
       </div>
 
-        <div v-for="(target1) in topic.targets" :key="target1.id">
+        <div v-for="(target1, index1) in topic.targets" :key="index1">
         <div class="bg-test" v-if="toLength(target1.setindicators) == 0  ? false : true">
           <div>
-          <!--   <span class="target1-index"> {{ index }}.{{ target1?.order }}</span> -->
+            <span class="target1-index"> {{ index }}.{{ target1?.order }}</span>
 
-            <span class="target1-index">{{topic.name}} <q-icon name="keyboard_double_arrow_right " /> {{ target1.name }}</span>
+            <span class="target1-index"> {{ target1.name }}</span>
           </div>
 
           <div class="row grid-css items-stretch">
@@ -196,10 +196,10 @@ export default {
   // sass cho DE MUC
 .topic-id
   font-weight: 750
-  font-size: 24px
+  font-size: 20px
   
 .topic-size
-  font-size: 24px
+  font-size: 20px
   padding: 6px
 
 
