@@ -205,5 +205,5 @@ export default defineComponent({
 .q-item__section--side > .q-icon
   font-size: 30px
 .body--light
-  background-color: #cee5d08c
+  background-color: #f8f8f8
 </style>

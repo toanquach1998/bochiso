@@ -1,65 +1,66 @@
 <template>
-  <div class="q-pa-md" >
+  <div class="q-pa-md">
     <template v-for="(topic, index) in tables" :key="topic.id">
       <div class="text-left bg-topic">
         <span class="topic-id">{{ ++index }}</span>
         <span class="topic-size">{{ topic.name }} </span>
       </div>
-      <template v-for="(target1, index1) in topic.targets" :key="index1">
-        <div>
-          <span class="target1-index"> {{ index }}.{{ target1?.order }}</span>
-       
-          <span class="target1-index"> {{ target1.name }}</span>
-        </div>
-        <div class="row grid-css items-stretch">
-          <div
-            v-for="(target2, index2) in target1.targets"
-            :key="index2"
-            class="col-md-4 col-xs-12 col-lg-3"
-          >
-            <div class="q-pa-md row q-gutter-md q-gutter-xs text-test">
-              <q-card class="full-height full-width ">
-                <q-card-section
-                  class="row css-section "
-                  :class="
-                    canhbaomucdo(
-                      tinhphantram(
-                        target2.setindicators[0].total_plan,
-                        target2.setindicators[0].plan
-                      ),
-                      target2.setindicators[0].plan_warning,
-                      target2.setindicators[0].min_warning
-                    ) == 0
-                      ? 'bg-negative'
-                      : canhbaomucdo(
-                          tinhphantram(
-                            target2.setindicators[0].total_plan,
-                            target2.setindicators[0].plan
-                          ),
-                          target2.setindicators[0].plan_warning,
-                          target2.setindicators[0].min_warning
-                        ) == 1
-                      ? 'bg-amber-8'
-                      : 'bg-positive'
-                  "
-                >
-                  <div
-                    class="col-md-12 col-xs-12 target1-size text-center text-color-1 absolute-center"
-                  >
+      
+        <div v-for="(target1, index1) in topic.targets" :key="index1">
+        <div class="bg-test">
+          <div>
+            <span class="target1-index"> {{ index }}.{{ target1?.order }}</span>
+
+            <span class="target1-index"> {{ target1.name }}</span>
+          </div>
           
-             <span class=" h6-text " > {{ target2.name }}</span>
-                
-                  </div>
-                </q-card-section>
+          <div class="row grid-css items-stretch">
+            <div
+              v-for="(target2, index2) in target1.targets"
+              :key="index2"
+              class="col-md-4 col-xs-12 col-lg-3"
+            >
+              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test">
+                <q-card class="full-height full-width">
+                  <q-card-section
+                    class="row css-section"
+                    :class="
+                      canhbaomucdo(
+                        tinhphantram(
+                          target2.setindicators[0].total_plan,
+                          target2.setindicators[0].plan
+                        ),
+                        target2.setindicators[0].plan_warning,
+                        target2.setindicators[0].min_warning
+                      ) == 0
+                        ? 'bg-negative'
+                        : canhbaomucdo(
+                            tinhphantram(
+                              target2.setindicators[0].total_plan,
+                              target2.setindicators[0].plan
+                            ),
+                            target2.setindicators[0].plan_warning,
+                            target2.setindicators[0].min_warning
+                          ) == 1
+                        ? 'bg-amber-8'
+                        : 'bg-positive'
+                    "
+                  >
+                    <div
+                      class="col-md-12 col-xs-12 target1-size text-center text-color-1 absolute-center"
+                    >
+                      <span class="h6-text"> {{ target2.name }}</span>
+                    </div>
+                  </q-card-section>
 
-                <q-card-section class="row padding1 padding2 tentieude-text">
-                  <div class="col-md-5 col-xs-5 ">Đơn vị tính:</div>
-                  <div class="col-md-7 col-xs-7 target1-size">
-                    {{ target2.comment }}
-                  </div>
-                </q-card-section>
+                  <q-card-section class="row padding1 padding2 tentieude-text">
+                    <div class="col-md-5 col-xs-5">Đơn vị tính:</div>
+                    <div class="col-md-7 col-xs-7 target1-size">
+                      {{ target2.comment }}
+                    </div>
+                  </q-card-section>
 
-                <!--    <q-card-section class="row">
+                  <!--    <q-card-section class="row">
                     <div class="col-md col-xs-10">Chỉ tiêu năm:</div>
                     <div class="col-md col-xs-10">
                       <q-badge color="blue-grey" class="badge-number">
@@ -68,46 +69,49 @@
                     </div>
                   </q-card-section> -->
 
-                <q-card-section class="row padding1 tentieude-text">
-                  <div class="col-md-5 col-xs-5">Kế hoạch:</div>
-                  <div class="col-md-7 col-xs-7 target1-size">
-                    {{ toSwap(target2.setindicators[0].plan) }}
-                  </div>
-                </q-card-section>
+                  <q-card-section class="row padding1 tentieude-text">
+                    <div class="col-md-5 col-xs-5">Kế hoạch:</div>
+                    <div class="col-md-7 col-xs-7 target1-size">
+                      {{ toSwap(target2.setindicators[0].plan) }}
+                    </div>
+                  </q-card-section>
 
-                <q-card-section class="row padding1 tentieude-text">
-                  <div class="col-md-5 col-xs-5">Thực hiện:</div>
-                  <div class="col-md-7 col-xs-7 target1-size">
-                    {{ toSwap(target2.setindicators[0].total_plan) }}
-                  </div>
-                </q-card-section>
+                  <q-card-section class="row padding1 tentieude-text">
+                    <div class="col-md-5 col-xs-5">Thực hiện:</div>
+                    <div class="col-md-7 col-xs-7 target1-size">
+                      {{ toSwap(target2.setindicators[0].total_plan) }}
+                    </div>
+                  </q-card-section>
 
-                <q-card-section class="row padding1 tentieude-text">
-                  <div class="col-md-5 col-xs-5">So với kế hoạch:</div>
-                  <div class="col-md-7 col-xs-7 target1-size">
-                    {{
-                      tinhphantram(
-                        target2.setindicators[0].total_plan,
-                        target2.setindicators[0].plan
-                      )
-                    }}
-                    &nbsp; <span>(%)</span>
-                  </div>
-                </q-card-section>
+                  <q-card-section class="row padding1 tentieude-text">
+                    <div class="col-md-5 col-xs-5">So với kế hoạch:</div>
+                    <div class="col-md-7 col-xs-7 target1-size">
+                      {{
+                        tinhphantram(
+                          target2.setindicators[0].total_plan,
+                          target2.setindicators[0].plan
+                        )
+                      }}
+                      &nbsp; <span>(%)</span>
+                    </div>
+                  </q-card-section>
 
-                <q-card-section class="row q-pa">
-                  <div class="col-md-4 col-xs-4"></div>
-                  <div class="col-md-8 col-xs-8 last-user text-right">
-                    Thông tin cập nhật:
-                    {{ target2.setindicators[0]?.detail_set_indicator?.name }}
-                    {{ time(target1.setindicators[0].updated_at) }}
-                  </div>
-                </q-card-section>
-              </q-card>
+                  <q-card-section class="row no-padding">
+                    <div class="col-md-4 col-xs-4"></div>
+                    <div class="col-md-8 col-xs-8 last-user text-right">
+                      Thông tin cập nhật:
+                      {{ target2.setindicators[0]?.detail_set_indicator?.name }}
+                      {{ time(target1.setindicators[0].updated_at) }}
+                    </div>
+                  </q-card-section>
+                </q-card>
+                 </div>
+                 </div>
+              </div>
             </div>
           </div>
-        </div>
-      </template>
+      
+     
     </template>
 
     <!--                
@@ -202,7 +206,7 @@ export default {
   padding: 5px
 
 .target1-size
-  font-size: 16px
+  font-size: 18px
   font-weight: 700
 
 //sass cho tieu chi con
@@ -227,7 +231,7 @@ export default {
 .last-user
   font-style: italic
   font-size: 12px
-
+  padding: 0px 16px 16px 0px
 .text-test
   height: 100%
 .padding1
@@ -237,19 +241,23 @@ export default {
 
 .text-color-1
   color: white
-  
+
 
 .h6-text
-  
+
   font-size: 16px
   font-weight: 700
   padding: 10px
   /* line-height: 64px */
-  
+//chinh mau nen cho grid
+.grid-css
+
+  padding-left: 0px
+  margin-left: 0px
 
 .padding2
   padding-top: 20px
-  
+
 // CSS min-height cho mau ten chi so
 .css-section
  min-height: 64px
@@ -258,4 +266,14 @@ export default {
 //css ten tieu de goc phai
 .tentieude-text
   font-size: 16px
+
+.bg-test
+
+  margin-bottom: 20px
+  padding-top: 10px
+  border-radius: 5px
+  padding-left: 15px
+  box-shadow: 0px 0px 10px #e9edc9
+  border-radius: 20px
+
 </style>
