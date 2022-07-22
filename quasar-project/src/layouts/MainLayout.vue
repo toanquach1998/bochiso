@@ -183,7 +183,7 @@ export default defineComponent({
       this.$store.dispatch("User/user", {
         username: '',
       });
-      this.$router.push('/login');
+      this.$router.go();
     },
     reloadpage() {
       this.$router.go();
