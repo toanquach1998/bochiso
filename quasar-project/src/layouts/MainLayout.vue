@@ -7,7 +7,7 @@
           flat
           dense
           round
-          
+
           @click="toggleLeftDrawer"
           aria-label="Menu"
           icon="menu"
@@ -53,17 +53,17 @@
           <q-btn round flat>
             <q-avatar size="35px" icon="account_circle">
               <!-- <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/6/65/VNPT_Logo.svg/1551px-VNPT_Logo.svg.png" /> -->
-              
+
               <q-menu>
                                 <q-list style="min-width: 140px">
-                
+
                   <q-separator />
                   <q-item clickable v-close-popup to="/login">
                     <q-item-section>Xin chào, {{name(user.name)}}</q-item-section>
                   </q-item>
                 </q-list>
                 <q-list style="min-width: 100px">
-                
+
                   <q-separator />
                   <q-item clickable v-close-popup to="/login">
                     <q-item-section>Đăng xuất</q-item-section>
@@ -100,7 +100,7 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        
+
             <q-item to="/createtarget" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />

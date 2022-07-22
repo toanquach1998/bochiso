@@ -5,22 +5,22 @@
         <span class="topic-id">{{ ++index }}</span>
         <span class="topic-size">{{ topic.name }} </span>
       </div>
-      
+
         <div v-for="(target1, index1) in topic.targets" :key="index1">
-        <div class="bg-test">
+        <div class="bg-test" v-if="toLength(target1.setindicators) == 0  ? false : true">
           <div>
             <span class="target1-index"> {{ index }}.{{ target1?.order }}</span>
 
             <span class="target1-index"> {{ target1.name }}</span>
           </div>
-          
+
           <div class="row grid-css items-stretch">
             <div
               v-for="(target2, index2) in target1.targets"
               :key="index2"
               class="col-md-4 col-xs-12 col-lg-3"
             >
-              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test">
+              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test" v-if="toLength(target2.setindicators) == 0  ? false : true">
                 <q-card class="full-height full-width">
                   <q-card-section
                     class="row css-section"
@@ -110,17 +110,17 @@
               </div>
             </div>
           </div>
-      
-     
+
+
     </template>
 
-    <!--                
+    <!--
       <td>
                {{ ++index }}
  <br/>
                 {{ topic.name }}
 <br/>
-            
+
             </td> -->
   </div>
 </template>
@@ -149,6 +149,9 @@ export default {
     },
     time(time) {
       return time.slice(0, 19).replace("T", " ");
+    },
+    toLength(arr ) {
+      return sp.toLength(arr);
     },
     toMoney(money) {
       return sp.toMoney(money);
