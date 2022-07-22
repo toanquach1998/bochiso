@@ -65,7 +65,7 @@
                 <q-list style="min-width: 100px">
 
                   <q-separator />
-                  <q-item clickable v-close-popup to="/login">
+                  <q-item clickable v-close-popup @click="logout()">
                     <q-item-section>Đăng xuất</q-item-section>
                   </q-item>
                 </q-list>
@@ -158,19 +158,19 @@ export default defineComponent({
     };
   },
   async created() {
+    if( localStorage.getItem('key') == null && this.user.username.length == 0 ) this.$router.push('/login');
     try {
-      console.log(this.user);
       const res = await users.index();
       this.$store.dispatch("User/user", res.user);
     } catch (e) {
       if (
         localStorage.getItem("key") !== null
-        // ||
-        // this.user?.username.length > 1
+        ||
+        this.user.username.length > 1
       ) {
         this.$router.go();
       } else {
-        this.$router.push("/");
+        this.$router.push("/login");
       }
     }
   },
@@ -178,6 +178,13 @@ export default defineComponent({
     ...mapGetters("User", ["user"]),
   },
   methods: {
+    logout() {
+      localStorage.removeItem('key');
+      this.$store.dispatch("User/user", {
+        username: '',
+      });
+      this.$router.push('/login');
+    },
     reloadpage() {
       this.$router.go();
     },

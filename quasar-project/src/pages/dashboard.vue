@@ -3,7 +3,7 @@
 
 <div class="q-pa-md text-blod text-center">
     <span class="namebcs">BỘ CHỈ SỐ ĐIỀU HÀNH SXKD </span>
-  </div> 
+  </div>
 
   <q-form @submit="onSubmit">
     <div class="q-md q-gutter-md row dashboard-select">
@@ -105,6 +105,7 @@ const progressBCS = defineAsyncComponent(() =>
 export default defineComponent({
   name: "dashboard",
   async created() {
+
     const data = await setindicators.index();
 
     this.tables = data.topics;
@@ -240,5 +241,5 @@ export default defineComponent({
 
 
 
-  
+
 </style>
