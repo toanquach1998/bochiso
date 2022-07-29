@@ -20,8 +20,8 @@
               :key="index2"
               class="col-md-4 col-xs-12 col-lg-3"
             >
-              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test" v-if="toLength(target2.setindicators) == 0  ? false : true">
-                <q-card class="full-height full-width">
+              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test" >
+                <q-card class="full-height full-width" v-if="toLength(target2.setindicators) == 0  ? false : true">
                   <q-card-section
                     class="row css-section"
                     :class="
