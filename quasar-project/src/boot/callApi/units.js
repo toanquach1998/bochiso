@@ -1,15 +1,15 @@
 import { api } from "../axios";
 
-const unit = 'units/';
+const unit = 'units';
 
 async function  units(){
     const res = await api.post(unit, {} );
-    console.log(res.data); 
+    console.log(res.data);
 
     return res.data;
 }
 
 
-export default{ 
+export default{
     units,
 }

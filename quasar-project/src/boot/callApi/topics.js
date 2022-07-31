@@ -1,13 +1,13 @@
 import { api } from "../axios";
 
-const topic = 'topics/';
+const topic = 'topics';
 
 async function  topics(){
     const res = await api.post(topic, {} );
-    console.log(res.data); 
+    console.log(res.data);
 
     return res.data;
 }
-export default{ 
+export default{
     topics,
 }

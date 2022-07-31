@@ -1,9 +1,9 @@
 import {api} from '../axios';
 
-const users = 'user/' ;
+const users = 'user' ;
 
 async function login(username, password) {
-  const res = await api.post(users +'login', {
+  const res = await api.post(users +'/login', {
     username: username,
     password: password,
   });

@@ -1,6 +1,6 @@
 import { api } from "../axios";
 
-const prefix = 'setindicators/';
+const prefix = 'setindicators';
 
 async function  index(unitid1 = null, year1 = null , month1 = null){
     const res = await api.post(prefix, {
@@ -12,7 +12,7 @@ async function  index(unitid1 = null, year1 = null , month1 = null){
 }
 
 async function createWithTopicArr(unitId, topicIdArr,  year ,month = null )  {
-  const res = await api.post(prefix + 'createwitharr', {
+  const res = await api.post(prefix + '/createwitharr', {
     unitId : unitId,
     topic_id_arr: topicIdArr,
     year: year,
@@ -21,7 +21,7 @@ async function createWithTopicArr(unitId, topicIdArr,  year ,month = null )  {
   return res.data;
 }
 async function update(id, plan) {
-  const res = await api.post(prefix + 'update', {
+  const res = await api.post(prefix + '/update', {
     id: id,
     plan: plan,
   });
