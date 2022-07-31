@@ -15,7 +15,7 @@ const api = axios.create({
  baseURL: 'http://113.164.176.24:8000/api/',
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTION',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   }
 })

@@ -80,7 +80,7 @@
       <q-list size="50px">
         <q-item-label> <span class="text-header">MENU</span> </q-item-label>
         <div class="test">
-        <q-item to="/dashboard" active-class="q-item-no-link-highlighting">
+        <q-item to="/dashboard" active-class="my-active-item">
           <q-item-section avatar>
             <q-icon name="dashboard" size="30px" />
           </q-item-section>
@@ -91,7 +91,7 @@
           </q-item-section>
         </q-item>
 
-           <q-item to="/createbcs" active-class="q-item-no-link-highlighting">
+           <q-item to="/createbcs" active-class="my-active-item">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />
           </q-item-section>
@@ -102,7 +102,7 @@
           </q-item-section>
         </q-item>
 
-            <q-item to="/createtarget" active-class="q-item-no-link-highlighting">
+            <q-item to="/createtarget" active-class="my-active-item">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />
           </q-item-section>
@@ -110,7 +110,7 @@
             <q-item-label>Thiết lập tiêu chí</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/inputdata" active-class="q-item-no-link-highlighting" >
+        <q-item to="/inputdata" active-class="my-active-item" >
           <q-item-section avatar>
             <q-icon name="edit_note" size="40px" />
           </q-item-section>
@@ -118,7 +118,7 @@
             <q-item-label>Cập nhật bộ chỉ số theo tháng</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/inputdata_year" active-class="q-item-no-link-highlighting">
+        <q-item to="/inputdata_year" active-class="my-active-item">
           <q-item-section avatar>
             <q-icon name="edit_note" size="40px" />
           </q-item-section>
@@ -215,11 +215,13 @@ export default defineComponent({
   font-size: 30px
 .body--light
   background-color: #f8f8f8
-.q-item-no-link-highlighting
+.my-active-item
   background-color: #1976d2
   border-radius: 10px
   color: white
-
+.q-item:hover
+  border-radius: 10px
 .test
   margin: 0px 10px
+  border-radius: 10px
 </style>

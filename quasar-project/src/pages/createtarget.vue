@@ -65,7 +65,7 @@
               label="Đề mục"
              />
             <q-select
-            
+              
               v-on:click="seen = !seen"
               class="col-md col-xs-12"
               name="accepted_genres"
