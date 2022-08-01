@@ -18,12 +18,27 @@
           <q-card-section>
             <div class="text-h6">Thêm đề mục</div>
           </q-card-section>
-          <q-card-section >
-            <q-input class="input-topic" v-model="text" type="text" label="Tên tiêu đề" />
+          <q-card-section>
+            <q-input
+              class="input-topic"
+              v-model="text"
+              type="text"
+              label="Tên tiêu đề"
+            />
           </q-card-section>
           <q-card-section class="row items-center q-gutter-sm justify-center">
-            <q-btn class="col btn-target" v-close-popup label="Tạo" color="primary" />
-            <q-btn class="col btn-target" v-close-popup label="Hủy" color="red" />
+            <q-btn
+              class="col btn-target"
+              v-close-popup
+              label="Tạo"
+              color="primary"
+            />
+            <q-btn
+              class="col btn-target"
+              v-close-popup
+              label="Hủy"
+              color="red"
+            />
           </q-card-section>
         </q-card>
       </q-dialog>
@@ -34,25 +49,31 @@
         label="Thêm tiêu chí"
         @click="dialog2 = true"
       />
-      <q-dialog v-model="dialog2" >
+      <q-dialog v-model="dialog2">
         <q-card class="width-card2">
           <q-card-section>
             <div class="text-h6">Thêm tiêu chí</div>
           </q-card-section>
           <q-card-section class="row items-center q-gutter-sm">
             <q-input
-         
               class="col-md col-xs-12"
-              v-model="text"
+              v-model="name"
               type="text"
               label="Tên tiêu chí"
             />
             <q-input
               class="col-md col-xs-12"
-              v-model="text"
+              v-model="comment"
               type="text"
               label="Đơn vị tính"
             />
+            <q-input
+              class="col-md col-xs-12"
+              v-model="order"
+              type="text"
+              label=" Số thứ tự"
+            />
+
             <q-select
               class="col-md col-xs-12"
               name="accepted_genres"
@@ -63,10 +84,9 @@
               filled
               clearable
               label="Đề mục"
-             />
+            />
             <q-select
-              
-              v-on:click="seen = !seen"
+              :disable="choseDicator == null"
               class="col-md col-xs-12"
               name="accepted_genres"
               filled
@@ -76,24 +96,30 @@
               color="primary"
               label="Tiêu chí cha"
             />
-            <div v-if="seen == false">
-              hello word
-            </div>
           </q-card-section>
-          
+
           <div class="button-dialog">
-          <q-card-section class="row items-center q-gutter-sm justify-center" >
-            <q-btn class="col-md-2 btn-target" v-close-popup label="Tạo" color="primary" />
-            <q-btn class="col-md-2 btn-target" v-close-popup label="Hủy" color="red" />
-          </q-card-section>
+            <q-card-section class="row items-center q-gutter-sm justify-center">
+              <q-btn
+                class="col-md-2 btn-target"
+                v-close-popup
+                label="Tạo"
+                @click="create()"
+                color="primary"
+              />
+              <q-btn
+                class="col-md-2 btn-target"
+                v-close-popup
+                label="Hủy"
+                color="red"
+              />
+            </q-card-section>
           </div>
         </q-card>
       </q-dialog>
-   
-    
-     
+
       <!-- <q-btn class="col-md-2 col-xs-12 btn-click" color="primary" label="Xác nhận" /> -->
-     </div>
+    </div>
   </div>
 </template>
 
@@ -108,17 +134,21 @@ export default {
   name: "createtarget",
 
   async created() {
- /*    const cator = await detailsetindicator.detail(-1);
+    /*    const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics; */
 
-    const [data1, data2, data3] = await Promise.all([units.units(), topics.topics(), targets.targets()]);
+    const [data1, data2, data3] = await Promise.all([
+      units.units(),
+      topics.topics(),
+      targets.targets(),
+    ]);
     this.units = data1.units;
     this.topics = data2.topics;
     this.targets = data3.targets;
   },
 
-  methods:{
-     toLength(arr ) {
+  methods: {
+    toLength(arr) {
       return sp.toLength(arr);
     },
   },
@@ -126,14 +156,16 @@ export default {
   data() {
     const name = ref(null);
     return {
+      name: '',
+      comment: '',
       dialog1: ref(false),
       dialog2: ref(false),
       tables: {},
       topics: [],
       targets: [],
       choseDicator: null,
+      order: '',
       choseTarget: null,
-      name,
       seen: true,
       onReset() {
         name.value = null;
@@ -141,6 +173,20 @@ export default {
       selected: ref(""),
     };
   },
+  watch: {
+    async choseDicator(newVal, oldVal) {
+      if (newVal !== null) {
+        let data =await targets.getwithtopic(newVal.id,1);
+        this.targets = data.topic[0].targets;
+      }
+    },
+  },
+  methods: {
+    async create() {
+      let parentId = this.choseTarget == null ? null : this.choseTarget.id;
+      const data = await targets.create( this.name, parentId, this.choseDicator.id, this.comment, this.order );
+    }
+  }
 };
 </script>
 
@@ -164,7 +210,7 @@ export default {
 
 .width-card
   min-width: 50%
-  
+
 .text-h6
   font-size: 25px
 
@@ -181,6 +227,4 @@ export default {
   min-height: 40px
   min-width: 100px
   max-width: 100px
-   
-
 </style>
