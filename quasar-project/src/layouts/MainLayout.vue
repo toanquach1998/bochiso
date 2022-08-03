@@ -171,6 +171,7 @@ export default defineComponent({
         this.user.username.length > 1
       ) {
         this.$router.go();
+        window.location.reload();
       } else {
         this.$router.push("/login");
       }
@@ -186,6 +187,7 @@ export default defineComponent({
         username: '',
       });
       this.$router.go();
+      window.location.reload();
     },
     reloadpage() {
       this.$router.go();
