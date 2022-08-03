@@ -59,7 +59,7 @@
 
       <tbody>
         <template v-for="(topic, index) in tables" :key="topic.id">
-          <tr class="text-left">
+          <tr class="text-left" >
             <td>
               <span class="topic-id">{{ ++index }}</span>
             </td>

@@ -91,7 +91,7 @@
           </q-item-section>
         </q-item>
 
-           <q-item to="/createbcs" active-class="my-active-item">
+           <q-item to="/createbcs" class="gt-sm" active-class="my-active-item" v-if="check()" >
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />
           </q-item-section>
@@ -102,7 +102,7 @@
           </q-item-section>
         </q-item>
 
-   <!--         <q-item to="/createtarget" active-class="my-active-item">
+    <!--        <q-item to="/createtarget" class="gt-sm" active-class="my-active-item" v-if="check()">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />
           </q-item-section>
@@ -193,6 +193,10 @@ export default defineComponent({
     name(name) {
       return name.split(' ').slice(-1).join(' ');
     },
+    check(){
+      if(this.user.username == 'tuyenttb.hgi' || this.user.username == 'nhanvl.hgi') return true;
+      return false;
+    }
   },
 });
 </script>

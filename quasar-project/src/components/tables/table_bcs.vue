@@ -215,7 +215,6 @@ export default {
 
 //sass cho tieu chi con
 .target2-index
-
   margin-left: 6px
 
 .topic123
@@ -248,9 +247,7 @@ export default {
 .text-color-1
   color: white
 
-
 .h6-text
-
   font-size: 16px
   font-weight: 700
   padding: 10px

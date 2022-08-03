@@ -20,10 +20,11 @@ async function createWithTopicArr(unitId, topicIdArr,  year ,month = null )  {
   });
   return res.data;
 }
-async function update(id, plan) {
+async function update(id, plan, type) {
   const res = await api.post(prefix + '/update', {
     id: id,
     plan: plan,
+    type: type,
   });
 
   return res.data;

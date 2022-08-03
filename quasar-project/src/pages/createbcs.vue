@@ -113,13 +113,48 @@
                     {{ target1.comment }}
                   </td>
                   <td class="target1-size">
-                    {{ target1.setindicators[0].active }}
+                      <q-checkbox v-model="target1.setindicators[0].active" 
+                      true-value=1
+                      false-value=0
+                       @change="
+                        updated(
+                          target1.setindicators[0].id,
+                          target1.setindicators[0].min_warrning,
+                          4
+                        )
+                      "
+                      />
+                    
                   </td>
+
                   <td class="target1-size">
-                    {{ target1.setindicators[0].min_warning }}
+                    <q-input
+                       v-model="target1.setindicators[0].min_warning"
+                      @change="
+                        updated(
+                          target1.setindicators[0].id,
+                          target1.setindicators[0].min_warrning,
+                          2
+                        )
+                      "
+                      label="Phần trăm mức quan tâm"
+                    />
+                  
                   </td>
+
                   <td class="target1-size">
-                    {{ target1.setindicators[0].plan_warning }}
+
+                     <q-input
+                      v-model="target1.setindicators[0].plan_warning"
+                      @change="
+                        updated(
+                          target1.setindicators[0].id,
+                          target1.setindicators[0].plan_warrning,
+                          3,
+                        )
+                      "
+                      label="Phần trăm mức chấp nhận"
+                    />
                   </td>
                   <td>
                     <q-input
@@ -127,7 +162,8 @@
                       @change="
                         updated(
                           target1.setindicators[0].id,
-                          target1.setindicators[0].plan
+                          target1.setindicators[0].plan,
+                          1,
                         )
                       "
                       label="cập nhật chỉ tiêu tháng"
@@ -148,27 +184,63 @@
                     <td class="target1-size">
                       {{ target2.comment }}
                     </td>
-                    <td class="target1-size">
-                      {{ target2.setindicators[0].active }}
-                    </td>
-                    <td class="target1-size">
-                      {{ target2.setindicators[0].min_warning }}
-                    </td>
-                    <td class="target1-size">
-                      {{ target2.setindicators[0].plan_warning }}
-                    </td>
-                    <td>
-                      <q-input
-                        v-model="target2.setindicators[0].plan"
-                        @change="
-                          updated(
-                            target2.setindicators[0].id,
-                            target2.setindicators[0].plan
-                          )
-                        "
-                        label="cập nhật chỉ số tháng"
+                       <td class="target1-size">
+                      <q-checkbox v-model="target2.setindicators[0].active" 
+                      true-value=1
+                      false-value=0
+                       @change="
+                        updated(
+                          target2.setindicators[0].id,
+                          target2.setindicators[0].min_warrning,
+                          4
+                        )
+                      "
                       />
-                    </td>
+                    
+                  </td>
+
+                  <td class="target1-size">
+                    <q-input
+                       v-model="target2.setindicators[0].min_warning"
+                      @change="
+                        updated(
+                          target2.setindicators[0].id,
+                          target2.setindicators[0].min_warrning,
+                          2
+                        )
+                      "
+                      label="Phần trăm mức quan tâm"
+                    />
+                  
+                  </td>
+
+                  <td class="target1-size">
+
+                     <q-input
+                      v-model="target2.setindicators[0].plan_warning"
+                      @change="
+                        updated(
+                          target2.setindicators[0].id,
+                          target2.setindicators[0].plan_warrning,
+                          3,
+                        )
+                      "
+                      label="Phần trăm mức chấp nhận"
+                    />
+                  </td>
+                  <td>
+                    <q-input
+                      v-model="target2.setindicators[0].plan"
+                      @change="
+                        updated(
+                          target2.setindicators[0].id,
+                          target2.setindicators[0].plan,
+                          1,
+                        )
+                      "
+                      label="cập nhật chỉ tiêu tháng"
+                    />
+                  </td>
                   </tr>
                 </template>
               </template>
@@ -286,9 +358,9 @@ export default {
     };
   },
   methods: {
-    async updated(id, plan) {
-      console.log("id ", id, "plan ", plan);
-      let data = await setIndicators.update(id, plan);
+    async updated(id, plan, type) {
+     // console.log("id ", id, "plan ", plan);
+      let data = await setIndicators.update(id, plan, type);
 
       if (data?.statuscode == 1) {
         noti.showNoti("Đã cập nhật", "green");

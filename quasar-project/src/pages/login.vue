@@ -11,21 +11,17 @@
   >
     <q-page-container class="login-container justify-center">
       <div class="">
-        <q-img 
-          id="login-logo"
-          src="../../public/icons/logo-vnpt.png"
-        />
+        <q-img id="login-logo" src="../../public/icons/logo-vnpt.png" />
       </div>
       <div class="justify-center text-center topic-name">
-      <span>BỘ CHỈ SỐ ĐIỀU HÀNH</span>
+        <span>BỘ CHỈ SỐ ĐIỀU HÀNH</span>
       </div>
       <div>
         <q-form class="q-gutter-md" @submit.prevent="userLogin()">
           <q-input
             outlined
-            filled 
-            style="font-size:18px"
-            
+            filled
+            style="font-size: 18px"
             standout="text-blue-14"
             class="input-h"
             bg-color="blue-grey-2"
@@ -34,12 +30,12 @@
           >
           </q-input>
           <q-input
-          class="input-h"
-          filled 
+            class="input-h"
+            filled
             outlined
             standout
             color="bule-14"
-            style="font-size:18px"
+            style="font-size: 18px"
             bg-color="blue-grey-2"
             label="Mật khẩu"
             type="password"
@@ -61,8 +57,11 @@
 </template>
 
 <script>
+import { useQuasar } from "quasar";
 import user from "src/boot/callApi/user";
+import { ref } from "vue";
 import { mapGetters } from "vuex";
+import noti from "src/boot/noti/noti";
 export default {
   name: "login",
   created() {
@@ -81,10 +80,23 @@ export default {
   methods: {
     async userLogin() {
       console.log(this.login.username, this.login.password);
+       
       const data = await user.login(this.login.username, this.login.password);
+      console.log(data.statuscode);
+          if (data?.statuscode == 0){
+      
+        noti.showNoti("Mật khẩu không tồn tại", "red");
+      }
+         if (data?.statuscode == 2){
+        noti.showNoti("Sai mật khẩu", "red");
+      };
+      
       this.$store.dispatch("User/user", data.user[0]);
       localStorage.setItem("key", data.token);
+      
+      
       this.$router.push("/dashboard");
+   
     },
   },
   computed: {
@@ -111,8 +123,8 @@ export default {
   height:  auto
   margin-bottom: 5px
 
-  
-  
+
+
 .q-field__control
   height: 50px !important
 

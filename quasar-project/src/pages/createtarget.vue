@@ -132,10 +132,10 @@
             </th>
           </tr>
         </thead>
-        <tbody>
+        
           <template v-for="topic in topics" :key="topic.id">
          
-            <div>
+           
               <q-list bordered class="rounded-borders">
                 <q-expansion-item
                   :options="topics"
@@ -144,14 +144,15 @@
                   icon="perm_identity"
                   :caption= "topic.name"
                 >
-                
-                  <q-card v-for="target1 in topic.targets" :key="target1.id">
-                    
-                    <q-card-section  >
+               <div v-for="(target1) in topic.targets" :key="target1.id">
+                <q-card>
+                 
+                  <q-card-section>
                       {{target1.name}}
-                    </q-card-section>
-                    
-                  </q-card>
+                  </q-card-section>
+                 
+                </q-card>
+                 </div>
                 </q-expansion-item>
                 </q-list>
                 <!--     <tr class="text-left">
@@ -161,10 +162,10 @@
                   <td class="text-left">{{ topic.name }}</td>
                 </tr> -->
             
-            </div>
+           
           
           </template>
-        </tbody>
+        
       </q-markup-table>
     </div>
   </div>
@@ -254,8 +255,8 @@ export default {
 
 .width-topic
   margin-top: 10px
-  margin: 0px 200px
-
+  margin-right: 50px
+  
 .q-btn
   min-height: 50px
 
