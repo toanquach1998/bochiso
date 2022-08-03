@@ -102,14 +102,14 @@
           </q-item-section>
         </q-item>
 
-            <q-item to="/createtarget" active-class="my-active-item">
+   <!--         <q-item to="/createtarget" active-class="my-active-item">
           <q-item-section avatar>
             <q-icon name="add_circle" size="30px" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Thiết lập tiêu chí</q-item-label>
           </q-item-section>
-        </q-item>
+        </q-item> -->
         <q-item to="/inputdata" active-class="my-active-item" >
           <q-item-section avatar>
             <q-icon name="edit_note" size="40px" />

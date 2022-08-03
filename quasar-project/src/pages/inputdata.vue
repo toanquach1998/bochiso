@@ -90,6 +90,9 @@
               >
             <!--     {{ target1.comment }} -->
               </td>
+               <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"></td>
+            <td :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"></td>
+            <td></td>
          <!--      <td
                 :class="`col-md-3 ${$q.screen.xs ? 'hidden' : ''}`"
                 class="text-right target1-size"
@@ -231,7 +234,7 @@ document.getElementById("d1").innerHTML = text;
     },
    
     async getDetailindicators() {
-      console.log(this.choseUnit.id);
+     
       const data = await detailsetindicator.detail(this.choseUnit.id);
       this.tables = data.topics;
       if (data?.statuscode == 1) {
@@ -239,15 +242,7 @@ document.getElementById("d1").innerHTML = text;
         notis.showNoti(" Đã load " + this.unitName, "black");
       }
     },
-    nowDate() {
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = today.getFullYear();
 
-      today = yy + "/" + mm + "/" + yyyy;
-     return  nowDate(document.write(today));
-    },
     toMoney(money) {
       return sp.toMoney(money);
     },

@@ -120,7 +120,55 @@
 
       <!-- <q-btn class="col-md-2 col-xs-12 btn-click" color="primary" label="Xác nhận" /> -->
     </div>
+    <div>
+      <q-markup-table>
+        <thead>
+          <tr>
+            <th>
+              <span class="text-left">TT</span>
+            </th>
+            <th>
+              <span class="text-left">Chỉ số</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-for="topic in topics" :key="topic.id">
+         
+            <div>
+              <q-list bordered class="rounded-borders">
+                <q-expansion-item
+                  :options="topics"
+                  option-label="name"
+                  expand-separator
+                  icon="perm_identity"
+                  :caption= "topic.name"
+                >
+                
+                  <q-card v-for="target1 in topic.targets" :key="target1.id">
+                    
+                    <q-card-section  >
+                      {{target1.name}}
+                    </q-card-section>
+                    
+                  </q-card>
+                </q-expansion-item>
+                </q-list>
+                <!--     <tr class="text-left">
+                  <td>
+                    <span> {{ ++index }}</span>
+                  </td>
+                  <td class="text-left">{{ topic.name }}</td>
+                </tr> -->
+            
+            </div>
+          
+          </template>
+        </tbody>
+      </q-markup-table>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -128,6 +176,7 @@ import { ref } from "vue";
 import units from "src/boot/callApi/units";
 import topics from "src/boot/callApi/topics";
 import targets from "src/boot/callApi/targets";
+
 import { useQuasar } from "quasar";
 
 export default {
@@ -156,15 +205,15 @@ export default {
   data() {
     const name = ref(null);
     return {
-      name: '',
-      comment: '',
+      name: "",
+      comment: "",
       dialog1: ref(false),
       dialog2: ref(false),
-      tables: {},
+
       topics: [],
       targets: [],
       choseDicator: null,
-      order: '',
+      order: "",
       choseTarget: null,
       seen: true,
       onReset() {
@@ -176,7 +225,7 @@ export default {
   watch: {
     async choseDicator(newVal, oldVal) {
       if (newVal !== null) {
-        let data =await targets.getwithtopic(newVal.id,1);
+        let data = await targets.getwithtopic(newVal.id, 1);
         this.targets = data.topic[0].targets;
       }
     },
@@ -184,9 +233,15 @@ export default {
   methods: {
     async create() {
       let parentId = this.choseTarget == null ? null : this.choseTarget.id;
-      const data = await targets.create( this.name, parentId, this.choseDicator.id, this.comment, this.order );
-    }
-  }
+      const data = await targets.create(
+        this.name,
+        parentId,
+        this.choseDicator.id,
+        this.comment,
+        this.order
+      );
+    },
+  },
 };
 </script>
 
