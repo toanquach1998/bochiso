@@ -3,6 +3,7 @@
     <p class="text-center text-h5 topic-text">
       <q-badge class="badge-topic">Tạo bộ chỉ số</q-badge>
     </p>
+   
     <q-form @reset="onReset" @submit="createBCS()" class="q-gutter-md">
       <div class="q-pa-md">
         <div class="row q-gutter-sm">
@@ -41,7 +42,7 @@
             label="Đề mục"
           />
           <q-btn
-            class="col-md-2 col-xs-12 css-btn"
+            class="col-md-1 col-xs-12 css-btn"
             @click="seen = !seen"
             label="Tạo"
             type="submit"
@@ -49,7 +50,7 @@
           />
           <q-btn
             class="col-md-2 col-xs-12 css-btn"
-            @click="seen = !seen"
+            @click="seen = false"
             label="Chỉnh sửa"
             type="submitseen"
             color="primary"
@@ -57,7 +58,7 @@
         </div>
       </div>
       <div v-if="seen == false">
-        <q-markup-table>
+        <q-markup-table grid wrap-cells>
           <thead>
             <tr class="q color-thead test-tr">
               <th class="text-center th-tieude">
@@ -113,44 +114,42 @@
                     {{ target1.comment }}
                   </td>
                   <td class="target1-size">
-                      <q-checkbox v-model="target1.setindicators[0].active" 
-                      true-value=1
-                      false-value=0
-                       @change="
+                    <q-checkbox
+                      v-model="target1.setindicators[0].active"
+                      :true-value="1"
+                      :false-value="0"
+                      @click="
                         updated(
                           target1.setindicators[0].id,
-                          target1.setindicators[0].min_warrning,
+                          target1.setindicators[0].active,
                           4
                         )
                       "
-                      />
-                    
+                    />
                   </td>
 
                   <td class="target1-size">
                     <q-input
-                       v-model="target1.setindicators[0].min_warning"
+                      v-model="target1.setindicators[0].min_warning"
                       @change="
                         updated(
                           target1.setindicators[0].id,
-                          target1.setindicators[0].min_warrning,
+                          target1.setindicators[0].min_warning,
                           2
                         )
                       "
                       label="Phần trăm mức quan tâm"
                     />
-                  
                   </td>
 
                   <td class="target1-size">
-
-                     <q-input
+                    <q-input
                       v-model="target1.setindicators[0].plan_warning"
                       @change="
                         updated(
                           target1.setindicators[0].id,
-                          target1.setindicators[0].plan_warrning,
-                          3,
+                          target1.setindicators[0].plan_warning,
+                          3
                         )
                       "
                       label="Phần trăm mức chấp nhận"
@@ -163,7 +162,7 @@
                         updated(
                           target1.setindicators[0].id,
                           target1.setindicators[0].plan,
-                          1,
+                          1
                         )
                       "
                       label="cập nhật chỉ tiêu tháng"
@@ -184,63 +183,61 @@
                     <td class="target1-size">
                       {{ target2.comment }}
                     </td>
-                       <td class="target1-size">
-                      <q-checkbox v-model="target2.setindicators[0].active" 
-                      true-value=1
-                      false-value=0
-                       @change="
-                        updated(
-                          target2.setindicators[0].id,
-                          target2.setindicators[0].min_warrning,
-                          4
-                        )
-                      "
+                    <td class="target1-size">
+                      <q-checkbox
+                        v-model="target2.setindicators[0].active"
+                        :true-value="1"
+                        :false-value="0"
+                        @click="
+                          updated(
+                            target2.setindicators[0].id,
+                            target2.setindicators[0].active,
+                            4
+                          )
+                        "
                       />
-                    
-                  </td>
+                    </td>
 
-                  <td class="target1-size">
-                    <q-input
-                       v-model="target2.setindicators[0].min_warning"
-                      @change="
-                        updated(
-                          target2.setindicators[0].id,
-                          target2.setindicators[0].min_warrning,
-                          2
-                        )
-                      "
-                      label="Phần trăm mức quan tâm"
-                    />
-                  
-                  </td>
+                    <td class="target1-size">
+                      <q-input
+                        v-model="target2.setindicators[0].min_warning"
+                        @change="
+                          updated(
+                            target2.setindicators[0].id,
+                            target2.setindicators[0].min_warning,
+                            2
+                          )
+                        "
+                        label="Phần trăm mức quan tâm"
+                      />
+                    </td>
 
-                  <td class="target1-size">
-
-                     <q-input
-                      v-model="target2.setindicators[0].plan_warning"
-                      @change="
-                        updated(
-                          target2.setindicators[0].id,
-                          target2.setindicators[0].plan_warrning,
-                          3,
-                        )
-                      "
-                      label="Phần trăm mức chấp nhận"
-                    />
-                  </td>
-                  <td>
-                    <q-input
-                      v-model="target2.setindicators[0].plan"
-                      @change="
-                        updated(
-                          target2.setindicators[0].id,
-                          target2.setindicators[0].plan,
-                          1,
-                        )
-                      "
-                      label="cập nhật chỉ tiêu tháng"
-                    />
-                  </td>
+                    <td class="target1-size">
+                      <q-input
+                        v-model="target2.setindicators[0].plan_warning"
+                        @change="
+                          updated(
+                            target2.setindicators[0].id,
+                            target2.setindicators[0].plan_warning,
+                            3
+                          )
+                        "
+                        label="Phần trăm mức chấp nhận"
+                      />
+                    </td>
+                    <td>
+                      <q-input
+                        v-model="target2.setindicators[0].plan"
+                        @change="
+                          updated(
+                            target2.setindicators[0].id,
+                            target2.setindicators[0].plan,
+                            1
+                          )
+                        "
+                        label="cập nhật chỉ tiêu tháng"
+                      />
+                    </td>
                   </tr>
                 </template>
               </template>
@@ -359,9 +356,9 @@ export default {
   },
   methods: {
     async updated(id, plan, type) {
-     // console.log("id ", id, "plan ", plan);
+      // console.log("id ", id, "plan ", plan);
       let data = await setIndicators.update(id, plan, type);
-
+      console.log(id,plan,type);
       if (data?.statuscode == 1) {
         noti.showNoti("Đã cập nhật", "green");
       }
