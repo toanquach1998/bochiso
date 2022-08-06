@@ -151,7 +151,7 @@ export default defineComponent({
       async function () {
         var monthset = this.monthValue;
         var yearset = this.yearValue;
-        console.log(monthset, yearset);
+       // console.log(monthset, yearset);
         const data = await setindicators.index(this.unitId, yearset, monthset);
         // alert('lk' , this.unitId);
         this.tables = data.topics;
@@ -199,7 +199,7 @@ export default defineComponent({
         this.choseYear?.value,
         this.choseMonth?.value
       );
-      console.log(data.topics.length);
+     // console.log(data.topics.length);
       if (data?.topics.length == 0) {
         this.showNotif("top", "Bộ chỉ số chưa được tạo", "red");
       } else {

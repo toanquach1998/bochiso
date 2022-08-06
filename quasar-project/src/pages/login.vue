@@ -79,10 +79,10 @@ export default {
   },
   methods: {
     async userLogin() {
-      console.log(this.login.username, this.login.password);
+    //  console.log(this.login.username, this.login.password);
        
       const data = await user.login(this.login.username, this.login.password);
-      console.log(data.statuscode);
+   //   console.log(data.statuscode);
           if (data?.statuscode == 0){
       
         noti.showNoti("Mật khẩu không tồn tại", "red");

@@ -97,7 +97,7 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>
-              <span class="text-list">Tạo bộ chỉ số</span>
+              <span class="text-list">Quản lý bộ chỉ số</span>
             </q-item-label>
           </q-item-section>
         </q-item>

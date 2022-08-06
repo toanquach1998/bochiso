@@ -251,7 +251,7 @@ export default {
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1, 1);
     this.tables = cator.topics;
-    console.log(this.cators);
+   // console.log(this.cators);
     const data1 = await units.units();
     this.units = data1.units;
     this.unitName = cator.unit.name;
@@ -268,7 +268,7 @@ export default {
       return arr.length;
     },
     async update(id, total_plan) {
-      console.log(id, total_plan);
+     // console.log(id, total_plan);
       const data = await detailsetindicator.update(id, total_plan);
       if (data.statuscode == 1) {
         this.showNotif("top", "Cập nhât dữ liệu thành công", "green");
@@ -289,10 +289,10 @@ export default {
     },
     checkUpdate(child, userUpdate, id) {
       if (child == 1 || userUpdate == 0) {
-        console.log("aaa", child, userUpdate, id);
+      //  console.log("aaa", child, userUpdate, id);
         return true;
       }
-      console.log("aaa", child, userUpdate, id);
+    //  console.log("aaa", child, userUpdate, id);
       return false;
     },
       toMoney(money) {

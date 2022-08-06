@@ -1,10 +1,10 @@
 <template>
   <div class="">
     <p class="text-center text-h5 topic-text">
-      <q-badge class="badge-topic">Tạo bộ chỉ số</q-badge>
+      <q-badge class="badge-topic">Quản lý bộ chỉ số</q-badge>
     </p>
    
-    <q-form @reset="onReset" @submit="createBCS()" class="q-gutter-md">
+    <q-form @reset="onReset" @submit="createBCS()"  class="q-gutter-md">
       <div class="q-pa-md">
         <div class="row q-gutter-sm">
           <q-select
@@ -43,7 +43,7 @@
           />
           <q-btn
             class="col-md-1 col-xs-12 css-btn"
-            @click="seen = !seen"
+         
             label="Tạo"
             type="submit"
             color="primary"
@@ -116,8 +116,8 @@
                   <td class="target1-size">
                     <q-checkbox
                       v-model="target1.setindicators[0].active"
-                      :true-value="1"
-                      :false-value="0"
+                      :true-value="'1'"
+                      :false-value="'0'"
                       @click="
                         updated(
                           target1.setindicators[0].id,
@@ -186,8 +186,8 @@
                     <td class="target1-size">
                       <q-checkbox
                         v-model="target2.setindicators[0].active"
-                        :true-value="1"
-                        :false-value="0"
+                        :true-value="'1'"
+                        :false-value="'0'"
                         @click="
                           updated(
                             target2.setindicators[0].id,
@@ -358,7 +358,7 @@ export default {
     async updated(id, plan, type) {
       // console.log("id ", id, "plan ", plan);
       let data = await setIndicators.update(id, plan, type);
-      console.log(id,plan,type);
+    //  console.log(id,plan,type);
       if (data?.statuscode == 1) {
         noti.showNoti("Đã cập nhật", "green");
       }
@@ -372,7 +372,7 @@ export default {
         topicId.push(this.choseDicator[i].id);
       }
       topicId = topicId.toString();
-      console.log(unitId, month, year, topicId);
+     // console.log(unitId, month, year, topicId);
       var data = await setIndicators.createWithTopicArr(
         unitId,
         topicId,
@@ -394,6 +394,9 @@ export default {
       if (data?.statuscode == 5) {
         noti.showNoti(" Bộ chỉ số năm chưa có", "red");
       }
+      if (data?.statuscode ==0) {
+        noti.showNoti("Lấy dữ liệu thành công", "green");
+      }
       if (
         data.statuscode == 1 ||
         data.statuscode == 3 ||
@@ -401,7 +404,7 @@ export default {
       ) {
         if (month == null) month = 13;
         var data1 = await setIndicators.index(unitId, year, month);
-        console.log(data1.topics);
+       // console.log(data1.topics);
         this.tables = data1.topics;
       }
     },

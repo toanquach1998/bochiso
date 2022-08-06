@@ -4,7 +4,7 @@ const target = 'targets';
 
 async function targets() {
   const res = await api.post(target, {});
-  console.log(res.data);
+ // console.log(res.data);
 
   return res.data
 

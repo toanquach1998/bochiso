@@ -164,6 +164,7 @@
                     dense
                     rounded
                     standout
+                        :before="target2.setindicators[0].total_plan"
                     :disable="
                       toLength(target2.target_updates) == 0 ? true : false
                     "
@@ -184,6 +185,7 @@
                     type="number"
                     min="0"
                     label="Cập nhật dữ liệu"
+                
                   />
                 </td>
               </tr>
@@ -221,7 +223,7 @@ document.getElementById("d1").innerHTML = text;
   methods: {
   
     toLength(arr) {
-      console.log(arr);
+    //  console.log(arr);
       return arr.length;
     },
     async update(id, total_plan) {
