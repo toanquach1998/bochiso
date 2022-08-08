@@ -257,7 +257,7 @@ document.getElementById("d1").innerHTML = text;
       return sp.toSwap(money);
     },
     isDisable() {
-      if( this.hours >= 16 )  {
+      if( this.hours >= 20 )  {
         return true;
         
       } return false;
