@@ -40,9 +40,19 @@ async function getwithtopic(topicId, type = 1) {
   return res.data;
 }
 
+async function getwithtarget(targetID, type = 1) {
+  const res = await api.post(target + '/getwithtarget', {
+    type: type,
+    target_id: targetID,
+  });
+
+  return res.data;
+}
+
 export default {
   targets,
   getwitharraytopic,
   create,
   getwithtopic,
+  getwithtarget,
 }

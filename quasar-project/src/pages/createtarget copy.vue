@@ -120,37 +120,65 @@
 
       <!-- <q-btn class="col-md-2 col-xs-12 btn-click" color="primary" label="Xác nhận" /> -->
     </div>
+    <div>
+      <q-markup-table>
+        <thead>
+          <tr>
+            <th>
+              <span class="text-left">TT</span>
+            </th>
+            <th>
+              <span class="text-left">Chỉ số</span>
+            </th>
+          </tr>
+        </thead>
+        
+          <template v-for="topic in topics" :key="topic.id">
+         
+           
+              <q-list bordered class="rounded-borders">
+                <q-expansion-item
+                  :options="topics"
+                  option-label="name"
+                  expand-separator
+                  icon="perm_identity"
+                  :caption= "topic.name"
+                >
+               <div v-for="(target1) in topic.targets" :key="target1.id">
+                <q-card>
+                 
+                  <q-card-section>
+                      {{target1.name}}
+                  </q-card-section>
+                 
+                </q-card>
+                 </div>
+                </q-expansion-item>
+                </q-list>
+                <!--     <tr class="text-left">
+                  <td>
+                    <span> {{ ++index }}</span>
+                  </td>
+                  <td class="text-left">{{ topic.name }}</td>
+                </tr> -->
+            
+           
+          
+          </template>
+        
+      </q-markup-table>
+    </div>
   </div>
-  <div
-    class="q-pa-md"
-    style="max-width: 350px"
-    v-for="topic in topics"
-    :key="topic.id"
-  >
-    <q-list bordered separator>
-      <q-item clickable v-ripple>
-        <q-item-section  @click="choseDicator = topic.id">{{
-          topic.name
-        }}</q-item-section>
-      </q-item>
-    </q-list>
-    <div class="text-right"></div>
-  </div>
-  <div
-    :disable="choseDicator == null"
-    v-for="target1 in targets"
-    :key="target1.id"
-  >
-    {{ target1.name }}
-  </div>
+  
 </template>
 
 <script>
 import { ref } from "vue";
-import setindicator from "../boot/callApi/setindicators";
 import units from "src/boot/callApi/units";
 import topics from "src/boot/callApi/topics";
 import targets from "src/boot/callApi/targets";
+
+import { useQuasar } from "quasar";
 
 export default {
   name: "createtarget",
@@ -158,8 +186,6 @@ export default {
   async created() {
     /*    const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics; */
-    const data4 = await setindicator.index();
-    this.tables = data4.topics;
 
     const [data1, data2, data3] = await Promise.all([
       units.units(),
@@ -184,7 +210,7 @@ export default {
       comment: "",
       dialog1: ref(false),
       dialog2: ref(false),
-      table: [],
+
       topics: [],
       targets: [],
       choseDicator: null,
@@ -200,14 +226,8 @@ export default {
   watch: {
     async choseDicator(newVal, oldVal) {
       if (newVal !== null) {
-        /*    let data = await targets.getwithtopic(newVal.id, 1);
-        this.targets = data.topic[0].targets; */
-        this.getTopic(newVal);
-      }
-    },
-    async choseTarget(newVal1, oldVal) {
-      if (newVal1 !== null) {
-        this.getTarget(newVal1);
+        let data = await targets.getwithtopic(newVal.id, 1);
+        this.targets = data.topic[0].targets;
       }
     },
   },
@@ -221,14 +241,6 @@ export default {
         this.comment,
         this.order
       );
-    },
-    async getTopic(newVal) {
-      let data = await targets.getwithtopic(newVal, 1);
-      this.targets = data.topic[0].targets;
-    },
-    async getTarget(newVal1) {
-      let data = await targets.getwithtarget(newVal.id1, 1);
-      this.targets = data.targets[0];
     },
   },
 };
@@ -244,7 +256,7 @@ export default {
 .width-topic
   margin-top: 10px
   margin-right: 50px
-
+  
 .q-btn
   min-height: 50px
 
@@ -271,6 +283,4 @@ export default {
   min-height: 40px
   min-width: 100px
   max-width: 100px
-.test
-  border: 1px solid
 </style>

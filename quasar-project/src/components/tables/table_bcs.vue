@@ -128,7 +128,6 @@
 <script>
 import setindicator from "../../boot/callApi/setindicators";
 import { ref } from "vue";
-import { date } from "quasar";
 import sp from "src/boot/sp/sp";
 
 export default {

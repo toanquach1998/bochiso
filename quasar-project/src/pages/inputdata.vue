@@ -22,20 +22,20 @@
     </div>
     <div class="col-md-9 col-xs-12">
       <span
-       
+
         class="namebcs"
         v-if="unitName !== ' '"
       >
-        Cập nhật dữ liệu cho đơn vị: 
+        Cập nhật dữ liệu cho đơn vị:
         <div class="text-bold" style="display: inline-block">
            {{ unitName }}
-       
-       
+
+
         </div>
     -    <div class="text-bold" style="display: inline-block">
           <p id="d1"></p>
         </div>
-        
+
       </span>
     </div>
     <q-markup-table wrap-cells bordered dense>
@@ -132,7 +132,7 @@
             <template
               v-for="(target2, index2) in target1.targets"
               :key="index2"
-              
+
             >
               <tr class="text-left" v-if=" toLength(target2.target_updates) == 0 ? false : true">
                 <td class="target2-index target1-size">
@@ -185,7 +185,7 @@
                     type="number"
                     min="0"
                     label="Cập nhật dữ liệu"
-                
+
                   />
                 </td>
               </tr>
@@ -199,7 +199,6 @@
 
 <script>
 import { useQuasar } from "quasar";
-import setindicator from "../boot/callApi/setindicators";
 import detailsetindicator from "../boot/callApi/detailsetindicators";
 import units from "../boot/callApi/units";
 import notis from "../boot/noti/noti";
@@ -211,22 +210,28 @@ export default {
     /*   const data = await setindicator.index(); */
     const cator = await detailsetindicator.detail(-1);
     this.tables = cator.topics;
-
+    this.hours = parseInt(cator.day);
+    console.log(this.hours);
     const data1 = await units.units();
     this.units = data1.units;
     this.unitName = cator.unit.name;
     this.choseUnit = cator.unit;
       const d = new Date();
 let text = d.toLocaleDateString('vi-VN');
-document.getElementById("d1").innerHTML = text; 
+document.getElementById("d1").innerHTML = text;
   },
   methods: {
-  
+
     toLength(arr) {
     //  console.log(arr);
       return arr.length;
     },
     async update(id, total_plan) {
+      if( this.isDisable() )  {
+        this.showNotif("top", 'Đã quá thời gian cho phép cập nhật' , 'red ');
+        return ;
+      }
+
       const data = await detailsetindicator.update(id, total_plan);
       if (data.statuscode == 1) {
         this.showNotif("top", "Cập nhât dữ liệu thành công", "green");
@@ -234,9 +239,9 @@ document.getElementById("d1").innerHTML = text;
         this.showNotif("top", "Cập nhật dữ liệu thất bại", "red");
       }
     },
-   
+
     async getDetailindicators() {
-     
+
       const data = await detailsetindicator.detail(this.choseUnit.id);
       this.tables = data.topics;
       if (data?.statuscode == 1) {
@@ -251,12 +256,22 @@ document.getElementById("d1").innerHTML = text;
     toSwap(money) {
       return sp.toSwap(money);
     },
+    isDisable() {
+      if( this.hours >= 16 )  {
+        return true;
+        
+      } return false;
+      
+     
+    },
+  
   },
 
   data() {
-  
+
     const $q = useQuasar();
     return {
+      hours: 3,
       tables: {},
       units: [],
       choseUnit: null,

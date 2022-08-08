@@ -115,7 +115,7 @@
             <q-icon name="edit_note" size="40px" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Cập nhật bộ chỉ số theo tháng</q-item-label>
+            <q-item-label :disable="dadadada">Cập nhật bộ chỉ số theo tháng</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/inputdata_year" active-class="my-active-item">
