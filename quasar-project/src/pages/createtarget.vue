@@ -121,27 +121,59 @@
       <!-- <q-btn class="col-md-2 col-xs-12 btn-click" color="primary" label="Xác nhận" /> -->
     </div>
   </div>
-  <div
-    class="q-pa-md"
-    style="max-width: 350px"
-    v-for="topic in topics"
-    :key="topic.id"
-  >
-    <q-list bordered separator>
-      <q-item clickable v-ripple>
-        <q-item-section  @click="choseDicator = topic.id">{{
-          topic.name
-        }}</q-item-section>
-      </q-item>
-    </q-list>
-    <div class="text-right"></div>
-  </div>
-  <div
-    :disable="choseDicator == null"
-    v-for="target1 in targets"
-    :key="target1.id"
-  >
-    {{ target1.name }}
+  <div class="text-center">tiêu đề ở đây</div>
+  <div class="row">
+    <div class="col-md-2">
+      <div
+        style="max-width: 350px"
+        v-for="topic in topics"
+        :key="topic.id"
+        
+      >
+        <q-list bordered separator>
+          <q-item  clickable v-ripple @click="seen = false"   active-class="my-active-item" active>
+            <q-item-section
+              @click="choseDicator = topic.id"
+              >{{ topic.name }}</q-item-section
+            >
+          </q-item>
+        </q-list>
+        <div class="text-right"></div>
+      </div>
+    </div>
+    <div class="col-md-8" v-if="seen == false">
+      <q-expansion-item
+        switch-toggle-side
+        expand-separator
+        :disable="choseDicator == null"
+        v-for="target1 in targets"
+        :key="target1.id"
+        dense
+      >
+        <template v-slot:header>
+          <q-item-section class="text-left col-md-6">
+            <q-input v-model="target1.name" />
+          </q-item-section>
+          <q-item-section class="text-left col-md">
+            <q-input v-model="target1.comment" />
+          </q-item-section>
+          <q-item-section class="text-left col-md">
+            <q-input v-model="target1.order" />
+          </q-item-section>
+        </template>
+        <q-card>
+          <q-card-section> TOÀN </q-card-section>
+        </q-card>
+      </q-expansion-item>
+
+      <!--   <div
+        :disable="choseDicator == null"
+        v-for="target1 in targets"
+        :key="target1.id"
+      >
+        {{ target1.name }}
+      </div> -->
+    </div>
   </div>
 </template>
 
@@ -227,8 +259,8 @@ export default {
       this.targets = data.topic[0].targets;
     },
     async getTarget(newVal1) {
-      let data = await targets.getwithtarget(newVal.id1, 1);
-      this.targets = data.targets[0];
+      let data = await targets.getwithparent(newVal.id1);
+      this.targets = data.targets[0].targets;
     },
   },
 };
@@ -273,4 +305,17 @@ export default {
   max-width: 100px
 .test
   border: 1px solid
+
+
+.items
+  background-color: white
+  color: black
+
+.selitem
+  background-color: #0809
+  color: yellow
+.my-active-item
+  color: white !important
+  background-color: red !important
+    
 </style>

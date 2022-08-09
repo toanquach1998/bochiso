@@ -203,7 +203,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="sass" scope>
+<style lang="sass" scoped>
 
 .text-header
   text-transform: uppercase
@@ -225,6 +225,8 @@ export default defineComponent({
   background-color: #1976d2
   border-radius: 10px
   color: white
+.q-focusable
+  border-radius: 10px
 .q-item:hover
   border-radius: 10px
 .test
