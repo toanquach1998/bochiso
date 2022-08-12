@@ -131,7 +131,7 @@
         
       >
         <q-list bordered separator>
-          <q-item  clickable v-ripple @click="seen = false"   active-class="my-active-item" active>
+          <q-item  clickable v-ripple @click="seen = false"  >
             <q-item-section
               @click="choseDicator = topic.id"
               >{{ topic.name }}</q-item-section
@@ -149,6 +149,7 @@
         v-for="target1 in targets"
         :key="target1.id"
         dense
+        @click="getTarget(target1.id)" 
       >
         <template v-slot:header>
           <q-item-section class="text-left col-md-6">
@@ -162,7 +163,15 @@
           </q-item-section>
         </template>
         <q-card>
-          <q-card-section> TOÀN </q-card-section>
+          <q-card-section> 
+            <div>
+                <q-card class="my-card">
+                  <q-card-section>
+                    
+                  </q-card-section>
+                </q-card>
+            </div>  
+          </q-card-section>
         </q-card>
       </q-expansion-item>
 
@@ -219,6 +228,7 @@ export default {
       table: [],
       topics: [],
       targets: [],
+      targetChilds: [],
       choseDicator: null,
       order: "",
       choseTarget: null,
@@ -258,9 +268,10 @@ export default {
       let data = await targets.getwithtopic(newVal, 1);
       this.targets = data.topic[0].targets;
     },
-    async getTarget(newVal1) {
-      let data = await targets.getwithparent(newVal.id1);
-      this.targets = data.targets[0].targets;
+    async getTarget(newVal) {
+      let data = await targets.getwithparent(newVal);
+      console.log(data);
+      this.targetChilds = data.targets;
     },
   },
 };
@@ -314,8 +325,5 @@ export default {
 .selitem
   background-color: #0809
   color: yellow
-.my-active-item
-  color: white !important
-  background-color: red !important
-    
+   
 </style>

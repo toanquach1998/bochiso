@@ -17,13 +17,14 @@
         <span>BỘ CHỈ SỐ ĐIỀU HÀNH</span>
       </div>
       <div>
-        <q-form class="q-gutter-md" @submit.prevent="userLogin()">
+        <q-form class="q-gutter-md" @submit.prevent="userLogin()" >
           <q-input
             outlined
             filled
             style="font-size: 18px"
             standout="text-blue-14"
             class="input-h"
+           
             bg-color="blue-grey-2"
             label="Tên đăng nhập"
             v-model="login.username"
@@ -134,4 +135,12 @@ export default {
   font-size: 23px
   font-weight: 600
   color: #1265b6
+.q-input
+  color: black
+.input-h
+  color: black !important
+.q-field--labeled, .q-field__native
+  color: black !important
+.q-field--dark, .q-field__native, .q-field__input
+  color: #111 !important
 </style>

@@ -43,7 +43,7 @@ async function getwithtopic(topicId, type = 1) {
 async function getwithparent(targetID) {
   const res = await api.post(target + '/getwithparent', {
    
-    target_id: targetID,
+    id: targetID,
   });
 
   return res.data;

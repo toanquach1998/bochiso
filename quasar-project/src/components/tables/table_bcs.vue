@@ -98,9 +98,9 @@
 
                   <q-card-section class="row no-padding">
                     <div class="col-md-4 col-xs-4"></div>
-                    <div class="col-md-8 col-xs-8 last-user text-right">
+                    <div class="col-md-12 col-xs-12 last-user text-right">
                       Thông tin cập nhật:
-                      {{ target2.setindicators[0]?.detail_set_indicator?.name }}
+                      {{ target2.setindicators[0]?.detail_set_indicator?.name }}<br>
                       {{ time(target1.setindicators[0].updated_at) }}
                     </div>
                   </q-card-section>
@@ -152,10 +152,12 @@ export default {
     toLength(arr ) {
       return sp.toLength(arr);
     },
+
     toMoney(money) {
       return sp.toMoney(money);
     },
     toSwap(money) {
+     
       return sp.toSwap(money);
     },
     canhbao(tinhphantram) {
