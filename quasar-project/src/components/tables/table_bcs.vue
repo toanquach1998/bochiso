@@ -1,17 +1,23 @@
 <template>
   <div class="q-pa-md">
-    <template v-for="(topic) in tables" :key="topic.id">
+    <template v-for="topic in tables" :key="topic.id">
       <div class="text-left bg-topic">
         <!-- <span class="topic-id">{{ ++index }}</span> -->
-      <!--   <span class="topic-size">{{ topic.name }} </span> -->
+        <!--   <span class="topic-size">{{ topic.name }} </span> -->
       </div>
 
-        <div v-for="(target1) in topic.targets" :key="target1.id">
-        <div class="bg-test" v-if="toLength(target1.setindicators) == 0  ? false : true">
+      <div v-for="target1 in topic.targets" :key="target1.id">
+        <div
+          class="bg-test"
+          v-if="toLength(target1.setindicators) == 0 ? false : true"
+        >
           <div>
-          <!--   <span class="target1-index"> {{ index }}.{{ target1?.order }}</span> -->
+            <!--   <span class="target1-index"> {{ index }}.{{ target1?.order }}</span> -->
 
-            <span class="target1-index">{{topic.name}} <q-icon name="keyboard_double_arrow_right " /> {{ target1.name }}</span>
+            <span class="target1-index"
+              >{{ topic.name }} <q-icon name="keyboard_double_arrow_right " />
+              {{ target1.name }}</span
+            >
           </div>
 
           <div class="row grid-css items-stretch">
@@ -20,8 +26,11 @@
               :key="index2"
               class="col-md-4 col-xs-12 col-lg-3"
             >
-              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test"  >
-                <q-card class="full-height full-width" v-if="toLength(target2.setindicators) == 0  ? false : true">
+              <div class="q-pa-md row q-gutter-md q-gutter-xs text-test">
+                <q-card
+                  class="full-height full-width"
+                  v-if="toLength(target2.setindicators) == 0 ? false : true"
+                >
                   <q-card-section
                     class="row css-section"
                     :class="
@@ -31,7 +40,8 @@
                           target2.setindicators[0].plan
                         ),
                         target2.setindicators[0].plan_warning,
-                        target2.setindicators[0].min_warning
+                        target2.setindicators[0].min_warning,
+                        target2.id
                       ) == 0
                         ? 'bg-negative'
                         : canhbaomucdo(
@@ -40,7 +50,8 @@
                               target2.setindicators[0].plan
                             ),
                             target2.setindicators[0].plan_warning,
-                            target2.setindicators[0].min_warning
+                            target2.setindicators[0].min_warning,
+                            target2.id
                           ) == 1
                         ? 'bg-amber-8'
                         : 'bg-positive'
@@ -100,18 +111,17 @@
                     <div class="col-md-4 col-xs-4"></div>
                     <div class="col-md-12 col-xs-12 last-user text-right">
                       Thông tin cập nhật:
-                      {{ target2.setindicators[0]?.detail_set_indicator?.name }}<br>
+                      {{ target2.setindicators[0]?.detail_set_indicator?.name
+                      }}<br />
                       {{ time(target1.setindicators[0].updated_at) }}
                     </div>
                   </q-card-section>
                 </q-card>
-                 </div>
-                 </div>
               </div>
             </div>
           </div>
-
-
+        </div>
+      </div>
     </template>
 
     <!--
@@ -149,7 +159,7 @@ export default {
     time(time) {
       return time.slice(0, 19).replace("T", " ");
     },
-    toLength(arr ) {
+    toLength(arr) {
       return sp.toLength(arr);
     },
 
@@ -157,26 +167,39 @@ export default {
       return sp.toMoney(money);
     },
     toSwap(money) {
-     
       return sp.toSwap(money);
     },
     canhbao(tinhphantram) {
       return tinhphantram;
     },
-    canhbaomucdo(tinhphantram, planWarning, minWarning) {
+    canhbaomucdo(tinhphantram, planWarning, minWarning, id) {
       //   console.log(tinhphantram, planWarning ,tinhphantram < planWarning ? 0 : 1);
       //   return tinhphantram < parseInt(planWarning) ? 0 : 1;
+      var arrId = [91, 92, 93];
+      let asId = arrId.find((element) => element == id) ? 1 : 0;
+
       var a = parseFloat(tinhphantram);
       var b = parseFloat(planWarning);
       var c = parseFloat(minWarning);
       var re = 0;
-      if (a < c) {
-        re = 0;
-      } else if (b > a && a >= c) {
-        re = 1;
-      } else {
-        re = 2;
+      if (asId == 0) {
+        if (a < c) {
+          re = 0;
+        } else if (b > a && a >= c) {
+          re = 1;
+        } else {
+          re = 2;
+        }
+      } else if (asId == 1) {
+        if (a < c) {
+          re = 2;
+        } else if (c>= a && a > b) {
+          re = 1;
+        } else {
+          re = 0;
+        }
       }
+
       // console.log('tinhphan tram', tinhphantram)
       // console.log('check chi so', re);
       return re;
@@ -198,7 +221,7 @@ export default {
 .topic-id
   font-weight: 750
   font-size: 24px
-  
+
 .topic-size
   font-size: 24px
   padding: 6px
@@ -278,5 +301,4 @@ export default {
   padding-left: 15px
   box-shadow: 0px 2px 9px black
   border-radius: 10px
-
 </style>
