@@ -250,7 +250,6 @@ export default {
   padding-bottom: 6px !important
 .bg-topic
   font-weight: 700
-  margin-bottom: 20px
   text-align: center
   /* background-color: #FFB562 */
 

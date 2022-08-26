@@ -45,7 +45,7 @@
       />
     </div>
   </q-form>
-
+    
   <!--  <div class="'row'">
     <progressBCS></progressBCS>
   </div> -->
@@ -65,7 +65,16 @@
         </div>
       </span>
     </div>
-      <div class="col-sm col-xs-4 badge-color">
+    
+     <div class="col-xs-12 text-right export-a">
+      <a style="text-decoration: none" :href="`http://113.164.176.24:8000/targets/export?unit_id=${choseUnit?.id}&month=${choseMonth?.value}&year=${choseYear?.value}`">   
+        <q-btn color="green" icon-right="archive" label="Xuất file"  />
+      </a>
+    </div>
+  </div>
+   <div class="row text-right nguongcb-css">
+    <div class="gt-sm col-xs-9"></div>
+      <div class=" col-sm col-xs-4 badge-color">
       <q-badge rounded color="red" /><span> Cảnh báo</span>
     </div>
     <div class="col-sm col-xs-3">
@@ -74,7 +83,8 @@
     <div class="col-sm col-xs-3">
       <q-badge rounded color="green" /><span> Chấp nhận </span>
     </div>
-  </div>
+   </div>
+ 
 
   <tableBCS :tables="tables"></tableBCS>
 </template>
@@ -144,7 +154,7 @@ export default defineComponent({
     this.choseUnit = data.unit;
     this.unitName = data.unit.name;
     this.unitId = data.unit.id;
-    // console.log(this.unitId);
+     console.log(this.choseUnit);
   },
   async mounted() {
     setInterval(
@@ -240,6 +250,8 @@ export default defineComponent({
 
 
 
-
-
+// CSS Cho icon nguong canh bao
+.nguongcb-css
+  padding-top: 10px
+  margin-right: 20px
 </style>

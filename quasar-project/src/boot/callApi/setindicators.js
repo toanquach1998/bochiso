@@ -2,11 +2,12 @@ import { api } from "../axios";
 
 const prefix = 'setindicators';
 
-async function  index(unitid1 = null, year1 = null , month1 = null){
+async function  index(unitid1 = null, year1 = null , month1 = null,type = 0 ){
     const res = await api.post(prefix, {
         unit_id: unitid1,
         year: year1,
-        month: month1
+        month: month1,
+        type: type,
     } );
     return res.data;
 }
